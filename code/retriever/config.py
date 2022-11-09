@@ -3,17 +3,17 @@ class parameters():
     prog_name = "retriever"
 
     # set up your own path here
-    root_path = "your_project_path"
-    output_path = "path_to_store_outputs"
-    cache_dir = "path_for_other_cache"
+    root_path = "../"
+    output_path = "../output"
+    cache_dir = "../cache"
 
     # the name of your result folder.
     model_save_name = "retriever-bert-base-test"
 
-    train_file = root_path + "dataset/train.json"
-    valid_file = root_path + "dataset/dev.json"
+    train_file = root_path + "../dataset/train.json"
+    valid_file = root_path + "../dataset/dev.json"
 
-    test_file = root_path + "dataset/test.json"
+    test_file = root_path + "../dataset/test.json"
 
     op_list_file = "operation_list.txt"
     const_list_file = "constant_list.txt"
@@ -27,7 +27,7 @@ class parameters():
 
     # train, test, or private
     # private: for testing private test data
-    device = "cuda"
+    device = "cpu"
     mode = "train"
     resume_model_path = ""
 
