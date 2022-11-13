@@ -24,9 +24,10 @@ import finqa_utils as finqa_utils
 TOTAL_BAR_LENGTH = 100.
 last_time = time.time()
 begin_time = last_time
-print(os.popen('stty size', 'r').read())
-_, term_width = os.popen('stty size', 'r').read().split()
-term_width = int(term_width)
+# print(os.popen('stty size', 'r').read())
+# _, term_width = os.popen('stty size', 'r').read().split()
+# term_width = int(term_width)
+term_width = 1600
 
 
 def progress_bar(current, total, msg=None):

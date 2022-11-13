@@ -27,7 +27,7 @@ class parameters():
 
     # train, test, or private
     # private: for testing private test data
-    device = "cpu"
+    device = "cuda"
     mode = "train"
     resume_model_path = ""
 
@@ -49,10 +49,10 @@ class parameters():
     n_best_size = 20
     dropout_rate = 0.1
 
-    batch_size = 16
+    batch_size = 8
     batch_size_test = 16
     epoch = 100
     learning_rate = 2e-5
 
-    report = 300
+    report = 900
     report_loss = 100

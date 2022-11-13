@@ -17,8 +17,12 @@ import torch.optim as optim
 
 
 from Model import Bert_model
-
-if conf.pretrained_model == "bert":
+if conf.resume_model_path:
+    from transformers import BertTokenizer
+    from transformers import BertConfig
+    tokenizer = BertTokenizer.from_pretrained(conf.resume_model_path)
+    model_config = BertConfig.from_pretrained(conf.model_size)
+elif conf.pretrained_model == "bert":
     from transformers import BertTokenizer
     from transformers import BertConfig
     tokenizer = BertTokenizer.from_pretrained(conf.model_size)
