@@ -8,7 +8,7 @@ class parameters():
     cache_dir = "../cache"
 
     # the name of your result folder.
-    model_save_name = "retriever-bert-base-test"
+    model_save_name = "retriever-bert-base-test-inference"
 
     train_file = root_path + "../dataset/train.json"
     valid_file = root_path + "../dataset/dev.json"
@@ -28,12 +28,11 @@ class parameters():
     # train, test, or private
     # private: for testing private test data
     device = "cuda"
-    mode = "train"
-    resume_model_path = "/content/gdrive/MyDrive/Colab Notebooks/FinQA/5_model.pt"
+    mode = "test"
+    resume_model_path = ""
 
     ### to load the trained model in test time
-    saved_model_path = output_path + \
-        "bert-base-6k_20210427232814/saved_model/loads/3/model.pt"
+    saved_model_path = "/content/gdrive/MyDrive/Colab Notebooks/FinQA/5_model.pt"
     build_summary = False
 
     option = "rand"
