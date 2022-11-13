@@ -97,11 +97,10 @@ def train():
     model = Bert_model(hidden_size=model_config.hidden_size,
                        dropout_rate=conf.dropout_rate,)
 
-    if conf.resume_model_path:
-        model.load_state_dict(torch.load(conf.resume_model_path))
-
     model = nn.DataParallel(model)
     model.to(conf.device)
+    if conf.resume_model_path:
+        model.load_state_dict(torch.load(conf.resume_model_path))
     optimizer = optim.Adam(model.parameters(), conf.learning_rate)
     criterion = nn.CrossEntropyLoss(reduction='none', ignore_index=-1)
     model.train()
