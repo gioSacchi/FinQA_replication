@@ -17,12 +17,8 @@ import torch.optim as optim
 
 
 from Model import Bert_model
-if conf.resume_model_path:
-    from transformers import BertTokenizer
-    from transformers import BertConfig
-    tokenizer = BertTokenizer.from_pretrained(conf.resume_model_path)
-    model_config = BertConfig.from_pretrained(conf.model_size)
-elif conf.pretrained_model == "bert":
+
+if conf.pretrained_model == "bert":
     from transformers import BertTokenizer
     from transformers import BertConfig
     tokenizer = BertTokenizer.from_pretrained(conf.model_size)
@@ -100,6 +96,9 @@ def train():
 
     model = Bert_model(hidden_size=model_config.hidden_size,
                        dropout_rate=conf.dropout_rate,)
+
+    if conf.resume_model_path:
+        model.load_state_dict(torch.load(conf.resume_model_path))
 
     model = nn.DataParallel(model)
     model.to(conf.device)

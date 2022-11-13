@@ -29,7 +29,7 @@ class parameters():
     # private: for testing private test data
     device = "cuda"
     mode = "train"
-    resume_model_path = ""
+    resume_model_path = "/content/gdrive/MyDrive/Colab Notebooks/FinQA/5_model.pt"
 
     ### to load the trained model in test time
     saved_model_path = output_path + \
