@@ -217,8 +217,8 @@ def evaluate(data_ori, data, model, ksave_dir, mode='valid'):
             all_filename_id.extend(filename_id)
             all_ind.extend(ind)
 
-    output_prediction_file = os.path.join(ksave_dir_mode,
-                                          "predictions.json")
+    output_prediction_file = os.path.join(ksave_dir_mode, "predictions_main.json") if not conf.gdrive_save_predictions else conf.gdrive_save_predictions
+
 
     if mode == "valid":
         print_res = retrieve_evaluate(
