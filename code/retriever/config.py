@@ -9,7 +9,7 @@ class parameters():
 
     # the name of your result folder.
     model_save_name = "retriever-bert-base-test-inference"
-    gdrive_save_predictions = "/content/gdrive/MyDrive/Colab Notebooks/FinQA"
+    gdrive_save_predictions = "/content/gdrive/MyDrive/Colab Notebooks/FinQA/generator_files"
 
     train_file = root_path + "../dataset/train.json"
     valid_file = root_path + "../dataset/dev.json"
