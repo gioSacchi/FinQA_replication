@@ -109,7 +109,11 @@ def generate(data_ori, data, model, ksave_dir, mode='valid'):
             all_filename_id.extend(filename_id)
             all_ind.extend(ind)
 
-    output_prediction_file = os.path.join(ksave_dir_mode, "predictions.json") if not conf.gdrive_save_predictions else conf.gdrive_save_predictions
+    if not conf.gdrive_save_predictions:
+        output_prediction_file = os.path.join(ksave_dir_mode, "predictions.json")
+    else: 
+        #change name here eg predictions_test
+        os.path.join(conf.gdrive_save_predictions, "predictions.json")
 
     if mode == "valid":
         print_res = retrieve_evaluate(
