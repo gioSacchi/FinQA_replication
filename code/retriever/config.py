@@ -9,6 +9,7 @@ class parameters():
 
     # the name of your result folder.
     model_save_name = "retriever-bert-base-test-inference"
+    gdrive_save_predictions = "/content/gdrive/MyDrive/Colab Notebooks/FinQA"
 
     train_file = root_path + "../dataset/train.json"
     valid_file = root_path + "../dataset/dev.json"
@@ -32,7 +33,7 @@ class parameters():
     resume_model_path = ""
 
     ### to load the trained model in test time
-    saved_model_path = "/content/gdrive/MyDrive/Colab Notebooks/FinQA/5_model.pt"
+    saved_model_path = "/content/gdrive/MyDrive/Colab Notebooks/FinQA/6_model_cont.pt"
     build_summary = False
 
     option = "rand"
