@@ -153,7 +153,7 @@ def train():
             model.zero_grad()
             optimizer.zero_grad()
 
-            this_logits = model(True, input_ids, input_mask, segment_ids,
+            this_logits = model.forward(True, input_ids, input_mask, segment_ids,
                                 option_mask, program_ids, program_mask, device=conf.device)
 
             this_loss = criterion(

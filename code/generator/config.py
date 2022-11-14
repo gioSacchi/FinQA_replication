@@ -3,9 +3,9 @@ class parameters():
     prog_name = "generator"
 
     # set up your own path here
-    root_path = "your_project_path"
-    output_path = "path_to_store_outputs"
-    cache_dir = "path_for_other_cache"
+    root_path = "../"
+    output_path = "../output"
+    cache_dir = "../cache"
 
     model_save_name = "bert-base"
 
@@ -14,9 +14,12 @@ class parameters():
     # test_file = root_path + "dataset/test.json"
 
     ### files from the retriever results
-    train_file = root_path + "dataset/train_retrieve.json"
-    valid_file = root_path + "dataset/dev_retrieve.json"
-    test_file = root_path + "dataset/test_retrieve.json"
+    # train_file = root_path + "dataset/train_retrieve.json"
+    # valid_file = root_path + "dataset/dev_retrieve.json"
+    # test_file = root_path + "dataset/test_retrieve.json"
+    train_file = "/content/gdrive/MyDrive/Colab Notebooks/FinQA/generator_files/converted_train_predictions.json"
+    valid_file = "/content/gdrive/MyDrive/Colab Notebooks/FinQA/generator_files/converted_dev_predictions.json"
+    test_file = "/content/gdrive/MyDrive/Colab Notebooks/FinQA/generator_files/converted_test_predictions.json"
 
     # infer table-only text-only
     # test_file = root_path + "dataset/test_retrieve_7k_text_only.json"
@@ -50,7 +53,7 @@ class parameters():
     # private: for testing private test data
     device = "cuda"
     mode = "train"
-    saved_model_path = output_path + "roberta-large-gold_20210713020324/saved_model/loads/119/model.pt"
+    saved_model_path = "/content/gdrive/MyDrive/Colab Notebooks/FinQA/" + "version_gen_model.pt"
     build_summary = False
 
     sep_attention = True
@@ -62,7 +65,7 @@ class parameters():
     n_best_size = 20
     dropout_rate = 0.1
 
-    batch_size = 16
+    batch_size = 8
     batch_size_test = 16
     epoch = 300
     learning_rate = 2e-5
