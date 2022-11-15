@@ -347,7 +347,7 @@ if __name__ == '__main__':
 
 
     json_in = root + "/predictions_train.json"
-    json_out = root + "generator_files/converted_train_predictions.json"
+    json_out = root + "/generator_files/converted_train_predictions.json"
     convert_test(json_in, json_out, topn=3, max_len=290)
 
 

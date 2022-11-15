@@ -26,8 +26,8 @@ TOTAL_BAR_LENGTH = 100.
 last_time = time.time()
 begin_time = last_time
 print(os.popen('stty size', 'r').read())
-_, term_width = os.popen('stty size', 'r').read().split()
-term_width = int(term_width)
+# _, term_width = os.popen('stty size', 'r').read().split()
+term_width = int(800)
 
 
 all_ops = ["add", "subtract", "multiply", "divide", "exp", "greater", "table_max",
