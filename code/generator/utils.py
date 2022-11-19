@@ -806,6 +806,7 @@ def evaluate_result(json_in, json_ori, all_res_file, error_file, program_mode):
                 exe_correct += 1
 
             if equal_program(gold, pred):
+                prog_correct += 1
                 if exe_res != gold_res:
                     print(each_id)
                     print(gold)
@@ -813,16 +814,17 @@ def evaluate_result(json_in, json_ori, all_res_file, error_file, program_mode):
                     print(gold_res)
                     print(exe_res)
                     print(each_ori_data["id"])
-                assert exe_res == gold_res
-                prog_correct += 1
-                if "".join(gold) != "".join(pred):
+                # assert exe_res == gold_res
+                elif "".join(gold) != "".join(pred):
                     print(each_id)
                     print(gold)
                     print(pred)
                     print(gold_res)
                     print(exe_res)
                     print(each_ori_data["id"])
-
+                else:
+                    # fully correct answer and program
+                    correct += 1
         each_ori_data["qa"]["predicted"] = pred
 
         if exe_res != gold_res:
