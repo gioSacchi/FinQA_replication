@@ -53,6 +53,8 @@ class parameters():
     # private: for testing private test data
     device = "cuda"
     mode = "train"
+
+    resume_model_path = "/content/gdrive/MyDrive/Colab Notebooks/FinQA/10_gen_model.pt"
     saved_model_path = "/content/gdrive/MyDrive/Colab Notebooks/FinQA/" + "version_gen_model.pt"
     build_summary = False
 
