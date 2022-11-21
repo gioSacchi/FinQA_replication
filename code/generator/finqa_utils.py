@@ -295,12 +295,19 @@ def read_mathqa_entry(entry, tokenizer):
     question = entry["qa"]["question"]
     this_id = entry["id"]
     context = ""
-
-
+    # adds golden inputs to model input if missing during training
     if conf.retrieve_mode == "single":
+        gold_inds_tags = list(entry["qa"]["gold_inds"].keys())
         for ind, each_sent in entry["qa"]["model_input"]:
             context += each_sent
             context += " "
+
+            if conf.mode == "train" and ind in gold_inds_tags:
+                    gold_inds_tags.remove(ind)
+            
+        if len(gold_inds_tags) > 0:
+            gold_texts = " ".join([entry["qa"]["gold_inds"][tag] for tag in gold_inds_tags]) + " "
+            context += gold_texts
     elif conf.retrieve_mode == "slide":
         if len(entry["qa"]["pos_windows"]) > 0:
             context = random.choice(entry["qa"]["pos_windows"])[0]
@@ -325,6 +332,8 @@ def read_mathqa_entry(entry, tokenizer):
     # process "." and "*" in text
     context = context.replace(". . . . . .", "")
     context = context.replace("* * * * * *", "")
+    # Removes a series of 5 or more * 
+    context = re.sub(r'\*{5,}', "", context)   
         
     original_question = question + " " + tokenizer.sep_token + " " + context.strip()
 
