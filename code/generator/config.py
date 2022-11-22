@@ -8,15 +8,17 @@ class parameters():
     cache_dir = "../cache"
 
     model_save_name = "bert-base"
+    gdrive_save_predictions = "/content/gdrive/MyDrive/Colab Notebooks/FinQA"
+
 
     # train_file = root_path + "dataset/train.json"
     # valid_file = root_path + "dataset/dev.json"
     # test_file = root_path + "dataset/test.json"
 
     ### files from the retriever results
-    # train_file = root_path + "dataset/train_retrieve.json"
-    # valid_file = root_path + "dataset/dev_retrieve.json"
-    # test_file = root_path + "dataset/test_retrieve.json"
+    # train_file = r"E:\FinQA_replication\code\generator\files\converted_train_predictions.json"
+    # valid_file = r"E:\FinQA_replication\code\generator\files\converted_dev_predictions.json"
+    # test_file = r"E:\FinQA_replication\code\generator\files\converted_test_predictions.json"
     train_file = "/content/gdrive/MyDrive/Colab Notebooks/FinQA/generator_files/converted_train_predictions.json"
     valid_file = "/content/gdrive/MyDrive/Colab Notebooks/FinQA/generator_files/converted_dev_predictions.json"
     test_file = "/content/gdrive/MyDrive/Colab Notebooks/FinQA/generator_files/converted_test_predictions.json"
@@ -52,8 +54,8 @@ class parameters():
     # train, test, or private
     # private: for testing private test data
     device = "cuda"
-    mode = "train"
-    saved_model_path = "/content/gdrive/MyDrive/Colab Notebooks/FinQA/" + "version_gen_model.pt"
+    mode = "test"
+    saved_model_path = "/content/gdrive/MyDrive/Colab Notebooks/FinQA/generator_files/" + "version_gen_model_cont.pt"
     build_summary = False
 
     sep_attention = True
