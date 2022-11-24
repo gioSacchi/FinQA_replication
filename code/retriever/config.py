@@ -4,12 +4,12 @@ class parameters():
 
     # set up your own path here
     root_path = "../"
-    output_path = "../output"
+    output_path = "/content/gdrive/MyDrive/FinQAModels"
     cache_dir = "../cache"
 
     # the name of your result folder.
     model_save_name = "retriever-bert-base-test-inference"
-    gdrive_save_predictions = "/content/gdrive/MyDrive/Colab Notebooks/FinQA"
+    gdrive_save_predictions = "/content/gdrive/MyDrive/FinQAModels"
 
     train_file = root_path + "../dataset/train.json"
     valid_file = root_path + "../dataset/dev.json"
@@ -20,11 +20,11 @@ class parameters():
     const_list_file = "constant_list.txt"
 
     # model choice: bert, roberta
-    pretrained_model = "bert"
-    model_size = "bert-base-uncased"
+    # pretrained_model = "bert"
+    # model_size = "bert-base-uncased"
 
-    # pretrained_model = "roberta"
-    # model_size = "roberta-base"
+    pretrained_model = "roberta"
+    model_size = "roberta-large"
 
     # train, test, or private
     # private: for testing private test data
@@ -49,7 +49,7 @@ class parameters():
     n_best_size = 20
     dropout_rate = 0.1
 
-    batch_size = 8
+    batch_size = 10
     batch_size_test = 16
     epoch = 100
     learning_rate = 2e-5
