@@ -7,28 +7,27 @@ import re
 from copy import deepcopy
 from utils import *
 
-def good_replace(text, old, new):
-    
-    # We could be replacing a string without % as well by misstake.
-    # We are converting all strings with the same value. E.g. 100% and 100 would both be replaced. 
-    # Even if they are found as seperate numbers by the regex.
-    if "%" in old:
-      old = old[:-1]
+def main():
+  input_path = r"C:\Users\alexa\projects\su-kex\FinQA_replication\dataset\train.json"
+  df = pd.read_json(input_path)
 
-    return re.sub(r'\b%s\b' % old, new, text)
-  
+  print(len(df))
 
-input_path = r"C:\Users\alexa\projects\su-kex\FinQA_replication\dataset\train.json"
-df = pd.read_json(input_path)
+  ## Remove retriever columns
+  df = df.drop(['table_retrieved','text_retrieved','table_retrieved_all','text_retrieved_all', 'table_ori', 'filename'], axis=1)
 
-print(len(df))
-print(df.columns)
+  for df_index, row in df.iterrows():
+    row = augment_number(row, df_index)
+    if row:
+      df = pd.DataFrame.append(df, row, ignore_index=True)
 
-## Remove retriever columns
-df = df.drop(['table_retrieved','text_retrieved','table_retrieved_all','text_retrieved_all', 'table_ori', 'filename'], axis=1)
+  print(len(df))
+  output_path = r"C:\Users\alexa\projects\su-kex\FinQA_replication\code\pipeline\output\train_augmented.json"
+  df.to_json(output_path, orient='records', indent=4)
 
-for df_index, row in df.iterrows():
-  
+
+
+def augment_number(row, df_index):
   # Dropping unneeded columns, remove program_re???
   row['qa'] = {"question": row['qa']["question"], "program": row['qa']["program"], "gold_inds": row['qa']["gold_inds"], "exe_ans": row['qa']["exe_ans"], "program_re": row['qa']["program_re"]}
   
@@ -43,7 +42,7 @@ for df_index, row in df.iterrows():
 
   ## If there are any duplcate numbers, continue
   if len(numbers) != len(set(numbers)):
-    continue
+    return None
 
   # Randomly select n numbers from the list
   threshold = random.random()
@@ -83,57 +82,21 @@ for df_index, row in df.iterrows():
 
   if new_program == program:
     ## Don't create new question
-    continue    
+    return None
   
   ## Update exe_ans
   invalid_flag, exe_ans = eval_program(program_tokenization(new_program), new_row['table'])
   if invalid_flag:
-    continue
+    return None
   
   new_row['qa']['exe_ans'] = exe_ans
   
   ## Update id
   new_row['id'] = new_row['id'] + "_" + "augmented_" + str(df_index)
-  df = pd.DataFrame.append(df, new_row, ignore_index=True)
-
-# print(len(df))
-
-# df.to_json(r"C:\Users\alexa\projects\su-kex\FinQA_replication\code\pipeline\output\train_augmented.json", orient='records', indent=4)
+  return new_row
 
 
-
-
-
-
-
-
-
-# stuff = ["pre_text", "post_text", "table"]
-# log = {}
-# for index, row in df.iterrows():
-#   for cat in stuff:
-#     for line in row[cat]:
-#       if cat != "table":
-#         parsed_line = line.split("%")
-#         print(len(parsed_line))
-#         for piece in parsed_line[1:]:
-#           if len(piece) > 0:
-#             if piece[0] != " ":
-#                 print(piece)
-#                 print(parsed_line)
-#             if piece[0] not in log:
-#               log[piece[0]] = 1
-#             else:
-#               log[piece[0]] += 1
-#       else:
-#         for table_row in line:
-#           parsed_line = table_row.split("%")
-#           for piece in parsed_line:
-#             if len(piece) > 0:
-#               if piece[0] not in log:
-#                 log[piece[0]] = 1
-#               else:
-#                 log[piece[0]] += 1
-
-# print(log)
-# assert False
+  
+if __name__ == '__main__':
+  main()
+    

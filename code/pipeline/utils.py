@@ -1,5 +1,18 @@
+import re
+
+
 all_ops = ["add", "subtract", "multiply", "divide", "exp", "greater", "table_max",
            "table_min", "table_sum", "table_average"]
+
+def good_replace(text, old, new):
+    
+    # We could be replacing a string without % as well by misstake.
+    # We are converting all strings with the same value. E.g. 100% and 100 would both be replaced. 
+    # Even if they are found as seperate numbers by the regex.
+    if "%" in old:
+      old = old[:-1]
+
+    return re.sub(r'\b%s\b' % old, new, text)
 
 def program_tokenization(original_program):
     original_program = original_program.split(', ')
