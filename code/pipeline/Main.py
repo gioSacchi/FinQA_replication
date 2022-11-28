@@ -58,27 +58,50 @@ def augment_number(row, df_index):
     else:
       random_addition = random.randint(int(-abs(float(number) * threshold)), int(abs(float(number) * threshold)))
       new_number = str(round(float(number) + random_addition, 2))
-
+    # Ensuring that no new number coincides with an old number creating attribution problems
+    # In reality could look onlu at random_selected_numbers[i:] since numbers before that have already been changed
+    if new_number in random_selected_numbers:
+      continue
 
     ## Update program
     new_program = good_replace(new_program, number, new_number)
     new_row['qa']['program'] = new_program
 
-    ## Update gold inds
-    for key, value in new_row['qa']['gold_inds'].items():
-      new_row['qa']['gold_inds'][key] = good_replace(value, number, new_number)
+    # index of first row in post_text
+    break_point = len(new_row['pre_text'])
 
-    ## Update pre_text, post_test and table
-    ## TODO: Only update rows present in gold_inds?
-    for index, text_line in enumerate(new_row['pre_text']):
-      new_row['pre_text'][index] = good_replace(text_line, number, new_number)
+    ## Update gold inds and storing modified keys with corresponing new number
+    for key, value in new_row['qa']['gold_inds'].items():
+      new_gold_ind = good_replace(value, number, new_number)
+      
+      # Updating gold_ind when sentence has been changed
+      if new_gold_ind != value:
+        parsed_key = key.split("_")
+        row_index = int(parsed_key[1])
+        
+        # Updating pre or post text and table with new number
+        if parsed_key[0] == "text":
+          if row_index < break_point:
+            new_row['pre_text'][row_index] = good_replace(new_row['pre_text'][row_index], number, new_number)
+          else:
+            new_row['post_text'][row_index-break_point] = good_replace(new_row['post_text'][row_index-break_point], number, new_number)
+        else:
+          for col_index, table_col in enumerate(new_row['table'][row_index]):
+            new_row['table'][row_index][col_index] = good_replace(table_col, number, new_number) 
+      
+      new_row['qa']['gold_inds'][key] = new_gold_ind
+
+    # ## Update pre_text, post_test and table
+    # ## TODO: Only update rows present in gold_inds?
+    # for index, text_line in enumerate(new_row['pre_text']):
+    #   new_row['pre_text'][index] = good_replace(text_line, number, new_number)
     
-    for index, text_line in enumerate(new_row['post_text']):
-      new_row['post_text'][index] = good_replace(text_line, number, new_number)
+    # for index, text_line in enumerate(new_row['post_text']):
+    #   new_row['post_text'][index] = good_replace(text_line, number, new_number)
     
-    for row_index, table_row in enumerate(new_row['table']):
-      for col_index, table_col in enumerate(table_row):
-        new_row['table'][row_index][col_index] = good_replace(table_col, number, new_number) 
+    # for row_index, table_row in enumerate(new_row['table']):
+    #   for col_index, table_col in enumerate(table_row):
+    #     new_row['table'][row_index][col_index] = good_replace(table_col, number, new_number) 
 
   if new_program == program:
     ## Don't create new question
