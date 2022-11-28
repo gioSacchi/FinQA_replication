@@ -80,15 +80,14 @@ def augment_number(row, df_index):
         row_index = int(parsed_key[1])
         
         # Updating pre or post text and table with new number
-        if parsed_key[0] == "text":
+        if parsed_key[0] == "table":
+          for col_index, table_col in enumerate(new_row['table'][row_index]):
+            new_row['table'][row_index][col_index] = good_replace(table_col, number, new_number) 
+        else:
           if row_index < break_point:
             new_row['pre_text'][row_index] = good_replace(new_row['pre_text'][row_index], number, new_number)
           else:
             new_row['post_text'][row_index-break_point] = good_replace(new_row['post_text'][row_index-break_point], number, new_number)
-        else:
-          for col_index, table_col in enumerate(new_row['table'][row_index]):
-            new_row['table'][row_index][col_index] = good_replace(table_col, number, new_number) 
-      
       new_row['qa']['gold_inds'][key] = new_gold_ind
 
     # ## Update pre_text, post_test and table
