@@ -17,6 +17,9 @@ def main():
   df = df.drop(['table_retrieved','text_retrieved','table_retrieved_all','text_retrieved_all', 'table_ori', 'filename'], axis=1)
 
   for df_index, row in df.iterrows():
+    # Dropping unneeded columns, remove program_re???
+    row['qa'] = {"question": row['qa']["question"], "program": row['qa']["program"], "gold_inds": row['qa']["gold_inds"], "exe_ans": row['qa']["exe_ans"], "program_re": row['qa']["program_re"]}
+  
     row = augment_number(row, df_index)
     if row:
       df = pd.DataFrame.append(df, row, ignore_index=True)
@@ -28,9 +31,6 @@ def main():
 
 
 def augment_number(row, df_index):
-  # Dropping unneeded columns, remove program_re???
-  row['qa'] = {"question": row['qa']["question"], "program": row['qa']["program"], "gold_inds": row['qa']["gold_inds"], "exe_ans": row['qa']["exe_ans"], "program_re": row['qa']["program_re"]}
-  
   # Make a realy deep copy of the row.
   new_row = deepcopy(row.to_dict())
   qa = new_row['qa']
