@@ -3,9 +3,9 @@ class parameters():
     prog_name = "generator"
 
     # set up your own path here
-    root_path = "your_project_path"
-    output_path = "path_to_store_outputs"
-    cache_dir = "path_for_other_cache"
+    root_path = "../"
+    output_path = "/content/gdrive/MyDrive/FinQAModels"
+    cache_dir = "../cache"
 
     model_save_name = "bert-base"
 
