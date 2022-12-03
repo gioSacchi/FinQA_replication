@@ -339,15 +339,26 @@ def convert_test_infer(json_in, json_out, topn, mode):
 
 if __name__ == '__main__':
 
-    root = "/mnt/george_bhd/zhiyuchen/"
+    root = "/content/gdrive/MyDrive/FinQAModels"
+    common_converted_folder = "/converted_predictions_retriever/"
 
     # json_in = root + "outputs/inference_only_20220504054235_new_correct_retriever_train/results/test/predictions.json"
     # json_out = root + "finQA/dataset/train_retrieve_correct.json"
     # convert_train(json_in, json_out, topn=3, max_len=290)
 
+    ## convert training data, edit path to training data inferences
+    json_in = root + "edit here exact folder for training data" + "/predictions.json"
+    json_out = root + common_converted_folder + "converted_predictions_train.json"
+    convert_test(json_in, json_out, topn=3, max_len=290)
 
-    json_in = root + "outputs/inference_only_20220513220539_solo_private_test/results/private/predictions.json"
-    json_out = root + "finQA/heldout_final/solo_private_test_retrieve_correct.json"
+    ## convert validation data, edit path to validation data inferences
+    json_in = root + "edit here exact folder for validation data" + "/predictions.json"
+    json_out = root + common_converted_folder + "converted_predictions_valid.json"
+    convert_test(json_in, json_out, topn=3, max_len=290)
+
+    ## convert test data, edit path to test data inferences
+    json_in = root + "edit here exact folder for test data" + "/predictions.json"
+    json_out = root + common_converted_folder + "converted_predictions_test.json"
     convert_test(json_in, json_out, topn=3, max_len=290)
 
 
