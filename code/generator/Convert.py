@@ -342,36 +342,24 @@ if __name__ == '__main__':
     root = "/content/gdrive/MyDrive/FinQAModels"
     common_converted_folder = "/converted_predictions_retriever/"
 
-    # json_in = root + "outputs/inference_only_20220504054235_new_correct_retriever_train/results/test/predictions.json"
-    # json_out = root + "finQA/dataset/train_retrieve_correct.json"
-    # convert_train(json_in, json_out, topn=3, max_len=290)
+    ### If we are training
 
     ## convert training data, edit path to training data inferences
     json_in = root + "edit here exact folder for training data" + "/predictions.json"
     json_out = root + common_converted_folder + "converted_predictions_train.json"
-    convert_test(json_in, json_out, topn=3, max_len=290)
+    convert_train(json_in, json_out, topn=3, max_len=290)
 
     ## convert validation data, edit path to validation data inferences
     json_in = root + "edit here exact folder for validation data" + "/predictions.json"
     json_out = root + common_converted_folder + "converted_predictions_valid.json"
-    convert_test(json_in, json_out, topn=3, max_len=290)
+    convert_train(json_in, json_out, topn=3, max_len=290)
 
     ## convert test data, edit path to test data inferences
     json_in = root + "edit here exact folder for test data" + "/predictions.json"
     json_out = root + common_converted_folder + "converted_predictions_test.json"
+    convert_train(json_in, json_out, topn=3, max_len=290)
+
+    ### If we are testing whole shabam from top to bottom
+    json_in = root + "edit here exact folder for test data" + "/predictions.json"
+    json_out = root + common_converted_folder + "converted_predictions_test_super.json"
     convert_test(json_in, json_out, topn=3, max_len=290)
-
-
-    # ### fake data for infer experiments
-    # json_in = root + "outputs/inference_only_20220504051252_new_correct_retriever_test/results/test/predictions.json"
-    # json_out = root + "finQA/dataset/test_correct_table_only.json"
-    # convert_test_infer(json_in, json_out, topn=3, mode="table")
-
-    # json_in = root + "outputs/inference_only_20220504051252_new_correct_retriever_test/results/test/predictions.json"
-    # json_out = root + "finQA/dataset/test_correct_text_only.json"
-    # convert_test_infer(json_in, json_out, topn=3, mode="text")
-
-
-    # train_ori = root + "finQA/dataset/test.json"
-    # train_slide = root + "finQA/dataset/test_slide.json"
-    # convert_generator_sliding(train_ori, train_slide, max_len=200, stride=30, mode="test")
