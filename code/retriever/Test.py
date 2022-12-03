@@ -52,6 +52,14 @@ test_data, test_examples, op_list, const_list = \
     read_examples(input_path=conf.test_file, tokenizer=tokenizer,
                   op_list=op_list, const_list=const_list, log_file=log_file)
 
+train_data, train_examples, op_list, const_list = \
+    read_examples(input_path=conf.train_file, tokenizer=tokenizer,
+                  op_list=op_list, const_list=const_list, log_file=log_file)
+
+valid_data, valid_examples, op_list, const_list = \
+    read_examples(input_path=conf.valid_file, tokenizer=tokenizer,
+                  op_list=op_list, const_list=const_list, log_file=log_file)
+
 kwargs = {"examples": test_examples,
           "tokenizer": tokenizer,
           "option": conf.option,
@@ -59,10 +67,13 @@ kwargs = {"examples": test_examples,
           "max_seq_length": conf.max_seq_length,
           }
 
-
 kwargs["examples"] = test_examples
 test_features = convert_examples_to_features(**kwargs)
-
+kwargs["examples"] = train_examples
+train_features = convert_examples_to_features(**kwargs)
+kwargs["examples"] = valid_examples
+valid_features = convert_examples_to_features(**kwargs)
+features = {"test": test_features, "train": train_features, "valid": valid_features}
 
 def generate(data_ori, data, model, ksave_dir, mode='valid'):
 
@@ -134,7 +145,9 @@ def generate_test():
     model.to(conf.device)
     model.load_state_dict(torch.load(conf.saved_model_path, map_location=torch.device(conf.device)))
     model.eval()
-    generate(test_data, test_features, model, results_path, mode='test')
+
+    for key, feature in features.items():
+        generate(test_data, feature, model, results_path + "_" +key, mode='test')
 
 
 if __name__ == '__main__':
