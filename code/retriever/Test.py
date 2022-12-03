@@ -132,7 +132,7 @@ def generate_test():
 
     model = nn.DataParallel(model)
     model.to(conf.device)
-    model.load_state_dict(torch.load(conf.saved_model_path))
+    model.load_state_dict(torch.load(conf.saved_model_path, map_location=torch.device(conf.device)))
     model.eval()
     generate(test_data, test_features, model, results_path, mode='test')
 
