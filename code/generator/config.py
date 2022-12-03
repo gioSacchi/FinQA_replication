@@ -14,9 +14,9 @@ class parameters():
     # test_file = root_path + "dataset/test.json"
 
     ### files from the retriever results
-    train_file = root_path + "/converted_predictions_retriever/converted_predictions_train.json"
-    valid_file = root_path + "/converted_predictions_retriever/converted_predictions_valid.json"
-    test_file = root_path + "/converted_predictions_retriever/converted_predictions_test.json"
+    train_file = "/content/gdrive/MyDrive/FinQAModels/converted_predictions_retriever/converted_predictions_train.json"
+    valid_file = "/content/gdrive/MyDrive/FinQAModels/converted_predictions_retriever/converted_predictions_valid.json"
+    test_file = "/content/gdrive/MyDrive/FinQAModels/converted_predictions_retriever/converted_predictions_test.json"
 
     # infer table-only text-only
     # test_file = root_path + "dataset/test_retrieve_7k_text_only.json"
