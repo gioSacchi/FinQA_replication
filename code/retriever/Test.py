@@ -100,7 +100,7 @@ def generate(data_ori, data, model, ksave_dir, mode='valid'):
             input_mask = torch.tensor(input_mask).to(conf.device)
             segment_ids = torch.tensor(segment_ids).to(conf.device)
 
-            logits = model(True, input_ids, input_mask,
+            logits = model.forward(True, input_ids, input_mask,
                            segment_ids, device=conf.device)
 
             all_logits.extend(logits.tolist())
