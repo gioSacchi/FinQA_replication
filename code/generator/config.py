@@ -50,7 +50,11 @@ class parameters():
     # private: for testing private test data
     device = "cuda"
     mode = "train"
-    saved_model_path = output_path + "roberta-large-gold_20210713020324/saved_model/loads/119/model.pt"
+
+    resume_model_path = ""
+    # resume_model_path = output_path + "/" + "model_name.pt"
+    
+    saved_model_path = output_path + "/" + "model_name_edit.pt"
     build_summary = False
 
     sep_attention = True
