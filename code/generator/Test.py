@@ -121,7 +121,7 @@ def generate(data_ori, data, model, ksave_dir, mode='valid'):
             program_mask = torch.tensor(program_mask).to(conf.device)
             option_mask = torch.tensor(option_mask).to(conf.device)
 
-            logits = model(False, input_ids, input_mask,
+            logits = model.forward(False, input_ids, input_mask,
                            segment_ids, option_mask, program_ids, program_mask, device=conf.device)
 
             for this_logit, this_id in zip(logits.tolist(), x["unique_id"]):
