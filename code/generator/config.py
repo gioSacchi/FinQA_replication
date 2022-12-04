@@ -14,9 +14,15 @@ class parameters():
     # test_file = root_path + "dataset/test.json"
 
     ### files from the retriever results
-    train_file = "/content/gdrive/MyDrive/FinQAModels/converted_predictions_retriever/converted_predictions_train.json"
-    valid_file = "/content/gdrive/MyDrive/FinQAModels/converted_predictions_retriever/converted_predictions_valid.json"
-    test_file = "/content/gdrive/MyDrive/FinQAModels/converted_predictions_retriever/converted_predictions_test.json"
+    # train_file = r"E:\FinQA_replication\code\generator\files\converted_train_predictions.json"
+    # valid_file = r"E:\FinQA_replication\code\generator\files\converted_dev_predictions.json"
+    # test_file = r"E:\FinQA_replication\code\generator\files\converted_test_predictions.json"
+    train_file = "/content/gdrive/MyDrive/Colab Notebooks/FinQA/generator_files/converted_train_predictions.json"
+    valid_file = "/content/gdrive/MyDrive/Colab Notebooks/FinQA/generator_files/converted_dev_predictions.json"
+    
+    test_file = "/content/gdrive/MyDrive/Colab Notebooks/FinQA/generator_files/converted_test_predictions.json"
+    #test_file = "/content/gdrive/MyDrive/Colab Notebooks/FinQA/generator_files/converted_predictions_test_super.json"
+
 
     # infer table-only text-only
     # test_file = root_path + "dataset/test_retrieve_7k_text_only.json"
