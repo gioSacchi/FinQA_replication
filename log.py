@@ -1,8 +1,11 @@
 import matplotlib.pyplot as plt
 
 # Open log file and read each line
-log_file = "output\log-roberta-large-retreiever.txt"
-batch_size = 16
+model = "bert-base-uncased"
+log_file = "output\\"+model+"-retreiever.txt"
+batch_size = 10
+
+
 train_data_size = 6251
 
 total_time = 0
@@ -51,9 +54,26 @@ print("Best top 3 validation",  max_index_3 + 1, ":", validation_accuracy_3[max_
 max_index_5 = validation_accuracy_5.index(max(validation_accuracy_5))
 print("Best top 5 validation",  max_index_5 + 1, ":", validation_accuracy_5[max_index_5])
 
-# Plot the loss
-plt.plot(iterations, loss)
-plt.title("Retriever RoBERTa-large - loss (%s batch size) %s epochs" % (batch_size, epochs))
-plt.xlabel("Iterations")
-plt.ylabel("Loss")
+print()
+# Last validation accuracy index
+print("Last top 3 validation",  len(validation_accuracy_3), ":", validation_accuracy_3[-1])
+
+# Create a figure with one row and two columns of subplots
+fig, (ax1, ax2) = plt.subplots(1, 2)
+
+# Plot the loss in the first subplot
+ax1.plot(iterations, loss)
+ax1.set_title("Retriever %s - loss (%s batch size) %s epochs" % (model, batch_size, epochs))
+ax1.set_xlabel("Iterations")
+ax1.set_ylabel("Loss")
+
+# Plot the validation accuracy in the second subplot
+ax2.plot(range(1, len(validation_accuracy_3) + 1), validation_accuracy_3, label="Top 3")
+ax2.plot(range(1, len(validation_accuracy_5) + 1), validation_accuracy_5, label="Top 5")
+ax2.set_title("Retriever %s - validation accuracy (%s batch size) %s epochs" % (model, batch_size, epochs))
+ax2.set_xlabel("Epochs")
+ax2.set_ylabel("Validation accuracy")
+ax2.legend()
+
+# Show the plot
 plt.show()
