@@ -138,7 +138,7 @@ def generate(data_ori, data, model, ksave_dir, mode='valid'):
         print_res = retrieve_evaluate_private(
             all_logits, all_filename_id, all_ind, output_prediction_file, conf.test_file, topn=conf.topn)
 
-    write_log(log_file, print_res)
+    write_log(log_file, mode +"\n"+ print_res)
     print(print_res)
     return
 
