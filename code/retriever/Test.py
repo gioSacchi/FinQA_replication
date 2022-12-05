@@ -120,7 +120,7 @@ def generate(data_ori, data, model, ksave_dir, mode='valid'):
             all_filename_id.extend(filename_id)
             all_ind.extend(ind)
 
-    output_prediction_file = os.path.join(ksave_dir_mode, mode + "_" +
+    output_prediction_file = os.path.join(ksave_dir_mode, conf.mode + "_" +
                                           "predictions.json")
 
     if mode == "valid":
@@ -129,6 +129,10 @@ def generate(data_ori, data, model, ksave_dir, mode='valid'):
     elif mode == "test":
         print_res = retrieve_evaluate(
             all_logits, all_filename_id, all_ind, output_prediction_file, conf.test_file, topn=conf.topn)
+    elif mode == "train":
+        # addition to allow for loop
+        print_res = retrieve_evaluate(
+            all_logits, all_filename_id, all_ind, output_prediction_file, conf.train_file, topn=conf.topn)
     else:
         # private data mode
         print_res = retrieve_evaluate_private(
@@ -149,7 +153,7 @@ def generate_test():
     model.eval()
 
     for key, feature in features.items():
-        generate(test_data, feature, model, results_path + "_" + key, mode='test')
+        generate(test_data, feature, model, results_path + "_" + key, mode=key)
 
 
 if __name__ == '__main__':
