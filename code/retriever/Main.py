@@ -223,7 +223,7 @@ def evaluate(data_ori, data, model, ksave_dir, mode='valid'):
             all_filename_id.extend(filename_id)
             all_ind.extend(ind)
 
-    output_prediction_file = os.path.join(ksave_dir_mode,+ mode +"_"
+    output_prediction_file = os.path.join(ksave_dir_mode, mode +"_"+
                                           "predictions.json")
 
     if mode == "valid":

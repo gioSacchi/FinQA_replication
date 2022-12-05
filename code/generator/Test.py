@@ -89,8 +89,10 @@ def generate(data_ori, data, model, ksave_dir, mode='valid'):
     pred_list = []
     pred_unk = []
 
-    ksave_dir_mode = os.path.join(ksave_dir, mode)
-    os.makedirs(ksave_dir_mode, exist_ok=True)
+    # ksave_dir_mode = os.path.join(ksave_dir, mode)
+    ksave_dir_mode = ksave_dir
+    # os.makedirs(ksave_dir_mode, exist_ok=True)
+    os.makedirs(ksave_dir_mode, exist_ok=False)
 
     data_iterator = DataLoader(
         is_training=False, data=data, batch_size=conf.batch_size_test, reserved_token_size=reserved_token_size, shuffle=False)
@@ -132,11 +134,11 @@ def generate(data_ori, data, model, ksave_dir, mode='valid'):
                         loss=None
                     ))
 
-    output_prediction_file = os.path.join(ksave_dir_mode,
+    output_prediction_file = os.path.join(ksave_dir_mode, mode + "_" +
                                           "predictions.json")
-    output_nbest_file = os.path.join(ksave_dir_mode,
+    output_nbest_file = os.path.join(ksave_dir_mode, mode + "_" +
                                      "nbest_predictions.json")
-    output_eval_file = os.path.join(ksave_dir_mode, "evals.json")
+    output_eval_file = os.path.join(ksave_dir_mode,mode + "_" + "evals.json")
 
     all_predictions, all_nbest = compute_predictions(
         data_ori,
