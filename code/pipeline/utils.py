@@ -14,6 +14,13 @@ def good_replace(text, old, new):
 
     return re.sub(r'\b%s\b' % old, new, text)
 
+def sequence_good_replace(text, changes):
+    # Runs good_replace sequencially for all changes made
+    # Changes is dictionary with old words -> new words
+    for old, new in changes.items():
+        text = good_replace(text, old, new)
+    return text
+
 def program_tokenization(original_program):
     original_program = original_program.split(', ')
     program = []
