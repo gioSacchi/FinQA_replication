@@ -80,8 +80,10 @@ def generate(data_ori, data, model, ksave_dir, mode='valid'):
     pred_list = []
     pred_unk = []
 
-    ksave_dir_mode = os.path.join(ksave_dir, mode)
-    os.makedirs(ksave_dir_mode, exist_ok=True)
+    # ksave_dir_mode = os.path.join(ksave_dir, mode)
+    ksave_dir_mode = ksave_dir
+    # os.makedirs(ksave_dir_mode, exist_ok=True)
+    os.makedirs(ksave_dir_mode, exist_ok=False)
 
     data_iterator = DataLoader(
         is_training=False, data=data, batch_size=conf.batch_size_test, shuffle=False)
@@ -118,7 +120,7 @@ def generate(data_ori, data, model, ksave_dir, mode='valid'):
             all_filename_id.extend(filename_id)
             all_ind.extend(ind)
 
-    output_prediction_file = os.path.join(ksave_dir_mode,
+    output_prediction_file = os.path.join(ksave_dir_mode, mode + "_" +
                                           "predictions.json")
 
     if mode == "valid":
@@ -147,7 +149,7 @@ def generate_test():
     model.eval()
 
     for key, feature in features.items():
-        generate(test_data, feature, model, results_path + "_" +key, mode='test')
+        generate(test_data, feature, model, results_path + "_" + key, mode='test')
 
 
 if __name__ == '__main__':
