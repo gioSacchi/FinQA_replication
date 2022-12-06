@@ -13,7 +13,10 @@ import re
 import nltk
 nltk.download('wordnet')
 nltk.download('omw-1.4')
+nltk.download('averaged_perceptron_tagger')
+nltk.download('universal_tagset')
 from nltk.corpus import wordnet as wn
+from nltk import pos_tag
 # from nltk.tag import pos_tag
 
 
@@ -158,3 +161,7 @@ def naive_synonym_replacement(row, df_index, less_naive = False):
     new_row['id'] = new_row['id'] + "_augmented_" + str(df_index)
 
     return new_row
+
+def get_word_tags(words: list):
+    # get tags for each word
+    words_w_tags = pos_tag(words,  tagset='universal')
