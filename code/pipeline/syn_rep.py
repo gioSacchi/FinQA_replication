@@ -1,16 +1,20 @@
 ## using https://github.com/jasonwei20/eda_nlp/blob/master/code/eda.py#L4 as reference for naive approach
 
 import random
-from random import shuffle
 import re
 from copy import deepcopy
 import math
 from utils import *
 
+import pandas as pd
+import re
+
 ## for the first time you use wordnet
-# import nltk
-# nltk.download('wordnet')
+import nltk
+nltk.download('wordnet')
+nltk.download('omw-1.4')
 from nltk.corpus import wordnet as wn
+# from nltk.tag import pos_tag
 
 
 random.seed(1)
@@ -45,13 +49,28 @@ def get_synonyms_naive(word):
     for syn in wn.synsets(word): 
         for l in syn.lemmas(): 
             synonym = l.name().replace("_", " ").replace("-", " ").lower()
+            print(synonym)
+            synonym = "".join([char for char in synonym if char in ' qwertyuiopasdfghjklzxcvbnm']) # sub with regex, Why do this??
+            # thousends -> 1000 , which becomes "". Is it ok to have numbers?
+            synonyms.add(synonym) 
+    if word in synonyms: 
+        synonyms.remove(word)
+    return list(synonyms)
+
+def get_synonyms_less_naive(word):
+    # make a list of all the synonyms (lemmas) to word 
+    # from all of it's possible meanings (all wordnet.synsets)
+    synonyms = set()
+    for syn in wn.synsets(word): 
+        for l in syn.lemmas(): 
+            synonym = l.name().replace("_", " ").replace("-", " ").lower()
             synonym = "".join([char for char in synonym if char in ' qwertyuiopasdfghjklzxcvbnm'])
             synonyms.add(synonym) 
     if word in synonyms:
         synonyms.remove(word)
     return list(synonyms)
 
-def new_text_naive(text: str, threshold: float):
+def new_text_naive(text: str, threshold: float, less_naive = False):
     # find all words
     words = re.findall(r'\b[^\d\W]+\b', text)
 
@@ -59,6 +78,7 @@ def new_text_naive(text: str, threshold: float):
     changes = {}
 
     # find unique words not included in stop_words
+    # words_with_tags = pos_tag(words)
     word_list = list(set([word for word in words if word not in stop_words]))
 
     # computing n from threshold and words and sample
@@ -67,7 +87,7 @@ def new_text_naive(text: str, threshold: float):
 
     # Replacing all occurences of selected words with random synonym.
     for random_word in random_word_list:
-        synonyms = get_synonyms_naive(random_word)
+        synonyms = get_synonyms_naive(random_word) if not less_naive else get_synonyms_less_naive(random_word)
         if len(synonyms) == 0:
             continue
         new_word = random.choice(synonyms)
@@ -78,9 +98,9 @@ def new_text_naive(text: str, threshold: float):
         new_text = good_replace(new_text, random_word, new_word)
         changes[random_word] = new_word
 
-    return new_text, changes if not changes else None
+    return new_text, changes if changes else None
 
-def naive_synonym_replacement(row, df_index):
+def naive_synonym_replacement(row, df_index, less_naive = False):
     # copy of row
     new_row = deepcopy(row.to_dict())
     qa = new_row['qa']
@@ -102,7 +122,7 @@ def naive_synonym_replacement(row, df_index):
 
     # update gold_inds and corresponding texts or tabels with new synonyms
     for key, value in gold_inds.items():
-        new_text, changes = new_text_naive(value, threshold)
+        new_text, changes = new_text_naive(value, threshold, less_naive)
         new_row['qa']['gold_inds'][key] = new_text
 
         total_old += value + " "
@@ -138,5 +158,3 @@ def naive_synonym_replacement(row, df_index):
     new_row['id'] = new_row['id'] + "_augmented_" + str(df_index)
 
     return new_row
-
-
