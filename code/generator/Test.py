@@ -91,8 +91,8 @@ def generate(data_ori, data, model, ksave_dir, mode='valid'):
 
     # ksave_dir_mode = os.path.join(ksave_dir, mode)
     ksave_dir_mode = ksave_dir
-    # os.makedirs(ksave_dir_mode, exist_ok=True)
-    os.makedirs(ksave_dir_mode, exist_ok=False)
+    os.makedirs(ksave_dir_mode, exist_ok=True)
+    # os.makedirs(ksave_dir_mode, exist_ok=False)
 
     data_iterator = DataLoader(
         is_training=False, data=data, batch_size=conf.batch_size_test, reserved_token_size=reserved_token_size, shuffle=False)
@@ -134,11 +134,11 @@ def generate(data_ori, data, model, ksave_dir, mode='valid'):
                         loss=None
                     ))
 
-    output_prediction_file = os.path.join(ksave_dir_mode, mode + "_" +
+    output_prediction_file = os.path.join(ksave_dir_mode,
                                           "predictions.json")
-    output_nbest_file = os.path.join(ksave_dir_mode, mode + "_" +
+    output_nbest_file = os.path.join(ksave_dir_mode,
                                      "nbest_predictions.json")
-    output_eval_file = os.path.join(ksave_dir_mode,mode + "_" + "evals.json")
+    output_eval_file = os.path.join(ksave_dir_mode, "evals.json")
 
     all_predictions, all_nbest = compute_predictions(
         data_ori,
@@ -172,9 +172,9 @@ def generate_test():
     generate(test_examples, test_features, model, results_path, mode='test')
 
     if conf.mode != "private":
-        res_file = results_path + "/test/nbest_predictions.json"
-        error_file = results_path + "/test/full_results_error.json"
-        all_res_file = results_path + "/test/full_results.json"
+        res_file = results_path + "/nbest_predictions.json"
+        error_file = results_path + "/full_results_error.json"
+        all_res_file = results_path + "/full_results.json"
         evaluate_score(res_file, error_file, all_res_file)
 
 

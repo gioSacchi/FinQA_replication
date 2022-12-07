@@ -60,7 +60,7 @@ class parameters():
     resume_model_path = ""
     # resume_model_path = output_path + "/" + "model_name.pt"
     
-    saved_model_path = output_path + "/" + "model_name_edit.pt"
+    saved_model_path = output_path + "/" + "model_name_edit.pt"    
     build_summary = False
 
     sep_attention = True
