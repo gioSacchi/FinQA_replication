@@ -1,8 +1,7 @@
-from argparse import ArgumentParser
-
 import torch
 from torch.utils.data import DataLoader
 
+import nltk
 from nltk.corpus import wordnet as wn
 
 from dataset import WordSenseDisambiguationDataset
@@ -26,13 +25,25 @@ device = 'cuda' if torch.cuda.is_available() and conf.device == 'cuda' else 'cpu
 model.to(device)
 model.eval()
 
-predictions = {}
-
+# use the model to predict senses of an input sentence
+sentence = 'The cat sat on the mat'
+x = processor.encode_sentence(sentence)
+print(x)
 with torch.no_grad():
-    for x, _ in test_dataloader:
-        x = {k: v.to(device) if not isinstance(v, list) else v for k, v in x.items()}
-        y = model(x)
-        batch_predictions = processor.decode(x, y)
-        predictions.update(batch_predictions)
+    y = model(x)
+    print(y)
+    senses = processor.decode(x, y)
+    print(senses)
 
-predictions = sorted(list(predictions.items()), key=lambda kv: kv[0])
+
+
+# predictions = {}
+
+# with torch.no_grad():
+#     for x, _ in test_dataloader:
+#         x = {k: v.to(device) if not isinstance(v, list) else v for k, v in x.items()}
+#         y = model(x)
+#         batch_predictions = processor.decode(x, y)
+#         predictions.update(batch_predictions)
+
+# predictions = sorted(list(predictions.items()), key=lambda kv: kv[0])
