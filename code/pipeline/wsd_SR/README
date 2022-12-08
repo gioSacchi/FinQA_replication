@@ -1,0 +1,15 @@
+# README for synonym replacement with WSD
+
+## Create environment
+    conda create --name multilabel-wsd python=3.7
+
+    conda install pytorch==1.5.0 cpuonly -c pytorch
+
+    pip install -r requirements.txt
+
+where in requirements.txt `${CUDA}` should be replaced by either `cpu`, `cu92`, `cu101`, `cu102`, or `cu110` depending on your PyTorch installation.
+
+## Download pre-trained model
+From https://drive.google.com/file/d/1Unfrd4432o6Xy89UD2W5unx4BYIpKyqE/view dowload the zip file. It will contain the pretrained model and a json file. Place the model and its processing json file in the model folder.
+
+## Run

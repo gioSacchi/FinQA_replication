@@ -1,0 +1,19 @@
+python evaluate.py --model checkpoints\bert-large\best_checkpoint_val_f1=0.7626_epoch=018.ckpt --processor checkpoints\bert-large\processor_config.json --model_input data\preprocessed\all\all.json --model_output predictions.txt --evaluation_input data\original\all\ALL.gold.key.txt
+
+
+conda create --name multilabel-wsd python=3.7
+# conda install pytorch==1.5.0 cudatoolkit=10.1 -c pytorch
+conda install pytorch==1.5.0 cpuonly -c pytorch
+pip  install six
+
+pip install -r requirements.txt
+pip install torch-scatter==2.0.5 -f https://pytorch-geometric.com/whl/torch-1.5.0+${CUDA}.html #cpu
+pip install torch-sparse==0.6.5 -f https://pytorch-geometric.com/whl/torch-1.5.0+${CUDA}.html #cpu
+
+Library uses NLTK wordnet and WordNetError so need to nowload those two
+
+Need model checkpoint and config 
+
+import for inferences
+torch
+
