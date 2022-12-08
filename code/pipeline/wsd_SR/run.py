@@ -9,48 +9,30 @@ from dataset import WordSenseDisambiguationDataset
 from processor import Processor
 from model import SimpleModel
 
-if __name__ == '__main__':
-    parser = ArgumentParser()
+from config import parameters as conf
 
-    # Add data args.
-    parser.add_argument('--processor', type=str, required=True)
-    parser.add_argument('--model', type=str, required=True)
-    parser.add_argument('--model_input', type=str, required=True)
-    parser.add_argument('--model_output', type=str, required=True)
-    parser.add_argument('--evaluation_input', type=str, required=True)
+processor = Processor.from_config(conf.processor_path)
 
-    # Add dataloader args.
-    parser.add_argument('--batch_size', type=int, default=32)
-    parser.add_argument('--num_workers', type=int, default=4)
+# test_dataset = WordSenseDisambiguationDataset(conf.model_input) 
 
-    # Other
-    parser.add_argument('--device', type=str, default='cuda')
+# test_dataloader = DataLoader(
+#     test_dataset,
+#     batch_size=args.batch_size,
+#     num_workers=args.num_workers,
+#     collate_fn=processor.collate_sentences)
 
-    # Store the arguments in hparams.
-    args = parser.parse_args()
+model = SimpleModel.load_from_checkpoint(conf.model_path)
+device = 'cuda' if torch.cuda.is_available() and conf.device == 'cuda' else 'cpu'
+model.to(device)
+model.eval()
 
-    processor = Processor.from_config(args.processor)
+predictions = {}
 
-    test_dataset = WordSenseDisambiguationDataset(args.model_input)
+with torch.no_grad():
+    for x, _ in test_dataloader:
+        x = {k: v.to(device) if not isinstance(v, list) else v for k, v in x.items()}
+        y = model(x)
+        batch_predictions = processor.decode(x, y)
+        predictions.update(batch_predictions)
 
-    test_dataloader = DataLoader(
-        test_dataset,
-        batch_size=args.batch_size,
-        num_workers=args.num_workers,
-        collate_fn=processor.collate_sentences)
-
-    model = SimpleModel.load_from_checkpoint(args.model)
-    device = 'cuda' if torch.cuda.is_available() and args.device == 'cuda' else 'cpu'
-    model.to(device)
-    model.eval()
-
-    predictions = {}
-
-    with torch.no_grad():
-        for x, _ in test_dataloader:
-            x = {k: v.to(device) if not isinstance(v, list) else v for k, v in x.items()}
-            y = model(x)
-            batch_predictions = processor.decode(x, y)
-            predictions.update(batch_predictions)
-
-    predictions = sorted(list(predictions.items()), key=lambda kv: kv[0])
+predictions = sorted(list(predictions.items()), key=lambda kv: kv[0])
