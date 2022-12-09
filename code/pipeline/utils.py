@@ -21,6 +21,12 @@ def sequence_good_replace(text, changes):
         text = good_replace(text, old, new)
     return text
 
+def replace_nth(text, old, new, n):
+    # function that replces with regex only the nth occurence of a word in a string
+    text = re.sub(r'\b%s\b' % old, new, text, n)
+    text = re.sub(r'\b%s\b' % old, new, text, n-1)
+    return text
+
 def program_tokenization(original_program):
     original_program = original_program.split(', ')
     program = []
