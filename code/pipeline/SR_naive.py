@@ -14,6 +14,7 @@ nltk.download('omw-1.4')
 nltk.download('averaged_perceptron_tagger')
 nltk.download('stopwords')
 from nltk.corpus import wordnet as wn
+from nltk.stem import WordNetLemmatizer
 from nltk import pos_tag
 from nltk.corpus import stopwords
 
@@ -22,7 +23,21 @@ random.seed(1)
 stop_words = set(stopwords.words('english'))
 
 
-def get_synonyms_naive(word, tag = None, less_naive = False):
+def convert_to_wn_pos(pos):
+    if pos.startswith("J"):
+        return wn.ADJ
+    elif pos.startswith("V"):
+        return wn.VERB
+    elif pos.startswith("N"):
+        return wn.NOUN
+    elif pos.startswith("R"):
+        return wn.ADV
+    elif pos == None:
+        return None
+    else:
+        return ""
+
+def get_synonyms_naive(word, lemma, tag = None, less_naive = False):
     # make a list of all the synonyms (lemmas) to word 
     # from all of it's possible meanings (all wordnet.synsets)
     synonyms = set()
@@ -34,6 +49,8 @@ def get_synonyms_naive(word, tag = None, less_naive = False):
             synonyms.add(synonym) 
     if word in synonyms: 
         synonyms.remove(word)
+    if lemma in synonyms:
+        synonyms.remove(lemma)
     return list(synonyms)
 
 def naive_synonym_replacement(row, df_index, less_naive = False):
@@ -52,6 +69,8 @@ def naive_synonym_replacement(row, df_index, less_naive = False):
     # to check if any changes have been made
     total_old = ""
     total_new = ""
+
+    lemmatizer = WordNetLemmatizer()
 
     # update gold_inds and corresponding texts or tabels with new synonyms
     for key, text in gold_inds.items():
@@ -78,25 +97,32 @@ def naive_synonym_replacement(row, df_index, less_naive = False):
         n = math.ceil(len(words) * threshold)
         sample = random.sample(range(len(words)), n)
         sampled_words = [words[index] for index in sample]
+        sampled_tags = [convert_to_wn_pos(tags[index]) for index in sample] if less_naive else [None for _ in sample]
+
+        # lemmatize sampled words
+        sampled_lemmas = [lemmatizer.lemmatize(word, tag) for word, tag in zip(sampled_words, sampled_tags)]
 
         new_text = text
 
-        for index in sample:
-            word = words[index]
+        for i, word in enumerate(sampled_words):
+            # get index and lemma of word
+            index = sample[i]
+            lemma = sampled_lemmas[i]
+
             # find alla instances of word in words and compute wich of them index corresponds to
             all_indices = [i for i, x in enumerate(words) if x == word]
             instance_of_selected = all_indices.index(index) + 1
 
             # get synonyms
-            tag = tags[index] if less_naive else None
-            synonyms = get_synonyms_naive(word, tag, less_naive)
+            tag = sampled_tags[i]
+            synonyms = get_synonyms_naive(word, lemma, tag, less_naive)
             if len(synonyms) == 0:
               continue
             
             # choose synonym
-            new_word = random.choice(synonyms)
+            new_word = random.choice(synonyms) # need to check that it is not the same as word (root form of word)
             # check that new word is not in sampled words (to avoid duplicates)
-            if new_word in sampled_words:
+            if new_word in sampled_lemmas:
               continue
             
             # replace word with new_word in text
@@ -136,6 +162,10 @@ def naive_synonym_replacement(row, df_index, less_naive = False):
     n = math.ceil(len(words) * threshold)
     sample = random.sample(range(len(words)), n)
     sampled_words = [words[index] for index in sample]
+    sampled_tags = [tags[index] for index in sample] if less_naive else [None for _ in sample]
+
+    # lemmatize sampled words
+    sampled_words = [lemmatizer.lemmatize(word, convert_to_wn_pos(tag)) for word, tag in zip(sampled_words, sampled_tags)]
 
     new_question = question
 
@@ -176,7 +206,7 @@ def naive_synonym_replacement(row, df_index, less_naive = False):
     return new_row
 
 def main():
-  input_path = r"C:\Users\pingu\FinQA_replication\dataset\train.json"
+  input_path = r"E:\FinQA_replication\dataset\train.json"
   df = pd.read_json(input_path)
 
   print(len(df))
