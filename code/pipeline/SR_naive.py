@@ -22,7 +22,6 @@ random.seed(1)
 
 stop_words = set(stopwords.words('english'))
 
-
 def convert_to_wn_pos(pos):
     if pos.startswith("J"):
         return wn.ADJ
@@ -101,6 +100,7 @@ def naive_synonym_replacement(row, df_index, less_naive = False):
 
         # lemmatize sampled words
         sampled_lemmas = [lemmatizer.lemmatize(word, tag) for word, tag in zip(sampled_words, sampled_tags)]
+        lemma_text = " ".join(sampled_lemmas)
 
         new_text = text
 
@@ -120,13 +120,14 @@ def naive_synonym_replacement(row, df_index, less_naive = False):
               continue
             
             # choose synonym
-            new_word = random.choice(synonyms) # need to check that it is not the same as word (root form of word)
-            # check that new word is not in sampled words (to avoid duplicates)
-            if new_word in sampled_lemmas:
+            new_word = random.choice(synonyms)
+            # check that new word is not in sampled words (to avoid duplicates). To avoid cases
+            # such as new_word = "one year" and one of the two being in sampled words
+            if new_word in lemma_text:
               continue
             
             # replace word with new_word in text
-            new_text = replace_nth(new_text, word, new_word, instance_of_selected)
+            new_text = replace_nth_instance(new_text, instance_of_selected, word, new_word)
 
         # update new_row
         new_row['qa']['gold_inds'][key] = new_text
@@ -165,30 +166,34 @@ def naive_synonym_replacement(row, df_index, less_naive = False):
     sampled_tags = [tags[index] for index in sample] if less_naive else [None for _ in sample]
 
     # lemmatize sampled words
-    sampled_words = [lemmatizer.lemmatize(word, convert_to_wn_pos(tag)) for word, tag in zip(sampled_words, sampled_tags)]
+    sampled_lemmas = [lemmatizer.lemmatize(word, convert_to_wn_pos(tag)) for word, tag in zip(sampled_words, sampled_tags)]
+    lemma_text = " ".join(sampled_lemmas)
 
     new_question = question
 
-    for index in sample:
-        word = words[index]
+    for i, word in enumerate(sampled_words):
+        # get index and lemma of word
+        index = sample[i]
+        lemma = sampled_lemmas[i]
+
         # find alla instances of word in words and compute wich of them index corresponds to
         all_indices = [i for i, x in enumerate(words) if x == word]
         instance_of_selected = all_indices.index(index) + 1
 
         # get synonyms
         tag = tags[index] if less_naive else None
-        synonyms = get_synonyms_naive(word, tag, less_naive)
+        synonyms = get_synonyms_naive(word, lemma, tag, less_naive)
         if len(synonyms) == 0:
           continue
         
         # choose synonym
         new_word = random.choice(synonyms)
         # check that new word is not in sampled words (to avoid duplicates)
-        if new_word in sampled_words:
+        if new_word in lemma_text:
           continue
         
         # replace word with new_word in text
-        new_text = replace_nth(new_text, word, new_word, instance_of_selected)
+        new_question = replace_nth_instance(new_question, instance_of_selected, word, new_word)
 
     # update new_row
     new_row['qa']['question'] = new_question

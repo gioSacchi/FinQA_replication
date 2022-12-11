@@ -21,12 +21,24 @@ def sequence_good_replace(text, changes):
         text = good_replace(text, old, new)
     return text
 
-def replace_nth(text, old, new, n):
-    # function that replces with regex only the nth occurence of a word in a string
-    text = re.sub(r'\b%s\b' % old, new, text, n)
-    if n!=1:
-        text = re.sub(r'\b%s\b' % new, old, text, n-1)
-    return text
+# replace_nth_instance(string, n, word, replacement) replaces the nth instance of 'word' in 'string' with 'replacement'
+def replace_nth_instance(text, n, old, new):
+    # Create a list of lowercase words in the string
+    words = text.lower().split()
+    old = old.lower()
+
+    # Replace the nth instance of 'word' in the list with 'replacement'
+    # Note: we need to keep track of how many instances of 'word' we have seen so far
+    instances_seen = 0
+    for i in range(len(words)):
+        if words[i] == old:
+            instances_seen += 1
+            if instances_seen == n:
+                words[i] = new
+                break
+
+    # Join the words back into a single string and return the result
+    return " ".join(words)
 
 def program_tokenization(original_program):
     original_program = original_program.split(', ')
