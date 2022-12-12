@@ -176,7 +176,7 @@ def naive_synonym_replacement(row, df_index, less_naive = False):
         instance_of_selected = all_indices.index(index) + 1
 
         # get synonyms
-        tag = tags[index] if less_naive else None
+        tag = sampled_tags[index]
         synonyms = get_synonyms_naive(word, lemma, tag, less_naive)
         if len(synonyms) == 0:
           continue
