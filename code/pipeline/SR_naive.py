@@ -159,7 +159,7 @@ def naive_synonym_replacement(row, df_index, less_naive = False):
     n = math.ceil(len(words) * threshold)
     sample = random.sample(range(len(words)), n)
     sampled_words = [words[index] for index in sample]
-    sampled_tags = [tags[index] for index in sample] if less_naive else [None for _ in sample]
+    sampled_tags = [convert_to_wn_pos(tags[index]) for index in sample] if less_naive else [None for _ in sample]
 
     # lemmatize sampled words
     sampled_lemmas = [lemmatizer.lemmatize(word, tag) if (tag != "" and not None) else lemmatizer.lemmatize(word) for word, tag in zip(sampled_words, sampled_tags)]
