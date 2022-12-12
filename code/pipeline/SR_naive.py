@@ -176,7 +176,7 @@ def naive_synonym_replacement(row, df_index, less_naive = False):
         instance_of_selected = all_indices.index(index) + 1
 
         # get synonyms
-        tag = sampled_tags[index]
+        tag = sampled_tags[i]
         synonyms = get_synonyms_naive(word, lemma, tag, less_naive)
         if len(synonyms) == 0:
           continue
@@ -218,10 +218,10 @@ def main():
     if df_index % 100 == 0:
       print(df_index)
     for n in range(num_aug):
-      row = naive_synonym_replacement(row, df_index, True)
-      if row:
-        row['id'] = row['id'] + "_SR_PoS_aug_" + str(df_index) + "_" + str(n)
-        df = pd.DataFrame.append(df, row, ignore_index=True)
+      new_row = naive_synonym_replacement(row, df_index, True)
+      if new_row:
+        new_row['id'] = new_row['id'] + "_SR_PoS_aug_" + str(df_index) + "_" + str(n)
+        df = pd.DataFrame.append(df, new_row, ignore_index=True)
 
   print(len(df))
   output_path = r"E:\FinQA_replication\dataset\train_SR_PoS_augmented.json"
