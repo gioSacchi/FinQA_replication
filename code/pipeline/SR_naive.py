@@ -100,7 +100,6 @@ def naive_synonym_replacement(row, df_index, less_naive = False):
 
         # lemmatize sampled words
         sampled_lemmas = [lemmatizer.lemmatize(word, tag) for word, tag in zip(sampled_words, sampled_tags)]
-        lemma_text = " ".join(sampled_lemmas)
 
         new_text = text
 
@@ -121,13 +120,10 @@ def naive_synonym_replacement(row, df_index, less_naive = False):
             
             # choose synonym
             new_word = random.choice(synonyms)
-            # check that new word is not in sampled words (to avoid duplicates). To avoid cases
-            # such as new_word = "one year" and one of the two being in sampled words
-            if new_word in lemma_text:
-              continue
             
-            # replace word with new_word in text
+            # replace word with new_word in text and in words
             new_text = replace_nth_instance(new_text, instance_of_selected, word, new_word)
+            words[index] = new_word
 
         # update new_row
         new_row['qa']['gold_inds'][key] = new_text
@@ -167,7 +163,6 @@ def naive_synonym_replacement(row, df_index, less_naive = False):
 
     # lemmatize sampled words
     sampled_lemmas = [lemmatizer.lemmatize(word, convert_to_wn_pos(tag)) for word, tag in zip(sampled_words, sampled_tags)]
-    lemma_text = " ".join(sampled_lemmas)
 
     new_question = question
 
@@ -188,12 +183,10 @@ def naive_synonym_replacement(row, df_index, less_naive = False):
         
         # choose synonym
         new_word = random.choice(synonyms)
-        # check that new word is not in sampled words (to avoid duplicates)
-        if new_word in lemma_text:
-          continue
         
-        # replace word with new_word in text
+        # replace word with new_word in text and in words
         new_question = replace_nth_instance(new_question, instance_of_selected, word, new_word)
+        words[index] = new_question
 
     # update new_row
     new_row['qa']['question'] = new_question
