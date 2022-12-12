@@ -18,7 +18,7 @@ from nltk.stem import WordNetLemmatizer
 from nltk import pos_tag
 from nltk.corpus import stopwords
 
-random.seed(1)
+# random.seed(1)
 
 stop_words = set(stopwords.words('english'))
 
@@ -90,7 +90,7 @@ def naive_synonym_replacement(row, df_index, less_naive = False):
             tags.append(tag)
 
         # randomly setting threshold
-        threshold = random.random() 
+        threshold = 0.3 + random.random()*0.7 # use this instead of uniform 0-1 to increse number of replacements
 
         # computing n from threshold and choose which to sample
         n = math.ceil(len(words) * threshold)
@@ -153,7 +153,7 @@ def naive_synonym_replacement(row, df_index, less_naive = False):
         tags.append(tag)
 
     # randomly setting threshold
-    threshold = random.random() 
+    threshold = 0.3 + random.random()*0.7 
 
     # computing n from threshold and choose which to sample
     n = math.ceil(len(words) * threshold)
@@ -198,9 +198,6 @@ def naive_synonym_replacement(row, df_index, less_naive = False):
         # Don't create new question
         return None
 
-    ## Update id TODO: Move to main function
-    new_row['id'] = new_row['id'] + "_augmented_" + str(df_index)
-
     return new_row
 
 def main():
@@ -209,19 +206,24 @@ def main():
 
   print(len(df))
 
+  # number of generated sentences per original sentence
+  num_aug = 5
+
   ## Remove retriever columns
   df = df.drop(['table_retrieved','text_retrieved','table_retrieved_all','text_retrieved_all', 'table_ori', 'filename'], axis=1)
 
   for df_index, row in df.iterrows():
     # Dropping unneeded columns, remove program_re???
     row['qa'] = {"question": row['qa']["question"], "program": row['qa']["program"], "gold_inds": row['qa']["gold_inds"], "exe_ans": row['qa']["exe_ans"], "program_re": row['qa']["program_re"]}
-  
-    row = naive_synonym_replacement(row, df_index, True)
-    if row:
-      df = pd.DataFrame.append(df, row, ignore_index=True)
+    
+    for n in range(num_aug):
+      row = naive_synonym_replacement(row, df_index, True)
+      if row:
+        row['id'] = row['id'] + "_SR_PoS_aug_" + str(df_index) + "_" + str(n)
+        df = pd.DataFrame.append(df, row, ignore_index=True)
 
   print(len(df))
-  output_path = r"C:\Users\alexa\projects\su-kex\FinQA_replication\code\pipeline\output\train_augmented.json"
+  output_path = r"E:\FinQA_replication\dataset\train_SR_PoS_augmented.json"
   df.to_json(output_path, orient='records', indent=4)
 
 
