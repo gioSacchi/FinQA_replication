@@ -99,7 +99,7 @@ def naive_synonym_replacement(row, df_index, less_naive = False):
         sampled_tags = [convert_to_wn_pos(tags[index]) for index in sample] if less_naive else [None for _ in sample]
 
         # lemmatize sampled words
-        sampled_lemmas = [lemmatizer.lemmatize(word, tag) for word, tag in zip(sampled_words, sampled_tags)]
+        sampled_lemmas = [lemmatizer.lemmatize(word, tag) if (tag != "" and not None) else lemmatizer.lemmatize(word) for word, tag in zip(sampled_words, sampled_tags)]
 
         new_text = text
 
@@ -162,7 +162,7 @@ def naive_synonym_replacement(row, df_index, less_naive = False):
     sampled_tags = [tags[index] for index in sample] if less_naive else [None for _ in sample]
 
     # lemmatize sampled words
-    sampled_lemmas = [lemmatizer.lemmatize(word, convert_to_wn_pos(tag)) for word, tag in zip(sampled_words, sampled_tags)]
+    sampled_lemmas = [lemmatizer.lemmatize(word, tag) if (tag != "" and not None) else lemmatizer.lemmatize(word) for word, tag in zip(sampled_words, sampled_tags)]
 
     new_question = question
 
@@ -215,7 +215,8 @@ def main():
   for df_index, row in df.iterrows():
     # Dropping unneeded columns, remove program_re???
     row['qa'] = {"question": row['qa']["question"], "program": row['qa']["program"], "gold_inds": row['qa']["gold_inds"], "exe_ans": row['qa']["exe_ans"], "program_re": row['qa']["program_re"]}
-    
+    if df_index % 100 == 0:
+      print(df_index)
     for n in range(num_aug):
       row = naive_synonym_replacement(row, df_index, True)
       if row:
