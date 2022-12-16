@@ -48,16 +48,16 @@ if __name__ == '__main__':
     import nltk
     from nltk import word_tokenize, pos_tag
     from nltk.stem import WordNetLemmatizer
-    nltk.download('punkt')
-    nltk.download('averaged_perceptron_tagger')
-    # nltk.download('tagsets')
-    nltk.download('universal_tagset')   
+    # nltk.download('punkt')
+    # nltk.download('averaged_perceptron_tagger')
+    # # nltk.download('tagsets')
+    # nltk.download('universal_tagset')   
 
     lemmatizer = WordNetLemmatizer()
     sentence ="We were at the river bank and the river was flowing fast Then I went to a local bank to withdraw some money."
     words = word_tokenize(sentence)
-    words = [word.lower() for word in words]
-    lemma_tokens = nltk.pos_tag(words)
+    # words = [word.lower() for word in words]
+    lemma_tokens = pos_tag(words)
     tags = [tag for _, tag in nltk.pos_tag(words, tagset='universal')]
     lemmas = []
     for word, tag in lemma_tokens:
@@ -68,7 +68,9 @@ if __name__ == '__main__':
             lemmas.append(lemmatizer.lemmatize(word))
     # lemmas = [lemmatizer.lemmatize(word, get_wordnet_pos(tag)) for word, tag in lemma_tokens]
     d = {"sentence_id": 0, "words": words, "lemmas": lemmas, "pos_tags": tags, "instance_ids":{5:"q1", 18:"q2", 20:"q3"}, "senses":{5:"q1", 18:"q2", 20:"q3"}}
-    test_dataset = {0: d}
+    d1 = {"sentence_id": 0, "words": words, "lemmas": lemmas, "pos_tags": tags, "instance_ids":{5:"q11", 18:"q22", 22:"q33"}, "senses":{5:"q11", 18:"q22", 22:"q33"}}
+
+    test_dataset = {0: d, 1: d1}
 
     ########
 
