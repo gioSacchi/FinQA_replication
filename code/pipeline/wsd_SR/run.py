@@ -3,6 +3,11 @@ from torch.utils.data import DataLoader
 
 import nltk
 from nltk.corpus import wordnet as wn
+from nltk import word_tokenize, pos_tag
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+# nltk.download('tagsets')
+nltk.download('universal_tagset')
 
 from dataset import WordSenseDisambiguationDataset
 from processor import Processor
@@ -27,6 +32,9 @@ model.eval()
 
 # use the model to predict senses of an input sentence
 sentence = 'The cat sat on the mat'
+sentence = word_tokenize("applicant is removed from applicant list of the job ")
+tokens = nltk.pos_tag(sentence, tagset='universal')
+
 x = processor.encode_sentence(sentence)
 print(x)
 with torch.no_grad():
