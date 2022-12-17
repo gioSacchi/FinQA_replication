@@ -121,7 +121,7 @@ class Processor(object):
         synset_candidates = []
         negative_samples = []
 
-        for synset_index, synsets in sentence['senses'].items():
+        for synset_index, synsets in sentence['instance_ids'].items():
 
             lemma = sentence['lemmas'][synset_index]
             pos = sentence['pos_tags'][synset_index]

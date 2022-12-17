@@ -67,8 +67,8 @@ if __name__ == '__main__':
         else:
             lemmas.append(lemmatizer.lemmatize(word))
     # lemmas = [lemmatizer.lemmatize(word, get_wordnet_pos(tag)) for word, tag in lemma_tokens]
-    d = {"sentence_id": 0, "words": words, "lemmas": lemmas, "pos_tags": tags, "instance_ids":{5:"q1", 18:"q2", 20:"q3"}, "senses":{5:"q1", 18:"q2", 20:"q3"}}
-    d1 = {"sentence_id": 0, "words": words, "lemmas": lemmas, "pos_tags": tags, "instance_ids":{5:"q11", 18:"q22", 22:"q33"}, "senses":{5:"q11", 18:"q22", 22:"q33"}}
+    d = {"sentence_id": 0, "words": words, "lemmas": lemmas, "pos_tags": tags, "instance_ids":{5:"q1", 18:"q2", 20:"q3"}}
+    d1 = {"sentence_id": 0, "words": words, "lemmas": lemmas, "pos_tags": tags, "instance_ids":{5:"q11", 18:"q22", 22:"q33"}}
 
     test_dataset = {0: d, 1: d1}
 
