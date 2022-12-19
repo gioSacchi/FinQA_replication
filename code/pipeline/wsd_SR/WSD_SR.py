@@ -2,13 +2,16 @@ import math
 import pandas as pd
 import random
 import nltk
+from config import parameters as conf
+from WSD import WSD
 
-#download nltk packages first time
-nltk.download('punkt')
-nltk.download('averaged_perceptron_tagger')
-nltk.download('omw-1.4')
-nltk.download('universal_tagset')   
-nltk.download('stopwords')
+
+# download nltk packages first time
+# nltk.download('punkt')
+# nltk.download('averaged_perceptron_tagger')
+# nltk.download('omw-1.4')
+# nltk.download('universal_tagset')   
+# nltk.download('stopwords')
 
 from nltk.corpus import wordnet as wn
 from nltk import word_tokenize, pos_tag
@@ -135,7 +138,7 @@ def main():
 
     # big map and big augmenation dict
     big_map = {}
-    big_augmentation_dict = {}
+    big_augmentation_list = []
 
     # first loop to crete big map and big augmentation dict
     # i.e. select all words for syn rep and format for WSD
@@ -149,13 +152,37 @@ def main():
             augmentation_list, key_map = preprocess_text(row)
 
             # add to big map
-            big_map[row['id'] + "_WSD_aug_" + str(df_index) + "_" + str(n)]
+            big_map[row['id'] + "_" + str(n)] = key_map
+            big_augmentation_list.extend(augmentation_list)
+
             # for elem in augmentation_list:
             #     big_augmentation_dict[row['id'] + "_WSD_aug_" + str(df_index) + "_" + str(n)] = 
             # new_row = WSD_synonym_replacement(row, df_index)
             # if new_row:
             #   new_row['id'] = new_row['id'] + "_SR_PoS_num_aug_" + str(df_index) + "_" + str(n)
             #   df = pd.DataFrame.append(df, new_row, ignore_index=True)
+    
+    #convert big_augmentation_list to dictionary
+    big_augmentation_dict = {i: elem for i, elem in enumerate(big_augmentation_list)}
+
+    # call wsd
+    wsd_output = WSD(big_augmentation_dict)
+
+    # loop to create new rows
+    for df_index, row in df.iterrows():
+        for n in range(num_aug):
+
+            # get aumentations though big map
+            key = row['id'] + "_" + str(n)
+            key_map = big_map[key]
+
+            # get new row
+            
+
+            new_row = WSD_synonym_replacement(row, df_index, big_map, wsd_output, n)
+            if new_row:
+                new_row['id'] = new_row['id'] + "_SR_PoS_num_aug_" + str(df_index) + "_" + str(n)
+                df = pd.DataFrame.append(df, new_row, ignore_index=True)
 
     print(len(df))
     output_path = r"E:\FinQA_replication\dataset\train_SR_PoS_augmented.json"

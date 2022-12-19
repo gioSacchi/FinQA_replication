@@ -6,3 +6,8 @@ class parameters():
 
     # cuda or cpu
     device = "cpu"
+
+    batch_size = 32
+    num_workers = 4
+
+    model_output = r"C:\Users\pingu\FinQA_replication\code\pipeline\wsd_SR\model\predictions.txt"
