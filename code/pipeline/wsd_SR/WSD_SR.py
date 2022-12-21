@@ -4,6 +4,7 @@ import random
 import nltk
 from config import parameters as conf
 from WSD import WSD
+from copy import deepcopy
 
 
 # download nltk packages first time
@@ -36,6 +37,19 @@ def convert_to_wn_pos(pos):
         return None
     else:
         return ""
+
+def get_synonyms(meaning, word, lemma):
+    # get synonyms for a word in a given meaning, remove the word itself and the lemma
+    synonyms = set()
+    for lemma in wn.synset(meaning).lemmas():
+        synonym = lemma.name().replace("_", " ").replace("-", " ").lower()
+        synonyms.add(synonym)
+
+    if word in synonyms: 
+        synonyms.remove(word)
+    if lemma in synonyms:
+        synonyms.remove(lemma)
+    return list(synonyms)
 
 def preprocess_text(row):
     # takes in row and return dictionary with topkenized text, pos tags, lemmas and selected indecies
@@ -152,7 +166,7 @@ def main():
             augmentation_list, key_map = preprocess_text(row)
 
             # add to big map
-            big_map[row['id'] + "_" + str(n)] = key_map
+            big_map[str(df_index) + "_" + str(n)] = key_map
             big_augmentation_list.extend(augmentation_list)
 
             # for elem in augmentation_list:
@@ -168,6 +182,45 @@ def main():
     # call wsd
     wsd_output = WSD(big_augmentation_dict)
 
+    # loop through big map and create new rows
+    for key, key_map in big_map.items():
+        # get row
+        row_index, n = key.split("_")
+        row_index = int(row_index)
+        n = int(n)
+        row = df.iloc[row_index]
+        new_row = deepcopy(row.to_dict())
+
+        # iterate through key map and replace words
+        for key, meaning_ids in key_map.items():
+            # get meanings
+            meanings = [wsd_output[meaning_id] for meaning_id in meaning_ids]
+
+            # get indecies of words to replace
+            indecies = [int(i.split("_")[-1]) for i in meaning_ids]
+
+            # replace words
+            if key == "question":
+                # iterate through meanings and indecies
+                for meaning, index in zip(meanings, indecies):
+                    word = row['qa']['question'][index]
+                    pos = meaning.split(".")[-2]
+                    lemma = lemmatizer.lemmatize(word, pos=pos)
+                    
+                    # get synonyms
+                    synonyms = get_synonyms(meaning, lemma)
+                    if len(synonyms) == 0:
+                        continue
+                    # new word
+                    new_word = random.choice(synonyms)
+
+                    # replace word in text
+                    # new_text = 
+
+            else:
+                pass
+
+
     # loop to create new rows
     for df_index, row in df.iterrows():
         for n in range(num_aug):
@@ -177,7 +230,6 @@ def main():
             key_map = big_map[key]
 
             # get new row
-            
 
             new_row = WSD_synonym_replacement(row, df_index, big_map, wsd_output, n)
             if new_row:
