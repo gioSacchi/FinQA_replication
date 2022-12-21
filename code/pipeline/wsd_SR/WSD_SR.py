@@ -38,6 +38,45 @@ def convert_to_wn_pos(pos):
     else:
         return ""
 
+# replace_nth_instance(string, n, word, replacement) replaces the nth instance of 'word' in 'string' with 'replacement'
+def replace_nth_instance(text, n, old, new):
+    # Create a list of lowercase words in the string
+    words = text.lower().split()
+    old = old.lower()
+
+    # Replace the nth instance of 'word' in the list with 'replacement'
+    # Note: we need to keep track of how many instances of 'word' we have seen so far
+    instances_seen = 0
+    for i in range(len(words)):
+        if words[i] == old:
+            instances_seen += 1
+            if instances_seen == n:
+                words[i] = new
+                break
+
+def replacement(text, meanings, indecies):
+    # iterate through meanings and indecies
+    for meaning, index in zip(meanings, indecies):
+        word = text[index]
+        pos = meaning.split(".")[-2]
+        lemma = lemmatizer.lemmatize(word, pos=pos)
+        
+        # get synonyms
+        synonyms = get_synonyms(meaning, word, lemma)
+        if len(synonyms) == 0:
+            continue
+        # new word
+        new_word = random.choice(synonyms)
+
+        # find all occurences of word in question (a string) and their indecies
+        words = word_tokenize(text)
+        occurences = [i for i, w in enumerate(words) if w == word]
+        selected_occurence = occurences.index(index) + 1
+
+        # replace word in text
+        text = replace_nth_instance(text, selected_occurence, word, new_word)
+    return text
+
 def get_synonyms(meaning, word, lemma):
     # get synonyms for a word in a given meaning, remove the word itself and the lemma
     synonyms = set()
@@ -137,6 +176,59 @@ def preprocess_text(row):
 
     return processed_row, map_dict
 
+def create_row(row, key_map, wsd_output):
+    # index of first row in post_text
+    break_point = len(row['pre_text'])
+
+    total_old = ""
+    total_new = ""
+
+    # iterate through key map and replace words
+    for key, meaning_ids in key_map.items():
+        # get meanings
+        meanings = [wsd_output[meaning_id] for meaning_id in meaning_ids]
+
+        # get indecies of words to replace
+        indecies = [int(i.split("_")[-1]) for i in meaning_ids]
+
+        # replace words
+        if key == "question":
+            # get new text
+            text = row['qa']['question']
+            new_text = replacement(text, meanings, indecies)
+            
+            # update new row
+            row['qa']['question'] = new_text
+
+            # store texts for later
+            total_new += new_text + " "
+            total_old += text + " "
+        else:
+            # get new text
+            text = row['qa']['gold_inds'][key]
+            new_text = replacement(text, meanings, indecies)
+
+            # update new row
+            row['qa']['gold_inds'][key] = new_text
+
+            # update pre and post text with new text
+            parsed_key = key.split("_")
+            text_index = int(parsed_key[1])
+            if text_index < break_point:
+                row['pre_text'][text_index] = new_text
+            else:
+                row['post_text'][text_index - break_point] = new_text
+
+            # store texts for later
+            total_new += new_text + " "
+            total_old += text + " "
+    
+    if total_new == total_old:
+        # Don't create new question
+        return None
+    
+    return row
+
 def main():
     input_path = r"E:\FinQA_replication\dataset\train.json"
     df = pd.read_json(input_path)
@@ -168,13 +260,6 @@ def main():
             # add to big map
             big_map[str(df_index) + "_" + str(n)] = key_map
             big_augmentation_list.extend(augmentation_list)
-
-            # for elem in augmentation_list:
-            #     big_augmentation_dict[row['id'] + "_WSD_aug_" + str(df_index) + "_" + str(n)] = 
-            # new_row = WSD_synonym_replacement(row, df_index)
-            # if new_row:
-            #   new_row['id'] = new_row['id'] + "_SR_PoS_num_aug_" + str(df_index) + "_" + str(n)
-            #   df = pd.DataFrame.append(df, new_row, ignore_index=True)
     
     #convert big_augmentation_list to dictionary
     big_augmentation_dict = {i: elem for i, elem in enumerate(big_augmentation_list)}
@@ -186,55 +271,15 @@ def main():
     for key, key_map in big_map.items():
         # get row
         row_index, n = key.split("_")
-        row_index = int(row_index)
-        n = int(n)
-        row = df.iloc[row_index]
+        row = df.iloc[int(row_index)]
         new_row = deepcopy(row.to_dict())
 
-        # iterate through key map and replace words
-        for key, meaning_ids in key_map.items():
-            # get meanings
-            meanings = [wsd_output[meaning_id] for meaning_id in meaning_ids]
+        # make new row
+        new_row = create_row(new_row, key_map, wsd_output)
 
-            # get indecies of words to replace
-            indecies = [int(i.split("_")[-1]) for i in meaning_ids]
-
-            # replace words
-            if key == "question":
-                # iterate through meanings and indecies
-                for meaning, index in zip(meanings, indecies):
-                    word = row['qa']['question'][index]
-                    pos = meaning.split(".")[-2]
-                    lemma = lemmatizer.lemmatize(word, pos=pos)
-                    
-                    # get synonyms
-                    synonyms = get_synonyms(meaning, lemma)
-                    if len(synonyms) == 0:
-                        continue
-                    # new word
-                    new_word = random.choice(synonyms)
-
-                    # replace word in text
-                    # new_text = 
-
-            else:
-                pass
-
-
-    # loop to create new rows
-    for df_index, row in df.iterrows():
-        for n in range(num_aug):
-
-            # get aumentations though big map
-            key = row['id'] + "_" + str(n)
-            key_map = big_map[key]
-
-            # get new row
-
-            new_row = WSD_synonym_replacement(row, df_index, big_map, wsd_output, n)
-            if new_row:
-                new_row['id'] = new_row['id'] + "_SR_PoS_num_aug_" + str(df_index) + "_" + str(n)
-                df = pd.DataFrame.append(df, new_row, ignore_index=True)
+        if new_row:
+            new_row['id'] = new_row['id'] + "_WSD_SR_" + str(row_index) + "_" + n
+            df = pd.DataFrame.append(df, new_row, ignore_index=True)
 
     print(len(df))
     output_path = r"E:\FinQA_replication\dataset\train_SR_PoS_augmented.json"
@@ -247,4 +292,4 @@ def main():
     grammar check. Necessary? Maybe adds noise which is good anyways"""
 
 if __name__ == '__main__':
-  main()
+    main()
