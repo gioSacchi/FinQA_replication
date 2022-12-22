@@ -53,6 +53,8 @@ def replace_nth_instance(text, n, old, new):
             if instances_seen == n:
                 words[i] = new
                 break
+    # Join the words back into a single string and return the result
+    return " ".join(words)
 
 def replacement(text, meanings, indecies):
     # iterate through meanings and indecies
@@ -80,8 +82,8 @@ def replacement(text, meanings, indecies):
 def get_synonyms(meaning, word, lemma):
     # get synonyms for a word in a given meaning, remove the word itself and the lemma
     synonyms = set()
-    for lemma in wn.synset(meaning).lemmas():
-        synonym = lemma.name().replace("_", " ").replace("-", " ").lower()
+    for l in wn.synset(meaning).lemmas():
+        synonym = l.name().replace("_", " ").replace("-", " ").lower()
         synonyms.add(synonym)
 
     if word in synonyms: 
