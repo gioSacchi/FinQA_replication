@@ -57,7 +57,8 @@ def replace_nth_instance(text, n, old, new):
 def replacement(text, meanings, indecies):
     # iterate through meanings and indecies
     for meaning, index in zip(meanings, indecies):
-        word = text[index]
+        words = word_tokenize(text)
+        word = words[index]
         pos = meaning.split(".")[-2]
         lemma = lemmatizer.lemmatize(word, pos=pos)
         
@@ -68,8 +69,7 @@ def replacement(text, meanings, indecies):
         # new word
         new_word = random.choice(synonyms)
 
-        # find all occurences of word in question (a string) and their indecies
-        words = word_tokenize(text)
+        # find all occurences of word in question and their indecies
         occurences = [i for i, w in enumerate(words) if w == word]
         selected_occurence = occurences.index(index) + 1
 
@@ -119,20 +119,20 @@ def preprocess_text(row):
 
     # determine indicies of words eligible for selection for WSD
     # only select words that are not stop words and are in allowed word classes
-    selected_indecies = []
+    allowed_indecies = []
     for i, tag in enumerate(question_tags):
         if tag in allowed_word_classes_WSD and question_tokens[i].lower() not in stop_words:
-            selected_indecies.append(i)    
+            allowed_indecies.append(i)    
     
     # randomly select n words from eligible words
     threshold = random.random()
-    n = math.ceil(len(selected_indecies) * threshold)
-    selected_indecies = random.sample(selected_indecies, n)
+    n = math.ceil(len(allowed_indecies) * threshold)
+    selected_indecies = random.sample(allowed_indecies, n)
 
     #create dictionary for instace_ids
     instance_ids = {i: id + "_question_" + str(i) for i in selected_indecies}
 
-    question_dict = {"id": id + "_question" , "words": question_tokens, "lemmas": question_lemmas, "pos_tags": question_tags, "instance_ids": instance_ids}
+    question_dict = {"sentence_id": id + "_question" , "words": question_tokens, "lemmas": question_lemmas, "pos_tags": question_tags, "instance_ids": instance_ids}
     processed_row.append(question_dict)
     
     # update map_dict
@@ -156,25 +156,25 @@ def preprocess_text(row):
         
         # determine indicies of words eligible for selection for WSD
         # only select words that are not stop words and are in allowed word classes
-        selected_indecies = []
+        allowed_indecies = []
         for i, tag in enumerate(gold_ind_tags):
             if tag in allowed_word_classes_WSD and gold_ind_tokens[i].lower() not in stop_words:
-                selected_indecies.append(i)
+                allowed_indecies.append(i)
         
         # randomly select n words from eligible words
         threshold = random.random()
-        n = math.ceil(len(selected_indecies) * threshold)
-        selected_indecies = random.sample(selected_indecies, n)
+        n = math.ceil(len(allowed_indecies) * threshold)
+        selected_indecies = random.sample(allowed_indecies, n)
 
         # make instane ids for gold inds
         instance_ids = {i: id + "_" + key + "_" + str(i) for i in selected_indecies}
-        gold_ind_dict = {"id": id + "_" + key, "words": gold_ind_tokens, "lemmas": gold_ind_lemmas, "pos_tags": gold_ind_tags, "instance_ids": instance_ids}
+        gold_ind_dict = {"sentence_id": id + "_" + key, "words": gold_ind_tokens, "lemmas": gold_ind_lemmas, "pos_tags": gold_ind_tags, "instance_ids": instance_ids}
         processed_row.append(gold_ind_dict)
 
         # update map_dict
         map_dict[key] = [id + "_" + key + "_" + str(i) for i in selected_indecies]
 
-    return processed_row, map_dict
+    return processed_row, map_dict # TODO: add n_aug so same rows are different
 
 def create_row(row, key_map, wsd_output):
     # index of first row in post_text
@@ -186,10 +186,20 @@ def create_row(row, key_map, wsd_output):
     # iterate through key map and replace words
     for key, meaning_ids in key_map.items():
         # get meanings
-        meanings = [wsd_output[meaning_id] for meaning_id in meaning_ids]
+        meanings = []
+        indecies = []
+        for meaning_id in meaning_ids:
+            # ensuring that all meanings are in wsd_output, takes care of Invalid lemma error
+            value = wsd_output.get(meaning_id)
+            if value is not None:
+                meanings.append(value)
+                # get indecies of words to replace
+                indecies.append(int(meaning_id.split("_")[-1]))
 
-        # get indecies of words to replace
-        indecies = [int(i.split("_")[-1]) for i in meaning_ids]
+        # meanings = [wsd_output[meaning_id] for meaning_id in meaning_ids]
+
+        # # get indecies of words to replace
+        # indecies = [int(i.split("_")[-1]) for i in meaning_ids]
 
         # replace words
         if key == "question":
@@ -230,7 +240,7 @@ def create_row(row, key_map, wsd_output):
     return row
 
 def main():
-    input_path = r"E:\FinQA_replication\dataset\train.json"
+    input_path = r"C:\Users\pingu\FinQA_replication\dataset\train.json"
     df = pd.read_json(input_path)
 
     print(len(df))
@@ -260,29 +270,31 @@ def main():
             # add to big map
             big_map[str(df_index) + "_" + str(n)] = key_map
             big_augmentation_list.extend(augmentation_list)
+        break
     
     #convert big_augmentation_list to dictionary
     big_augmentation_dict = {i: elem for i, elem in enumerate(big_augmentation_list)}
 
-    # call wsd
+    # call wsd and get meanings of selected words
     wsd_output = WSD(big_augmentation_dict)
 
     # loop through big map and create new rows
+    # i.e. replace words with synonym and add new row to dataframe
     for key, key_map in big_map.items():
         # get row
         row_index, n = key.split("_")
         row = df.iloc[int(row_index)]
         new_row = deepcopy(row.to_dict())
 
-        # make new row
-        new_row = create_row(new_row, key_map, wsd_output)
+        # go though key map and replace words with synonyms from wsd_output
+        new_row = create_row(new_row, key_map, wsd_output) # TODO: add check for Invalid lemma
 
         if new_row:
             new_row['id'] = new_row['id'] + "_WSD_SR_" + str(row_index) + "_" + n
             df = pd.DataFrame.append(df, new_row, ignore_index=True)
 
     print(len(df))
-    output_path = r"E:\FinQA_replication\dataset\train_SR_PoS_augmented.json"
+    output_path = r"C:\Users\pingu\FinQA_replication\dataset\train_WSD_SR_augmented.json"
     df.to_json(output_path, orient='records', indent=4)
 
 

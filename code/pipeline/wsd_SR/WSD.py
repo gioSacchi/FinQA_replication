@@ -30,8 +30,6 @@ def WSD(input):
     # load processor
     processor = Processor.from_config(conf.processor_path)
 
-    lemmatizer = WordNetLemmatizer()
-
     # Create dataloader
     test_dataloader = DataLoader(
         input,
@@ -57,16 +55,17 @@ def WSD(input):
     predictions = sorted(list(predictions.items()), key=lambda kv: kv[0])
 
     # format predictions
+    ouput_predictions = {}
     for instance_id, synset_id in predictions:
-        predictions[instance_id] = synset_id
+        ouput_predictions[instance_id] = synset_id
 
     # with open(conf.model_output, 'w') as f:
     #     for instance_id, synset_id in predictions:
     #         f.write('{} {}\n'.format(instance_id, synset_id))
 
-    return predictions
+    return ouput_predictions
 
-
+# lemmatizer = WordNetLemmatizer()
 # sentence ="We were at the river bank and the river was flowing fast Then I went to a local bank to withdraw some money."
 # words = word_tokenize(sentence)
 # # words = [word.lower() for word in words]
