@@ -109,11 +109,11 @@ def create_augmentations(row, n_aug, augment_pre, model):
 
 def main():
     # Set the API key
-    openai.api_key = "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"
+    openai.api_key = "add your key here"
 
     # Set the prompt and model
     n_aug = 5
-    augment_pre = "Create exactly " + str(n_aug) + " different rephrasings of the following sentence: "
+    augment_pre = "Create exactly " + str(n_aug) + " different rephrasings (excluding the sentence) of the following sentence: "
     model = "text-davinci-003"
 
     input_path = r"C:\Users\pingu\FinQA_replication\dataset\train.json"
