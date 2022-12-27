@@ -273,18 +273,6 @@ def augment_number(row, df_index):
             new_row['post_text'][row_index-break_point] = good_replace(new_row['post_text'][row_index-break_point], number, new_number)
       new_row['qa']['gold_inds'][key] = new_gold_ind
 
-    # ## Update pre_text, post_test and table
-    # ## TODO: Only update rows present in gold_inds?
-    # for index, text_line in enumerate(new_row['pre_text']):
-    #   new_row['pre_text'][index] = good_replace(text_line, number, new_number)
-    
-    # for index, text_line in enumerate(new_row['post_text']):
-    #   new_row['post_text'][index] = good_replace(text_line, number, new_number)
-    
-    # for row_index, table_row in enumerate(new_row['table']):
-    #   for col_index, table_col in enumerate(table_row):
-    #     new_row['table'][row_index][col_index] = good_replace(table_col, number, new_number) 
-
   if new_program == program:
     ## Don't create new question
     return None
@@ -307,38 +295,25 @@ def main():
   # number of generated sentences per original sentence
   num_aug = 5
   random.seed(3)
+
   ## Remove retriever columns
   df = df.drop(['table_retrieved','text_retrieved','table_retrieved_all','text_retrieved_all', 'table_ori', 'filename'], axis=1)
-  # random_ind = random.sample(range(len(df)), 3)
+
   for df_index, row in df.iterrows():
-  # for df_index in random_ind:
-    # row = df.iloc[df_index]
-    # Dropping unneeded columns, remove program_re???
     row['qa'] = {"question": row['qa']["question"], "program": row['qa']["program"], "gold_inds": row['qa']["gold_inds"], "exe_ans": row['qa']["exe_ans"], "program_re": row['qa']["program_re"]}
     if df_index % 100 == 0:
       print(df_index)
     for n in range(num_aug):
-    # for n in range(1):
       new_row = augment_number(row, df_index)
       if new_row:
         new_row_2 = naive_synonym_replacement(new_row, df_index, less_naive=True)
-        # print(new_row_2['qa']["gold_inds"])
-        # print(row['qa']["gold_inds"])
         if new_row_2:
           new_row_2['id'] = new_row_2['id'] + "_SR_PoS_num_aug_" + str(df_index) + "_" + str(n)
           df = pd.DataFrame.append(df, new_row_2, ignore_index=True)
-          # print("New:", new_row_2["qa"]["question"], new_row_2["qa"]["gold_inds"])
-          # print("Old:", row["qa"]["question"], row["qa"]["gold_inds"])
 
   print(len(df))
   output_path = r"E:\FinQA_replication\dataset\train_SR_PoS_augmented.json"
   df.to_json(output_path, orient='records', indent=4)
-
-
-"""problem in general is that it is hard to get correct form of word. eg changes 
-    gives synset change which has lemma alter which will replace changes. But correct 
-    would be plural form of alter alterations. How does one do that? Put in to a 
-    grammar check. Necessary? Maybe adds noise which is good anyways"""
 
 if __name__ == '__main__':
   main()
