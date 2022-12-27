@@ -46,6 +46,9 @@ def create_augmentations(row, n_aug, augment_pre, model):
         print("Wrong number of augmentations " + "question")
         return None
 
+    # update total_old
+    total_old += new_rows[0]['qa']['question'] + " "
+
     # update questions in new rows
     for i in range(n_aug):
         new_quest = question_list[i]
@@ -53,9 +56,6 @@ def create_augmentations(row, n_aug, augment_pre, model):
         
         # update total_news
         total_news[i] += new_quest + " "
-    
-    # update total_old
-    total_old += new_rows[0]['qa']['question'] + " "
 
     # make API call to get augmentations of gold_inds
     for key, text in new_rows[0]['qa']['gold_inds'].items():
@@ -80,6 +80,9 @@ def create_augmentations(row, n_aug, augment_pre, model):
             print("Wrong number of augmentations " + key)
             return None
 
+        # update total_old
+        total_old += new_rows[0]['qa']['gold_inds'][key] + " "
+
         # update gold_ind in new rows
         for i in range(n_aug):
             new_ind = gold_list[i]
@@ -93,9 +96,6 @@ def create_augmentations(row, n_aug, augment_pre, model):
 
             # update total_news
             total_news[i] += new_ind + " "
-        
-        # update total_old
-        total_old += new_rows[0]['qa']['gold_inds'][key] + " "
     
     # check if any of the new rows are the same as the old row and remove them
     remove_indices = []
@@ -109,7 +109,7 @@ def create_augmentations(row, n_aug, augment_pre, model):
 
 def main():
     # Set the API key
-    openai.api_key = "add_key_here"
+    openai.api_key = "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"
 
     # Set the prompt and model
     n_aug = 5
