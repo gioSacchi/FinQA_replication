@@ -91,9 +91,12 @@ def create_augmentations(row, n_aug, augment_pre, model):
         total_old += new_rows[0]['qa']['gold_inds'][key] + " "
     
     # check if any of the new rows are the same as the old row and remove them
+    remove_indices = []
     for i, total_new in enumerate(total_news):
         if total_new == total_old:
-            new_rows.pop(i)
+            remove_indices.append(i)
+    
+    new_rows = [new_rows[i] for i in range(n_aug) if i not in remove_indices]
 
     return new_rows
 
