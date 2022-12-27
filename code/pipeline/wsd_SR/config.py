@@ -10,4 +10,6 @@ class parameters():
     batch_size = 32
     num_workers = 4
 
-    model_output = r"C:\Users\pingu\FinQA_replication\code\pipeline\wsd_SR\model\predictions.txt"
+    # data paths
+    train_path = r"C:\Users\pingu\FinQA_replication\dataset\train.json"
+    model_output = r"C:\Users\pingu\FinQA_replication\dataset\train_WSD_SR_augmented.json"

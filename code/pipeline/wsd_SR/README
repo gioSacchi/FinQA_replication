@@ -23,8 +23,8 @@ where in requirements.txt `${CUDA}` should be replaced by either `cpu`, `cu92`, 
 From https://drive.google.com/file/d/1Unfrd4432o6Xy89UD2W5unx4BYIpKyqE/view dowload the zip file. It will contain the pretrained model and a json file. Place the model and its processing json file in the model folder.
 
 ## Run
-* Go to the config file in WSD_SR and edit the paths to the processor, model and output.
+* Go to the config file in WSD_SR and edit the paths to the processor, model, traning data and output.
 
 * First time runs: Uncomment the nltk downloads in WSD_SR.py and WSD.py
 
-* 
+* Run WSD_SR.py

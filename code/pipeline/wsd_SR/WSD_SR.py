@@ -242,8 +242,8 @@ def create_row(row, key_map, wsd_output):
     return row
 
 def main():
-    input_path = r"C:\Users\pingu\FinQA_replication\dataset\train.json"
-    df = pd.read_json(input_path)
+    # input_path = r"C:\Users\pingu\FinQA_replication\dataset\train.json"
+    df = pd.read_json(conf.train_path)
 
     print(len(df))
 
@@ -296,8 +296,8 @@ def main():
             df = pd.DataFrame.append(df, new_row, ignore_index=True)
 
     print(len(df))
-    output_path = r"C:\Users\pingu\FinQA_replication\dataset\train_WSD_SR_augmented.json"
-    df.to_json(output_path, orient='records', indent=4)
+    # output_path = r"C:\Users\pingu\FinQA_replication\dataset\train_WSD_SR_augmented.json"
+    df.to_json(conf.model_output, orient='records', indent=4)
 
 
 """problem in general is that it is hard to get correct form of word. eg changes 
