@@ -2,8 +2,24 @@ import openai
 import pandas as pd
 from nltk import word_tokenize
 from copy import deepcopy
+import re
 temperatue = 0.7
 top_p = 0.3
+
+def space_out_punctuation(text: str) -> str:
+  # Add space before commas, parenthesis, semicolons, colons, dollar signs, only if they are not already
+  # followed by a space.
+  text = re.sub(r'(?<!\s)([,\(\);:\$])', r' \1', text)
+
+  # Add space after commas, parenthesis, semicolons, colons, dollar signs, only if they are not already
+  # preceded by a space.
+  text = re.sub(r'([,\(\);:\$])(?!\s)', r'\1 ', text)
+
+  # Add space before last period in sentence, only if it is not already
+  # followed by a space.
+  text = re.sub(r'(?<!\s)(\.)$', r' \1', text)
+
+  return text
 
 def create_augmentations(row, n_aug, augment_pre, model):
     # index of first row in post_text
@@ -22,10 +38,17 @@ def create_augmentations(row, n_aug, augment_pre, model):
     qustion_comp = openai.Completion.create(engine=model, prompt=quest_sentence, max_tokens=1024, temperature=temperatue, top_p=top_p)
     question_list = qustion_comp.choices[0]["text"].split("\n")
 
+    # remove empty strings, and remove the first 3 characters (1. ) from each string and space out punctuation
+    question_list = [space_out_punctuation(quest[3:]) for quest in question_list if quest != ""]
+
+    # Check if there are enough augmentations
+    if len(question_list) != n_aug:
+        print("Wrong number of augmentations " + "question")
+        return None
+
     # update questions in new rows
     for i in range(n_aug):
         new_quest = question_list[i]
-        # TODO: add question processing here
         new_rows[i]['qa']['question'] = new_quest
         
         # update total_news
@@ -40,8 +63,8 @@ def create_augmentations(row, n_aug, augment_pre, model):
         gold_comp = openai.Completion.create(engine=model, prompt=gold_sentence, max_tokens=1024, temperature=temperatue, top_p=top_p)
         gold_list = gold_comp.choices[0]["text"].split("\n")
 
-        # remove empty strings
-        gold_list = [gold for gold in gold_list if gold != ""]
+        # remove empty strings, and remove the first 3 characters (1. ) from each string and space out punctuation
+        gold_list = [space_out_punctuation(gold[3:]) for gold in gold_list if gold != ""]
 
         # Check if there are enough augmentations
         if len(gold_list) != n_aug:
@@ -51,7 +74,6 @@ def create_augmentations(row, n_aug, augment_pre, model):
         # update gold_ind in new rows
         for i in range(n_aug):
             new_ind = gold_list[i]
-            # TODO: add question processing here
             new_rows[i]['qa']['gold_inds'][key] = new_ind
 
             # update pre and post text with new text
@@ -101,6 +123,9 @@ def main():
         
         # create augmentated rows
         new_rows = create_augmentations(row, n_aug, augment_pre, model)
+
+        if new_rows is None:
+            continue
 
         # add new rows to df
         for i, new_row in enumerate(new_rows):
