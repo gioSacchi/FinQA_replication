@@ -133,7 +133,7 @@ def main():
             df = pd.DataFrame.append(df, new_row, ignore_index=True)
 
     print(len(df))
-    output_path = r"C:\Users\pingu\FinQA_replication\dataset\train_WSD_SR_augmented.json"
+    output_path = r"C:\Users\pingu\FinQA_replication\dataset\train_GPT_augmented.json"
     df.to_json(output_path, orient='records', indent=4)
 
 
