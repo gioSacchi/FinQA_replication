@@ -59,6 +59,15 @@ def create_augmentations(row, n_aug, augment_pre, model):
 
     # make API call to get augmentations of gold_inds
     for key, text in new_rows[0]['qa']['gold_inds'].items():
+        # parse key
+        parsed_key = key.split("_")
+        text_index = int(parsed_key[1])
+
+        # do not augment if table
+        if parsed_key[0] == "table":
+            continue
+
+        # create sentence to augment and create list of augmentations
         gold_sentence = augment_pre + text
         gold_comp = openai.Completion.create(engine=model, prompt=gold_sentence, max_tokens=1024, temperature=temperatue, top_p=top_p)
         gold_list = gold_comp.choices[0]["text"].split("\n")
@@ -77,8 +86,6 @@ def create_augmentations(row, n_aug, augment_pre, model):
             new_rows[i]['qa']['gold_inds'][key] = new_ind
 
             # update pre and post text with new text
-            parsed_key = key.split("_")
-            text_index = int(parsed_key[1])
             if text_index < break_point:
                 row['pre_text'][text_index] = new_ind
             else:
