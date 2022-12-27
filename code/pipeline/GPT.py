@@ -40,6 +40,14 @@ def create_augmentations(row, n_aug, augment_pre, model):
         gold_comp = openai.Completion.create(engine=model, prompt=gold_sentence, max_tokens=1024, temperature=temperatue, top_p=top_p)
         gold_list = gold_comp.choices[0]["text"].split("\n")
 
+        # remove empty strings
+        gold_list = [gold for gold in gold_list if gold != ""]
+
+        # Check if there are enough augmentations
+        if len(gold_list) != n_aug:
+            print("Wrong number of augmentations " + key)
+            return None
+
         # update gold_ind in new rows
         for i in range(n_aug):
             new_ind = gold_list[i]
@@ -73,7 +81,7 @@ def main():
 
     # Set the prompt and model
     n_aug = 5
-    augment_pre = "Create " + str(n_aug) + " different rephrasings of the following sentence: "
+    augment_pre = "Create exactly " + str(n_aug) + " different rephrasings of the following sentence: "
     model = "text-davinci-003"
 
     input_path = r"C:\Users\pingu\FinQA_replication\dataset\train.json"
