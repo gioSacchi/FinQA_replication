@@ -43,6 +43,8 @@ def WSD(input):
     model.to(device)
     model.eval()
 
+    print(len(test_dataloader))
+    counter = 0
     # Run predictions
     predictions = {}
     with torch.no_grad():
@@ -51,6 +53,10 @@ def WSD(input):
             y = model(x)
             batch_predictions = processor.decode(x, y)
             predictions.update(batch_predictions)
+            
+            counter += 1
+            if counter % 100 == 0:
+                print(counter)
 
     predictions = sorted(list(predictions.items()), key=lambda kv: kv[0])
 
