@@ -6,7 +6,13 @@ from nltk.corpus import stopwords
 # from gensim.models import Word2Vec
 # from gensim.test.utils import common_texts
 import gensim.downloader as api
+from gensim.models import KeyedVectors
+from gensim import models
+from time import time
 
+word2vec_path = r'C:\Users\pingu\Desktop\GoogleNews-vectors-negative300.bin.gz'
+w2v_model = models.KeyedVectors.load_word2vec_format(word2vec_path, binary=True)
+model = w2v_model
 stop_words = set(stopwords.words('english'))
 
 # Calculate the Word Mover's Distance between two sentences
@@ -22,10 +28,11 @@ def compare_sentences(sentence1, sentence2):
     # Load the model
     # model = Word2Vec.load("word2vec.model")
     # model = Word2Vec(sentences=common_texts, vector_size=100, window=5, min_count=1, workers=4)
-    model = api.load('word2vec-google-news-300')
 
     # Calculate the Word Mover's Distance
+    t1 = time()
     distance = model.wmdistance(sentence1_tokens, sentence2_tokens) 
+    print("Time taken to calculate WMD: ", time() - t1)
     print("Distance between sentences: ", distance) 
 
     return distance
