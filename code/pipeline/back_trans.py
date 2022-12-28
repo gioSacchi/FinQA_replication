@@ -53,7 +53,7 @@ def space_out_punctuation(text: str) -> str:
   # followed by a space.
   text = re.sub(r'(?<!\s)(\.)$', r' \1', text)
 
-  return text
+  return text.lower()
 
 
 def back_translation_augment(row: pd.Series, df_index: int) -> pd.Series:
@@ -65,7 +65,7 @@ def back_translation_augment(row: pd.Series, df_index: int) -> pd.Series:
   # extract the question from row
   question = row['qa']['question']
 
-  transit_language = "zh"
+  transit_language = "fr"
 
   # translate the question to french from english
   translated_question = back_translate_text(
