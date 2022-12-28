@@ -21,6 +21,11 @@ from nltk.corpus import stopwords
 lemmatizer = WordNetLemmatizer()
 
 stop_words = set(stopwords.words('english'))
+# add %, ' and 's to stop words. These cannot b handled by WSD and are not useful for our purposes
+stop_words.add("%")
+stop_words.add("'s")
+stop_words.add("'")
+
 allowed_word_classes_WSD = ['PRT', 'ADV', 'ADJ', 'NOUN', 'VERB']
 
 
@@ -127,7 +132,7 @@ def preprocess_text(row):
             allowed_indecies.append(i)    
     
     # randomly select n words from eligible words
-    threshold = random.random()
+    threshold = 0.35 + 0.65*random.random()
     n = math.ceil(len(allowed_indecies) * threshold)
     selected_indecies = random.sample(allowed_indecies, n)
 
@@ -164,7 +169,7 @@ def preprocess_text(row):
                 allowed_indecies.append(i)
         
         # randomly select n words from eligible words
-        threshold = random.random()
+        threshold = 0.35 + 0.65*random.random()
         n = math.ceil(len(allowed_indecies) * threshold)
         selected_indecies = random.sample(allowed_indecies, n)
 
@@ -272,13 +277,14 @@ def main():
             # add to big map
             big_map[str(df_index) + "_" + str(n)] = key_map
             big_augmentation_list.extend(augmentation_list)
-        break
     
     #convert big_augmentation_list to dictionary
     big_augmentation_dict = {i: elem for i, elem in enumerate(big_augmentation_list)}
 
     # call wsd and get meanings of selected words
     wsd_output = WSD(big_augmentation_dict)
+
+    counter = 0
 
     # loop through big map and create new rows
     # i.e. replace words with synonym and add new row to dataframe
@@ -294,6 +300,10 @@ def main():
         if new_row:
             new_row['id'] = new_row['id'] + "_WSD_SR_" + str(row_index) + "_" + n
             df = pd.DataFrame.append(df, new_row, ignore_index=True)
+        
+        counter += 1
+        if counter % 100 == 0:
+            print(counter)
 
     print(len(df))
     # output_path = r"C:\Users\pingu\FinQA_replication\dataset\train_WSD_SR_augmented.json"
