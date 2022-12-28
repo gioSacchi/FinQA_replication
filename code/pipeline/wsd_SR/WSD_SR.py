@@ -5,6 +5,7 @@ import nltk
 from config import parameters as conf
 from WSD import WSD
 from copy import deepcopy
+import re
 
 
 # download nltk packages first time
@@ -28,6 +29,10 @@ stop_words.add("'")
 
 allowed_word_classes_WSD = ['PRT', 'ADV', 'ADJ', 'NOUN', 'VERB']
 
+def tokenize(text):
+    # get all words in text
+    words = re.findall(r'\b[a-zA-Z]+(?:\'[a-zA-Z]+)?\b', text)
+    return words
 
 def convert_to_wn_pos(pos):
     if pos.startswith("J"):
@@ -64,7 +69,7 @@ def replace_nth_instance(text, n, old, new):
 def replacement(text, meanings, indecies):
     # iterate through meanings and indecies
     for meaning, index in zip(meanings, indecies):
-        words = word_tokenize(text)
+        words = tokenize(text)
         word = words[index]
         pos = meaning.split(".")[-2]
         lemma = lemmatizer.lemmatize(word, pos=pos)
@@ -107,7 +112,7 @@ def preprocess_text(row):
 
     # break down question into tokens
     question = qa['question']
-    question_tokens = word_tokenize(question)
+    question_tokens = tokenize(question)
 
     #words + tags for lemmatisation
     lemma_tags = pos_tag(question_tokens)
@@ -148,7 +153,7 @@ def preprocess_text(row):
     # break down gold_inds into tokens¨
     gold_inds = qa['gold_inds']
     for key, value in gold_inds.items():
-        gold_ind_tokens = word_tokenize(value)
+        gold_ind_tokens = tokenize(value)
         gold_ind_lemmas = []
         gold_ind_tags = [tag for _, tag in nltk.pos_tag(gold_ind_tokens, tagset='universal')]
         lemma_tags = pos_tag(gold_ind_tokens)
