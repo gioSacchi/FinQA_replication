@@ -1,6 +1,6 @@
 import openai
 import pandas as pd
-from nltk import word_tokenize
+# from nltk import word_tokenize
 from copy import deepcopy
 import re
 temperatue = 0.7
