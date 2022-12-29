@@ -259,7 +259,7 @@ def main():
 
     # number of generated sentences per original sentence
     num_aug = 5
-    random.seed(3)
+    # random.seed(3)
 
     ## Remove retriever columns
     df = df.drop(['table_retrieved','text_retrieved','table_retrieved_all','text_retrieved_all', 'table_ori', 'filename'], axis=1)
