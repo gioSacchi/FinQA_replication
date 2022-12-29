@@ -1,5 +1,6 @@
 import openai
 import pandas as pd
+import os
 # from nltk import word_tokenize
 from copy import deepcopy
 import re
@@ -184,27 +185,40 @@ def create_augmentations(row, n_aug, augment_pre, model):
 
 def main():
     # Set the API key
-    openai.api_key = "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"
+    openai.api_key = "add your key here"
 
     # Set the prompt and model
     n_aug = 5
     augment_pre = "Create exactly " + str(n_aug) + " different rephrasings (excluding the sentence) of the following sentence: '"
     model = "text-davinci-003"
 
+    # Read in the data
     input_path = r"C:\Users\pingu\FinQA_replication\dataset\train.json"
     df = pd.read_json(input_path)
-
-    print(len(df))
 
     ## Remove retriever columns
     df = df.drop(['table_retrieved','text_retrieved','table_retrieved_all','text_retrieved_all', 'table_ori', 'filename'], axis=1)
 
+    # load data from prvious step if it exists
+    output_path = r"C:\Users\pingu\FinQA_replication\dataset\train_GPT_augmented.json"
+    if os.path.exists(output_path):
+        df_aug = pd.read_json(output_path)
+        # last line of log file
+        status_index = int(open(r"C:\Users\pingu\FinQA_replication\dataset\train_GPT_augmented_log.txt", "r").readlines()[-1])
+    else:
+        df_aug = df
+        status_index = -1
+
+    print(len(df))
+    print(len(df_aug))
+
     for df_index, row in df.iterrows():
+        # skip rows that have already been augmented
+        if df_index <= status_index:
+            continue
+
         # remove unnecessary columns
         row['qa'] = {"question": row['qa']["question"], "program": row['qa']["program"], "gold_inds": row['qa']["gold_inds"], "exe_ans": row['qa']["exe_ans"], "program_re": row['qa']["program_re"]}
-        
-        if df_index % 10 == 0:
-            print(df_index)
         
         # create augmentated rows
         new_rows = create_augmentations(row, n_aug, augment_pre, model)
@@ -215,14 +229,24 @@ def main():
         # add new rows to df
         for i, new_row in enumerate(new_rows):
             new_row['id'] = new_row['id'] + "_GPT_" + str(i)
-            df = pd.DataFrame.append(df, new_row, ignore_index=True)
+            # df_aug = pd.DataFrame.append(df_aug, new_row, ignore_index=True)
+            # update row using new_row and pd.concat
+            df_aug = pd.concat([df_aug, pd.DataFrame([new_row])], ignore_index=True)
+        
+        # print progress and save
+        if df_index % 10 == 0:
+            print(df_index)
+            # save df to json
+            df_aug.to_json(output_path, orient='records', indent=4)
+            # in log file save (create it if necessary) the last index that was augmented on new line
+            with open(r"C:\Users\pingu\FinQA_replication\dataset\train_GPT_augmented_log.txt", "a+") as f:
+                f.write(str(df_index) + "\n")
 
         # add a sleep to avoid rate limit of 20 requests per minute, 60/20 = 3 seconds per request but we make at least 2 requests per row so 6 seconds
         time.sleep((60/20)*2)
 
-    print(len(df))
-    output_path = r"C:\Users\pingu\FinQA_replication\dataset\train_GPT_augmented.json"
-    df.to_json(output_path, orient='records', indent=4)
+    print(len(df_aug))
+    df_aug.to_json(output_path, orient='records', indent=4)
 
 
 if __name__ == "__main__":
