@@ -44,7 +44,16 @@ def create_augmentations(row, n_aug, augment_pre, model):
     # Check if there are enough augmentations
     if len(question_list) != n_aug:
         print("Wrong number of augmentations " + "question")
-        return None
+        if len(question_list) > 0:
+            # change n_aug to match and augment_pre to match
+            augment_pre = augment_pre.replace(str(n_aug), str(len(question_list)))
+            n_aug = len(question_list)
+            # update new_rows
+            new_rows = new_rows[:n_aug]
+            # update total_news
+            total_news = total_news[:n_aug]
+        else:
+            return None
 
     # update total_old
     total_old += new_rows[0]['qa']['question'] + " "
@@ -78,7 +87,16 @@ def create_augmentations(row, n_aug, augment_pre, model):
         # Check if there are enough augmentations
         if len(gold_list) != n_aug:
             print("Wrong number of augmentations " + key)
-            return None
+            if len(gold_list) > 0:
+                # change n_aug to match and augment_pre to match
+                augment_pre = augment_pre.replace(str(n_aug), str(len(question_list)))
+                n_aug = len(gold_list)
+                # update new_rows
+                new_rows = new_rows[:n_aug]
+                # update total_news
+                total_news = total_news[:n_aug]
+            else:
+                return None
 
         # update total_old
         total_old += new_rows[0]['qa']['gold_inds'][key] + " "
