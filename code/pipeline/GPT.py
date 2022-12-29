@@ -3,6 +3,7 @@ import pandas as pd
 # from nltk import word_tokenize
 from copy import deepcopy
 import re
+import time
 temperatue = 0.7
 top_p = 0.3
 
@@ -32,17 +33,43 @@ def create_augmentations(row, n_aug, augment_pre, model):
     new_rows = [deepcopy(row.to_dict()) for i in range(n_aug)]
 
     # create augmented questions
-    quest_sentence = augment_pre + new_rows[0]['qa']['question']
+    quest_sentence = augment_pre + new_rows[0]['qa']['question'] + "'"
     
     # Make the API call to OpenAI to get augmentations
     qustion_comp = openai.Completion.create(engine=model, prompt=quest_sentence, max_tokens=1024, temperature=temperatue, top_p=top_p)
     question_list = qustion_comp.choices[0]["text"].split("\n")
 
+    time.sleep(3)
+
     # remove empty strings, and remove the first 3 characters (1. ) from each string and space out punctuation
-    question_list = [space_out_punctuation(quest[3:]) for quest in question_list if quest != ""]
+    question_list = [space_out_punctuation(quest[3:]) for quest in question_list if quest[3:] != ""]
+
+    # check if too many augmentations
+    if len(question_list) > n_aug:
+        print("Too many augmentations " + "question")
+        print(qustion_comp.choices[0]["text"].split("\n"))
+
+        #detrmine how many extra augmentations there are
+        how_many = len(question_list)
+        extra = how_many - n_aug
+        print("Extra: " + str(extra))
+
+        # loop thorugh augmentations and remove ones that are much shortar than the others
+        selected = []
+        for i, augmented in enumerate(question_list):
+            if len(augmented) < 0.5*len(new_rows[0]['qa']['question'].split(" ")):
+                selected.append(i)
+                
+        # remove the selected augmentations
+        question_list = [quest for i, quest in enumerate(question_list) if i not in selected]
+        
+        # if still too many augmentations, remove the first ones untill there are the right number
+        if len(question_list) > n_aug:
+            while len(question_list) > n_aug:
+                question_list.pop(0)
 
     # Check if there are enough augmentations
-    if len(question_list) != n_aug:
+    if len(question_list) < n_aug:
         print("Wrong number of augmentations " + "question")
         if len(question_list) > 0:
             # change n_aug to match and augment_pre to match
@@ -76,16 +103,46 @@ def create_augmentations(row, n_aug, augment_pre, model):
         if parsed_key[0] == "table":
             continue
 
+        # skip augmntation if text is very short or empty
+        if len(text.split(" ")) < 4 or text == "":
+            continue
+
         # create sentence to augment and create list of augmentations
-        gold_sentence = augment_pre + text
+        gold_sentence = augment_pre + text + "'"
         gold_comp = openai.Completion.create(engine=model, prompt=gold_sentence, max_tokens=1024, temperature=temperatue, top_p=top_p)
         gold_list = gold_comp.choices[0]["text"].split("\n")
 
+        time.sleep(3)
+
         # remove empty strings, and remove the first 3 characters (1. ) from each string and space out punctuation
-        gold_list = [space_out_punctuation(gold[3:]) for gold in gold_list if gold != ""]
+        gold_list = [space_out_punctuation(gold[3:]) for gold in gold_list if gold[3:] != ""]
+
+        # check if too many augmentations
+        if len(gold_list) > n_aug:
+            print("Too many augmentations " + key)
+            print(gold_comp.choices[0]["text"].split("\n"))
+
+            #detrmine how many extra augmentations there are
+            how_many = len(gold_list)
+            extra = how_many - n_aug
+            print("Extra: " + str(extra))
+
+            # loop thorugh augmentations and remove ones that are much shortar than the others
+            selected = []
+            for i, augmented in enumerate(gold_list):
+                if len(augmented) < 0.5*len(text):
+                    selected.append(i)
+                    
+            # remove the selected augmentations
+            gold_list = [ind for i, ind in enumerate(gold_list) if i not in selected]
+            
+            # if still too many augmentations, remove the first ones untill there are the right number
+            if len(gold_list) > n_aug:
+                while len(gold_list) > n_aug:
+                    gold_list.pop(0)
 
         # Check if there are enough augmentations
-        if len(gold_list) != n_aug:
+        if len(gold_list) < n_aug:
             print("Wrong number of augmentations " + key)
             if len(gold_list) > 0:
                 # change n_aug to match and augment_pre to match
@@ -127,11 +184,11 @@ def create_augmentations(row, n_aug, augment_pre, model):
 
 def main():
     # Set the API key
-    openai.api_key = "add your key here"
+    openai.api_key = "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"
 
     # Set the prompt and model
     n_aug = 5
-    augment_pre = "Create exactly " + str(n_aug) + " different rephrasings (excluding the sentence) of the following sentence: "
+    augment_pre = "Create exactly " + str(n_aug) + " different rephrasings (excluding the sentence) of the following sentence: '"
     model = "text-davinci-003"
 
     input_path = r"C:\Users\pingu\FinQA_replication\dataset\train.json"
@@ -146,7 +203,7 @@ def main():
         # remove unnecessary columns
         row['qa'] = {"question": row['qa']["question"], "program": row['qa']["program"], "gold_inds": row['qa']["gold_inds"], "exe_ans": row['qa']["exe_ans"], "program_re": row['qa']["program_re"]}
         
-        if df_index % 100 == 0:
+        if df_index % 10 == 0:
             print(df_index)
         
         # create augmentated rows
@@ -159,6 +216,9 @@ def main():
         for i, new_row in enumerate(new_rows):
             new_row['id'] = new_row['id'] + "_GPT_" + str(i)
             df = pd.DataFrame.append(df, new_row, ignore_index=True)
+
+        # add a sleep to avoid rate limit of 20 requests per minute, 60/20 = 3 seconds per request but we make at least 2 requests per row so 6 seconds
+        time.sleep((60/20)*2)
 
     print(len(df))
     output_path = r"C:\Users\pingu\FinQA_replication\dataset\train_GPT_augmented.json"
