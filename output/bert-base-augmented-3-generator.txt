@@ -1,0 +1,5001 @@
+Streaming output truncated to the last 5000 lines.
+####################INPUT PARAMETERS###################
+__module__ = config
+prog_name = generator
+root_path = ../
+output_path = /content/gdrive/MyDrive/FinQAModels
+cache_dir = ../cache
+model_save_name = bert-base-SR_PoS_num_augmented
+train_file = /content/gdrive/MyDrive/FinQA/train_SR_PoS_num_augmented.json
+valid_file = /content/gdrive/MyDrive/FinQA/generator_files/converted_dev_predictions.json
+test_file = /content/gdrive/MyDrive/FinQA/generator_files/converted_test_predictions.json
+op_list_file = operation_list.txt
+const_list_file = constant_list.txt
+pretrained_model = bert
+model_size = bert-base-uncased
+retrieve_mode = gold
+program_mode = seq
+device = cuda
+mode = train
+resume_model_path = 
+saved_model_path = /content/gdrive/MyDrive/FinQAModels/model_name_edit.pt
+build_summary = False
+sep_attention = True
+layer_norm = True
+num_decoder_layers = 1
+max_seq_length = 512
+max_program_length = 30
+n_best_size = 20
+dropout_rate = 0.1
+batch_size = 10
+batch_size_test = 16
+epoch = 300
+learning_rate = 2e-05
+report = 300
+report_loss = 100
+max_step_ind = 11
+__dict__ = <attribute '__dict__' of 'parameters' objects>
+__weakref__ = <attribute '__weakref__' of 'parameters' objects>
+__doc__ = None
+#######################################################
+Downloading: 100% 570/570 [00:00<00:00, 548kB/s]
+Downloading: 100% 440M/440M [00:11<00:00, 38.3MB/s]
+Some weights of the model checkpoint at bert-base-uncased were not used when initializing BertModel: ['cls.predictions.transform.dense.bias', 'cls.seq_relationship.bias', 'cls.seq_relationship.weight', 'cls.predictions.transform.LayerNorm.weight', 'cls.predictions.transform.LayerNorm.bias', 'cls.predictions.transform.dense.weight', 'cls.predictions.bias', 'cls.predictions.decoder.weight']
+- This IS expected if you are initializing BertModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing BertModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+100 : loss = 3.086
+200 : loss = 1.412
+300 : loss = 1.329
+Round:  1.0
+1 : time = 399.643 
+Val test
+100% 56/56 [00:42<00:00,  1.30it/s]
+All:  883
+Correct:  0
+Exe acc:  0.01245753114382786
+Prog acc:  0.007927519818799546
+exe acc: 0.01245753114382786 prog acc: 0.007927519818799546
+400 : loss = 1.248
+500 : loss = 1.125
+600 : loss = 1.169
+Round:  2.0
+2 : time = 451.695 
+Val test
+100% 56/56 [00:43<00:00,  1.28it/s]
+UNP/2014/page_25.pdf-3
+['subtract(', '2.6', '2.6', ')', 'divide(', '#0', '2.6', ')', 'EOF']
+['subtract(', '2.6', '2.6', ')', 'EOF']
+0.0
+0.0
+UNP/2014/page_25.pdf-3
+All:  883
+Correct:  0
+Exe acc:  0.028312570781426953
+Prog acc:  0.022650056625141562
+exe acc: 0.028312570781426953 prog acc: 0.022650056625141562
+700 : loss = 1.148
+800 : loss = 1.021
+900 : loss = 0.962
+Round:  3.0
+3 : time = 453.123 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+UNP/2014/page_25.pdf-3
+['subtract(', '2.6', '2.6', ')', 'divide(', '#0', '2.6', ')', 'EOF']
+['subtract(', '2.6', '2.6', ')', 'EOF']
+0.0
+0.0
+UNP/2014/page_25.pdf-3
+All:  883
+Correct:  0
+Exe acc:  0.072480181200453
+Prog acc:  0.06568516421291053
+exe acc: 0.072480181200453 prog acc: 0.06568516421291053
+1000 : loss = 1.027
+1100 : loss = 0.967
+1200 : loss = 0.990
+Round:  4.0
+4 : time = 452.313 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+All:  883
+Correct:  0
+Exe acc:  0.09399773499433749
+Prog acc:  0.08833522083805209
+exe acc: 0.09399773499433749 prog acc: 0.08833522083805209
+1300 : loss = 0.964
+1400 : loss = 0.849
+1500 : loss = 0.971
+Round:  5.0
+5 : time = 453.051 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+SYY/2019/page_9.pdf-2
+['subtract(', '62%', '62%', ')', 'EOF']
+['subtract(', '62%', '62%', ')', 'divide(', '#0', '62%', ')', 'EOF']
+0.0
+0.0
+SYY/2019/page_9.pdf-2
+CDNS/2006/page_30.pdf-2
+['subtract(', '111.15', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'EOF']
+['subtract(', '111.15', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'subtract(', '#1', 'const_100', ')', 'divide(', '#2', 'const_100', ')', 'subtract(', '#3', 'const_100', ')', 'subtract(', '#4', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'subtract(', '#0']
+0.1115
+0.1115
+CDNS/2006/page_30.pdf-2
+All:  883
+Correct:  0
+Exe acc:  0.22083805209513024
+Prog acc:  0.21630804077010193
+exe acc: 0.22083805209513024 prog acc: 0.21630804077010193
+1600 : loss = 0.804
+1700 : loss = 0.923
+1800 : loss = 0.809
+Round:  6.0
+6 : time = 454.927 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+All:  883
+Correct:  0
+Exe acc:  0.3103057757644394
+Prog acc:  0.29218573046432617
+exe acc: 0.3103057757644394 prog acc: 0.29218573046432617
+1900 : loss = 0.796
+2000 : loss = 0.838
+2100 : loss = 0.783
+Round:  7.0
+7 : time = 454.080 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+All:  883
+Correct:  0
+Exe acc:  0.2718006795016987
+Prog acc:  0.2650056625141563
+exe acc: 0.2718006795016987 prog acc: 0.2650056625141563
+2200 : loss = 0.777
+2300 : loss = 0.758
+2400 : loss = 0.755
+Round:  8.0
+8 : time = 453.471 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+IPG/2015/page_48.pdf-3
+['add(', '34.7', '33.7', ')', 'EOF']
+['add(', '33.7', '34.7', ')', 'EOF']
+68.4
+68.4
+IPG/2015/page_48.pdf-3
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.3352208380520951
+Prog acc:  0.319365798414496
+exe acc: 0.3352208380520951 prog acc: 0.319365798414496
+2500 : loss = 0.754
+2600 : loss = 0.703
+2700 : loss = 0.726
+Round:  9.0
+9 : time = 454.775 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+All:  883
+Correct:  0
+Exe acc:  0.39637599093997733
+Prog acc:  0.38052095130237823
+exe acc: 0.39637599093997733 prog acc: 0.38052095130237823
+2800 : loss = 0.677
+2900 : loss = 0.630
+3000 : loss = 0.623
+Round:  10.0
+10 : time = 454.773 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+All:  883
+Correct:  0
+Exe acc:  0.40543601359003395
+Prog acc:  0.3895809739524349
+exe acc: 0.40543601359003395 prog acc: 0.3895809739524349
+3100 : loss = 0.686
+3200 : loss = 0.601
+3300 : loss = 0.605
+Round:  11.0
+11 : time = 453.936 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+All:  883
+Correct:  0
+Exe acc:  0.44620611551528877
+Prog acc:  0.42355605889014725
+exe acc: 0.44620611551528877 prog acc: 0.42355605889014725
+3400 : loss = 0.589
+3500 : loss = 0.623
+3600 : loss = 0.558
+Round:  12.0
+12 : time = 454.030 
+Val test
+100% 56/56 [00:43<00:00,  1.28it/s]
+TFX/2015/page_70.pdf-3
+['multiply(', '86.98', '4446967', ')', 'EOF']
+['multiply(', '4446967', '86.98', ')', 'EOF']
+386797189.66
+386797189.66
+TFX/2015/page_70.pdf-3
+All:  883
+Correct:  0
+Exe acc:  0.464326160815402
+Prog acc:  0.44620611551528877
+exe acc: 0.464326160815402 prog acc: 0.44620611551528877
+3700 : loss = 0.529
+3800 : loss = 0.545
+3900 : loss = 0.559
+Round:  13.0
+13 : time = 454.749 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+UNP/2008/page_77.pdf-1
+['divide(', '367', '2560', ')', 'EOF']
+['add(', '367', '2560', ')', 'divide(', '367', '2560', ')', 'EOF']
+0.14336
+0.14336
+UNP/2008/page_77.pdf-1
+K/2013/page_62.pdf-2
+['divide(', '2400', '3278', ')', 'EOF']
+['add(', '2400', '3278', ')', 'divide(', '2400', '3278', ')', 'EOF']
+0.73215
+0.73215
+K/2013/page_62.pdf-2
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+VRTX/2003/page_71.pdf-1
+['divide(', '249', '22203', ')', 'EOF']
+['add(', '249', '22203', ')', 'divide(', '249', '22203', ')', 'EOF']
+0.01121
+0.01121
+VRTX/2003/page_71.pdf-1
+IPG/2015/page_48.pdf-3
+['add(', '34.7', '33.7', ')', 'EOF']
+['add(', '33.7', '34.7', ')', 'EOF']
+68.4
+68.4
+IPG/2015/page_48.pdf-3
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+RE/2015/page_33.pdf-1
+['divide(', '264.9', '266.3', ')', 'EOF']
+['add(', '264.9', '266.3', ')', 'divide(', '264.9', '266.3', ')', 'EOF']
+0.99474
+0.99474
+RE/2015/page_33.pdf-1
+CMCSA/2015/page_64.pdf-3
+['add(', '81', '296', ')', 'add(', '576', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '81', '296', ')', 'add(', '#0', '576', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+478.0
+478.0
+CMCSA/2015/page_64.pdf-3
+IP/2005/page_19.pdf-3
+['add(', '1923', '2040', ')', 'add(', '1734', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '1923', '2040', ')', 'add(', '#0', '1734', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+2850.0
+2850.0
+IP/2005/page_19.pdf-3
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.4450736126840317
+Prog acc:  0.42129105322763305
+exe acc: 0.4450736126840317 prog acc: 0.42129105322763305
+4000 : loss = 0.562
+4100 : loss = 0.534
+4200 : loss = 0.488
+Round:  14.0
+14 : time = 454.334 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+VTR/2007/page_47.pdf-1
+['add(', '138311810', '14669', ')', 'EOF']
+['add(', '14669', '138311810', ')', 'EOF']
+138326479.0
+138326479.0
+VTR/2007/page_47.pdf-1
+IP/2005/page_19.pdf-3
+['add(', '1923', '2040', ')', 'add(', '1734', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '1923', '2040', ')', 'add(', '#0', '1734', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+2850.0
+2850.0
+IP/2005/page_19.pdf-3
+All:  883
+Correct:  0
+Exe acc:  0.47904869762174407
+Prog acc:  0.46206115515288787
+exe acc: 0.47904869762174407 prog acc: 0.46206115515288787
+4300 : loss = 0.588
+4400 : loss = 0.484
+4500 : loss = 0.508
+Round:  15.0
+15 : time = 454.068 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+All:  883
+Correct:  0
+Exe acc:  0.47791619479048697
+Prog acc:  0.4609286523216308
+exe acc: 0.47791619479048697 prog acc: 0.4609286523216308
+4600 : loss = 0.483
+4700 : loss = 0.445
+4800 : loss = 0.467
+Round:  16.0
+16 : time = 456.075 
+Val test
+100% 56/56 [00:42<00:00,  1.30it/s]
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+CMCSA/2015/page_64.pdf-3
+['add(', '81', '296', ')', 'add(', '576', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '81', '296', ')', 'add(', '#0', '576', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+478.0
+478.0
+CMCSA/2015/page_64.pdf-3
+IP/2012/page_93.pdf-4
+['add(', '231', '205', ')', 'add(', '210', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '231', '205', ')', 'add(', '#0', '210', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+324.5
+324.5
+IP/2012/page_93.pdf-4
+IP/2005/page_19.pdf-3
+['add(', '1923', '2040', ')', 'add(', '1734', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '1923', '2040', ')', 'add(', '#0', '1734', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+2850.0
+2850.0
+IP/2005/page_19.pdf-3
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5028312570781427
+Prog acc:  0.4824462061155153
+exe acc: 0.5028312570781427 prog acc: 0.4824462061155153
+4900 : loss = 0.488
+5000 : loss = 0.460
+5100 : loss = 0.427
+Round:  17.0
+17 : time = 454.143 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+CDNS/2006/page_30.pdf-1
+['subtract(', '79.96', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'EOF']
+['subtract(', '79.96', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'multiply(', '#1', 'const_100', ')', 'divide(', '#2', 'const_100', ')', 'EOF']
+-0.2004
+-0.2004
+CDNS/2006/page_30.pdf-1
+CDNS/2012/page_30.pdf-1
+['subtract(', '78.92', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'EOF']
+['subtract(', '78.92', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'multiply(', '#1', 'const_100', ')', 'divide(', '#2', 'const_100', ')', 'EOF']
+-0.2108
+-0.2108
+CDNS/2012/page_30.pdf-1
+UNP/2014/page_35.pdf-2
+['multiply(', '75', 'const_1000000', ')', 'divide(', '#0', '165', ')', 'EOF']
+['multiply(', '75', 'const_1000000', ')', 'divide(', '#0', '165', ')', 'multiply(', '#1', 'const_1000000', ')', 'divide(', '#2', 'const_1000000', ')', 'EOF']
+454545.45455
+454545.45455
+UNP/2014/page_35.pdf-2
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CB/2010/page_88.pdf-2
+['add(', '366', '137', ')', 'add(', '567', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '366', '137', ')', 'add(', '#0', '567', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+356.66667
+356.66667
+CB/2010/page_88.pdf-2
+IP/2012/page_93.pdf-4
+['add(', '231', '205', ')', 'add(', '210', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '231', '205', ')', 'add(', '#0', '210', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+324.5
+324.5
+IP/2012/page_93.pdf-4
+IP/2005/page_19.pdf-3
+['add(', '1923', '2040', ')', 'add(', '1734', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '1923', '2040', ')', 'add(', '#0', '1734', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+2850.0
+2850.0
+IP/2005/page_19.pdf-3
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.4801812004530011
+Prog acc:  0.46206115515288787
+exe acc: 0.4801812004530011 prog acc: 0.46206115515288787
+5200 : loss = 0.403
+5300 : loss = 0.437
+5400 : loss = 0.434
+Round:  18.0
+18 : time = 454.764 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+IP/2012/page_93.pdf-4
+['add(', '231', '205', ')', 'add(', '210', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '231', '205', ')', 'add(', '#0', '210', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+324.5
+324.5
+IP/2012/page_93.pdf-4
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5130237825594564
+Prog acc:  0.49490373725934317
+exe acc: 0.5130237825594564 prog acc: 0.49490373725934317
+5500 : loss = 0.424
+5600 : loss = 0.375
+5700 : loss = 0.392
+Round:  19.0
+19 : time = 455.105 
+Val test
+100% 56/56 [00:44<00:00,  1.27it/s]
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+HII/2017/page_124.pdf-2
+['add(', '448859', '4087587', ')', 'divide(', '4087587', '#0', ')', 'EOF']
+['add(', '4087587', '448859', ')', 'divide(', '4087587', '#0', ')', 'EOF']
+0.90105
+0.90105
+HII/2017/page_124.pdf-2
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+VTR/2007/page_47.pdf-1
+['add(', '138311810', '14669', ')', 'EOF']
+['add(', '14669', '138311810', ')', 'EOF']
+138326479.0
+138326479.0
+VTR/2007/page_47.pdf-1
+IP/2012/page_93.pdf-4
+['add(', '231', '205', ')', 'add(', '210', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '231', '205', ')', 'add(', '#0', '210', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+324.5
+324.5
+IP/2012/page_93.pdf-4
+IP/2005/page_19.pdf-3
+['add(', '1923', '2040', ')', 'add(', '1734', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '1923', '2040', ')', 'add(', '#0', '1734', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+2850.0
+2850.0
+IP/2005/page_19.pdf-3
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5028312570781427
+Prog acc:  0.4869762174405436
+exe acc: 0.5028312570781427 prog acc: 0.4869762174405436
+5800 : loss = 0.337
+5900 : loss = 0.396
+6000 : loss = 0.362
+Round:  20.0
+20 : time = 455.633 
+Val test
+100% 56/56 [00:42<00:00,  1.30it/s]
+All:  883
+Correct:  0
+Exe acc:  0.4881087202718007
+Prog acc:  0.46772366930917325
+exe acc: 0.4881087202718007 prog acc: 0.46772366930917325
+6100 : loss = 0.330
+6200 : loss = 0.339
+6300 : loss = 0.378
+Round:  21.0
+21 : time = 454.052 
+Val test
+100% 56/56 [00:43<00:00,  1.29it/s]
+ETR/2017/page_316.pdf-1
+['add(', '1520.5', '1522.6', ')', 'divide(', '#0', 'const_2', ')', 'EOF']
+['add(', '1522.6', '1520.5', ')', 'divide(', '#0', 'const_2', ')', 'EOF']
+1521.55
+1521.55
+ETR/2017/page_316.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CB/2010/page_88.pdf-2
+['add(', '366', '137', ')', 'add(', '567', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '366', '137', ')', 'add(', '#0', '567', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+356.66667
+356.66667
+CB/2010/page_88.pdf-2
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5039637599093998
+Prog acc:  0.4869762174405436
+exe acc: 0.5039637599093998 prog acc: 0.4869762174405436
+6400 : loss = 0.389
+6500 : loss = 0.360
+6600 : loss = 0.326
+Round:  22.0
+22 : time = 454.238 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CMCSA/2015/page_64.pdf-3
+['add(', '81', '296', ')', 'add(', '576', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '81', '296', ')', 'add(', '#0', '576', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+478.0
+478.0
+CMCSA/2015/page_64.pdf-3
+IP/2012/page_93.pdf-4
+['add(', '231', '205', ')', 'add(', '210', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '231', '205', ')', 'add(', '#0', '210', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+324.5
+324.5
+IP/2012/page_93.pdf-4
+IP/2005/page_19.pdf-3
+['add(', '1923', '2040', ')', 'add(', '1734', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '1923', '2040', ')', 'add(', '#0', '1734', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+2850.0
+2850.0
+IP/2005/page_19.pdf-3
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.46885617214043035
+Prog acc:  0.4609286523216308
+exe acc: 0.46885617214043035 prog acc: 0.4609286523216308
+6700 : loss = 0.353
+6800 : loss = 0.308
+6900 : loss = 0.361
+Round:  23.0
+23 : time = 455.373 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+CB/2010/page_200.pdf-3
+['add(', '256868', '1230881', ')', 'add(', '638401', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '256868', '1230881', ')', 'add(', '#0', '638401', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+1063076.5
+1063076.5
+CB/2010/page_200.pdf-3
+HII/2017/page_124.pdf-2
+['add(', '448859', '4087587', ')', 'divide(', '4087587', '#0', ')', 'EOF']
+['add(', '4087587', '448859', ')', 'divide(', '4087587', '#0', ')', 'EOF']
+0.90105
+0.90105
+HII/2017/page_124.pdf-2
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CMCSA/2015/page_64.pdf-3
+['add(', '81', '296', ')', 'add(', '576', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '81', '296', ')', 'add(', '#0', '576', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+478.0
+478.0
+CMCSA/2015/page_64.pdf-3
+IP/2012/page_93.pdf-4
+['add(', '231', '205', ')', 'add(', '210', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '231', '205', ')', 'add(', '#0', '210', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+324.5
+324.5
+IP/2012/page_93.pdf-4
+IP/2005/page_19.pdf-3
+['add(', '1923', '2040', ')', 'add(', '1734', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '1923', '2040', ')', 'add(', '#0', '1734', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+2850.0
+2850.0
+IP/2005/page_19.pdf-3
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5254813137032842
+Prog acc:  0.5107587768969423
+exe acc: 0.5254813137032842 prog acc: 0.5107587768969423
+7000 : loss = 0.293
+7100 : loss = 0.343
+7200 : loss = 0.294
+Round:  24.0
+24 : time = 454.405 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+HII/2017/page_124.pdf-2
+['add(', '448859', '4087587', ')', 'divide(', '4087587', '#0', ')', 'EOF']
+['add(', '4087587', '448859', ')', 'divide(', '4087587', '#0', ')', 'EOF']
+0.90105
+0.90105
+HII/2017/page_124.pdf-2
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5028312570781427
+Prog acc:  0.49037372593431483
+exe acc: 0.5028312570781427 prog acc: 0.49037372593431483
+7300 : loss = 0.347
+7400 : loss = 0.345
+7500 : loss = 0.290
+Round:  25.0
+25 : time = 454.271 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+CDNS/2006/page_30.pdf-4
+['subtract(', '79.96', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'subtract(', '135.03', 'const_100', ')', 'divide(', '#2', 'const_100', ')', 'subtract(', '#1', '#3', ')', 'EOF']
+['subtract(', '79.96', '135.03', ')', 'divide(', '#0', 'const_100', ')', 'subtract(', '135.03', '135.03', ')', 'divide(', '#2', 'const_100', ')', 'subtract(', '#1', '#3', ')', 'EOF']
+-0.5507
+-0.5507
+CDNS/2006/page_30.pdf-4
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+IP/2005/page_19.pdf-3
+['add(', '1923', '2040', ')', 'add(', '1734', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '1923', '2040', ')', 'add(', '#0', '1734', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+2850.0
+2850.0
+IP/2005/page_19.pdf-3
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5413363533408834
+Prog acc:  0.5232163080407701
+exe acc: 0.5413363533408834 prog acc: 0.5232163080407701
+7600 : loss = 0.308
+7700 : loss = 0.329
+7800 : loss = 0.283
+Round:  26.0
+26 : time = 455.899 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+CB/2010/page_200.pdf-3
+['add(', '256868', '1230881', ')', 'add(', '638401', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '256868', '1230881', ')', 'add(', '#0', '638401', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+1063076.5
+1063076.5
+CB/2010/page_200.pdf-3
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CMCSA/2015/page_64.pdf-3
+['add(', '81', '296', ')', 'add(', '576', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '81', '296', ')', 'add(', '#0', '576', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+478.0
+478.0
+CMCSA/2015/page_64.pdf-3
+All:  883
+Correct:  0
+Exe acc:  0.49943374858437145
+Prog acc:  0.4813137032842582
+exe acc: 0.49943374858437145 prog acc: 0.4813137032842582
+7900 : loss = 0.303
+8000 : loss = 0.289
+8100 : loss = 0.288
+Round:  27.0
+27 : time = 454.308 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+UNP/2008/page_77.pdf-1
+['divide(', '367', '2560', ')', 'EOF']
+['add(', '367', '2560', ')', 'divide(', '367', '2560', ')', 'EOF']
+0.14336
+0.14336
+UNP/2008/page_77.pdf-1
+CB/2010/page_200.pdf-3
+['add(', '256868', '1230881', ')', 'add(', '638401', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '256868', '1230881', ')', 'add(', '#0', '638401', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+1063076.5
+1063076.5
+CB/2010/page_200.pdf-3
+IPG/2015/page_48.pdf-3
+['add(', '34.7', '33.7', ')', 'EOF']
+['add(', '33.7', '34.7', ')', 'EOF']
+68.4
+68.4
+IPG/2015/page_48.pdf-3
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+IP/2012/page_93.pdf-4
+['add(', '231', '205', ')', 'add(', '210', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '231', '205', ')', 'add(', '#0', '210', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+324.5
+324.5
+IP/2012/page_93.pdf-4
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5198187995469988
+Prog acc:  0.5039637599093998
+exe acc: 0.5198187995469988 prog acc: 0.5039637599093998
+8200 : loss = 0.252
+8300 : loss = 0.231
+8400 : loss = 0.231
+Round:  28.0
+28 : time = 454.939 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+IPG/2015/page_48.pdf-3
+['add(', '34.7', '33.7', ')', 'EOF']
+['add(', '33.7', '34.7', ')', 'EOF']
+68.4
+68.4
+IPG/2015/page_48.pdf-3
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5300113250283126
+Prog acc:  0.5152887882219706
+exe acc: 0.5300113250283126 prog acc: 0.5152887882219706
+8500 : loss = 0.260
+8600 : loss = 0.244
+8700 : loss = 0.239
+Round:  29.0
+29 : time = 454.988 
+Val test
+100% 56/56 [00:44<00:00,  1.26it/s]
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+IPG/2015/page_48.pdf-3
+['add(', '34.7', '33.7', ')', 'EOF']
+['add(', '33.7', '34.7', ')', 'EOF']
+68.4
+68.4
+IPG/2015/page_48.pdf-3
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+TFX/2015/page_70.pdf-3
+['multiply(', '86.98', '4446967', ')', 'EOF']
+['multiply(', '4446967', '86.98', ')', 'EOF']
+386797189.66
+386797189.66
+TFX/2015/page_70.pdf-3
+All:  883
+Correct:  0
+Exe acc:  0.5152887882219706
+Prog acc:  0.4971687429218573
+exe acc: 0.5152887882219706 prog acc: 0.4971687429218573
+8800 : loss = 0.261
+8900 : loss = 0.266
+9000 : loss = 0.218
+Round:  30.0
+30 : time = 455.914 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+ETR/2017/page_316.pdf-1
+['add(', '1520.5', '1522.6', ')', 'divide(', '#0', 'const_2', ')', 'EOF']
+['add(', '1522.6', '1520.5', ')', 'divide(', '#0', 'const_2', ')', 'EOF']
+1521.55
+1521.55
+ETR/2017/page_316.pdf-1
+CB/2010/page_88.pdf-2
+['add(', '366', '137', ')', 'add(', '567', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '366', '137', ')', 'add(', '#0', '567', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+356.66667
+356.66667
+CB/2010/page_88.pdf-2
+All:  883
+Correct:  0
+Exe acc:  0.535673839184598
+Prog acc:  0.5175537938844847
+exe acc: 0.535673839184598 prog acc: 0.5175537938844847
+9100 : loss = 0.249
+9200 : loss = 0.284
+9300 : loss = 0.248
+Round:  31.0
+31 : time = 455.850 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CB/2010/page_88.pdf-2
+['add(', '366', '137', ')', 'add(', '567', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '366', '137', ')', 'add(', '#0', '567', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+356.66667
+356.66667
+CB/2010/page_88.pdf-2
+CMCSA/2015/page_64.pdf-3
+['add(', '81', '296', ')', 'add(', '576', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '81', '296', ')', 'add(', '#0', '576', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+478.0
+478.0
+CMCSA/2015/page_64.pdf-3
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5266138165345413
+Prog acc:  0.5096262740656852
+exe acc: 0.5266138165345413 prog acc: 0.5096262740656852
+9400 : loss = 0.225
+9500 : loss = 0.237
+9600 : loss = 0.209
+Round:  32.0
+32 : time = 454.694 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+AMT/2010/page_34.pdf-2
+['multiply(', '397612895', '56.73', ')', 'EOF']
+['multiply(', '56.73', '397612895', ')', 'EOF']
+22556579533.35
+22556579533.35
+AMT/2010/page_34.pdf-2
+LMT/2015/page_56.pdf-3
+['add(', '17400', '20300', ')', 'add(', '#0', '21400', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '17400', '20300', ')', 'add(', '21400', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+19700.0
+19700.0
+LMT/2015/page_56.pdf-3
+C/2017/page_328.pdf-3
+['subtract(', '193.5', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'subtract(', '230.9', 'const_100', ')', 'divide(', '#2', 'const_100', ')', 'subtract(', '#1', '#3', ')', 'EOF']
+['subtract(', '193.5', '230.9', ')', 'divide(', '#0', 'const_100', ')', 'subtract(', '230.9', '230.9', ')', 'divide(', '#2', 'const_100', ')', 'subtract(', '#1', '#3', ')', 'EOF']
+-0.374
+-0.374
+C/2017/page_328.pdf-3
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5526613816534541
+Prog acc:  0.5334088335220838
+exe acc: 0.5526613816534541 prog acc: 0.5334088335220838
+9700 : loss = 0.219
+9800 : loss = 0.202
+9900 : loss = 0.191
+Round:  33.0
+33 : time = 455.685 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CMCSA/2015/page_64.pdf-3
+['add(', '81', '296', ')', 'add(', '576', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '81', '296', ')', 'add(', '#0', '576', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+478.0
+478.0
+CMCSA/2015/page_64.pdf-3
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5107587768969423
+Prog acc:  0.49150622876557193
+exe acc: 0.5107587768969423 prog acc: 0.49150622876557193
+10000 : loss = 0.215
+10100 : loss = 0.263
+10200 : loss = 0.252
+Round:  34.0
+34 : time = 456.294 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+LMT/2015/page_56.pdf-3
+['add(', '17400', '20300', ')', 'add(', '#0', '21400', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '17400', '20300', ')', 'add(', '21400', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+19700.0
+19700.0
+LMT/2015/page_56.pdf-3
+UPS/2006/page_32.pdf-4
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'subtract(', '#0', 'const_100', ')', 'divide(', '#1', 'const_100', ')', 'subtract(', '#1', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+-33.84
+-33.84
+UPS/2006/page_32.pdf-4
+ETR/2013/page_118.pdf-2
+['add(', '385373', '1110566', ')', 'add(', '#0', '270852', ')', 'divide(', '#1', 'const_1000', ')', 'EOF']
+['add(', '385373', '1110566', ')', 'add(', '270852', '#0', ')', 'divide(', '#1', 'const_1000', ')', 'EOF']
+1766.791
+1766.791
+ETR/2013/page_118.pdf-2
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+HOLX/2008/page_84.pdf-1
+['divide(', '38480', '2200900', ')', 'EOF']
+['subtract(', '2200900', '38480', ')', 'divide(', '38480', '2200900', ')', 'EOF']
+0.01748
+0.01748
+HOLX/2008/page_84.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+ABMD/2004/page_26.pdf-3
+['divide(', '708', '4578', ')', 'EOF']
+['subtract(', '4578', '708', ')', 'divide(', '708', '4578', ')', 'EOF']
+0.15465
+0.15465
+ABMD/2004/page_26.pdf-3
+All:  883
+Correct:  0
+Exe acc:  0.5560588901472253
+Prog acc:  0.5379388448471121
+exe acc: 0.5560588901472253 prog acc: 0.5379388448471121
+10300 : loss = 0.215
+10400 : loss = 0.193
+10500 : loss = 0.172
+Round:  35.0
+35 : time = 454.573 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+CB/2010/page_200.pdf-3
+['add(', '256868', '1230881', ')', 'add(', '638401', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '256868', '1230881', ')', 'add(', '#0', '638401', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+1063076.5
+1063076.5
+CB/2010/page_200.pdf-3
+IP/2012/page_93.pdf-4
+['add(', '231', '205', ')', 'add(', '210', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '231', '205', ')', 'add(', '#0', '210', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+324.5
+324.5
+IP/2012/page_93.pdf-4
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5628539071347678
+Prog acc:  0.5447338618346546
+exe acc: 0.5628539071347678 prog acc: 0.5447338618346546
+10600 : loss = 0.203
+10700 : loss = 0.222
+10800 : loss = 0.209
+Round:  36.0
+36 : time = 454.492 
+Val test
+100% 56/56 [00:43<00:00,  1.28it/s]
+CB/2010/page_200.pdf-3
+['add(', '256868', '1230881', ')', 'add(', '638401', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '256868', '1230881', ')', 'add(', '#0', '638401', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+1063076.5
+1063076.5
+CB/2010/page_200.pdf-3
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CMCSA/2015/page_64.pdf-3
+['add(', '81', '296', ')', 'add(', '576', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '81', '296', ')', 'add(', '#0', '576', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+478.0
+478.0
+CMCSA/2015/page_64.pdf-3
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5662514156285391
+Prog acc:  0.5549263873159683
+exe acc: 0.5662514156285391 prog acc: 0.5549263873159683
+10900 : loss = 0.226
+11000 : loss = 0.139
+11100 : loss = 0.132
+Round:  37.0
+37 : time = 455.927 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CMCSA/2015/page_64.pdf-3
+['add(', '81', '296', ')', 'add(', '576', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '81', '296', ')', 'add(', '#0', '576', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+478.0
+478.0
+CMCSA/2015/page_64.pdf-3
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.580973952434881
+Prog acc:  0.5617214043035108
+exe acc: 0.580973952434881 prog acc: 0.5617214043035108
+11200 : loss = 0.219
+11300 : loss = 0.199
+11400 : loss = 0.174
+Round:  38.0
+38 : time = 454.656 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+CB/2010/page_200.pdf-3
+['add(', '256868', '1230881', ')', 'add(', '638401', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '256868', '1230881', ')', 'add(', '#0', '638401', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+1063076.5
+1063076.5
+CB/2010/page_200.pdf-3
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+IPG/2015/page_48.pdf-3
+['add(', '34.7', '33.7', ')', 'EOF']
+['add(', '33.7', '34.7', ')', 'EOF']
+68.4
+68.4
+IPG/2015/page_48.pdf-3
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+CMCSA/2015/page_64.pdf-3
+['add(', '81', '296', ')', 'add(', '576', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '81', '296', ')', 'add(', '#0', '576', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+478.0
+478.0
+CMCSA/2015/page_64.pdf-3
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5526613816534541
+Prog acc:  0.5379388448471121
+exe acc: 0.5526613816534541 prog acc: 0.5379388448471121
+11500 : loss = 0.192
+11600 : loss = 0.176
+11700 : loss = 0.143
+Round:  39.0
+39 : time = 454.424 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+CB/2010/page_200.pdf-3
+['add(', '256868', '1230881', ')', 'add(', '638401', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '256868', '1230881', ')', 'add(', '#0', '638401', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+1063076.5
+1063076.5
+CB/2010/page_200.pdf-3
+MSI/2006/page_61.pdf-4
+['add(', '241', '250', ')', 'add(', '#0', '205', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '241', '250', ')', 'add(', '205', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+349.5
+349.5
+MSI/2006/page_61.pdf-4
+IPG/2015/page_48.pdf-3
+['add(', '34.7', '33.7', ')', 'EOF']
+['add(', '33.7', '34.7', ')', 'EOF']
+68.4
+68.4
+IPG/2015/page_48.pdf-3
+ETR/2013/page_118.pdf-2
+['add(', '385373', '1110566', ')', 'add(', '#0', '270852', ')', 'divide(', '#1', 'const_1000', ')', 'EOF']
+['add(', '385373', '1110566', ')', 'add(', '270852', '#0', ')', 'divide(', '#1', 'const_1000', ')', 'EOF']
+1766.791
+1766.791
+ETR/2013/page_118.pdf-2
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5741789354473387
+Prog acc:  0.551528878822197
+exe acc: 0.5741789354473387 prog acc: 0.551528878822197
+11800 : loss = 0.184
+11900 : loss = 0.168
+12000 : loss = 0.126
+Round:  40.0
+40 : time = 455.253 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+CB/2010/page_200.pdf-3
+['add(', '256868', '1230881', ')', 'add(', '638401', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '256868', '1230881', ')', 'add(', '#0', '638401', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+1063076.5
+1063076.5
+CB/2010/page_200.pdf-3
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CMCSA/2015/page_64.pdf-3
+['add(', '81', '296', ')', 'add(', '576', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '81', '296', ')', 'add(', '#0', '576', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+478.0
+478.0
+CMCSA/2015/page_64.pdf-3
+IP/2012/page_93.pdf-4
+['add(', '231', '205', ')', 'add(', '210', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '231', '205', ')', 'add(', '#0', '210', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+324.5
+324.5
+IP/2012/page_93.pdf-4
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.580973952434881
+Prog acc:  0.5583238958097395
+exe acc: 0.580973952434881 prog acc: 0.5583238958097395
+12100 : loss = 0.169
+12200 : loss = 0.180
+12300 : loss = 0.159
+Round:  41.0
+41 : time = 454.797 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CB/2010/page_88.pdf-2
+['add(', '366', '137', ')', 'add(', '567', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '366', '137', ')', 'add(', '#0', '567', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+356.66667
+356.66667
+CB/2010/page_88.pdf-2
+CMCSA/2015/page_64.pdf-3
+['add(', '81', '296', ')', 'add(', '576', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '81', '296', ')', 'add(', '#0', '576', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+478.0
+478.0
+CMCSA/2015/page_64.pdf-3
+TFX/2015/page_70.pdf-3
+['multiply(', '86.98', '4446967', ')', 'EOF']
+['multiply(', '4446967', '86.98', ')', 'EOF']
+386797189.66
+386797189.66
+TFX/2015/page_70.pdf-3
+All:  883
+Correct:  0
+Exe acc:  0.5662514156285391
+Prog acc:  0.5503963759909399
+exe acc: 0.5662514156285391 prog acc: 0.5503963759909399
+12400 : loss = 0.139
+12500 : loss = 0.171
+12600 : loss = 0.181
+Round:  42.0
+42 : time = 454.304 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CMCSA/2015/page_64.pdf-3
+['add(', '81', '296', ')', 'add(', '576', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '81', '296', ')', 'add(', '#0', '576', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+478.0
+478.0
+CMCSA/2015/page_64.pdf-3
+IP/2005/page_19.pdf-3
+['add(', '1923', '2040', ')', 'add(', '1734', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '1923', '2040', ')', 'add(', '#0', '1734', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+2850.0
+2850.0
+IP/2005/page_19.pdf-3
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5707814269535674
+Prog acc:  0.551528878822197
+exe acc: 0.5707814269535674 prog acc: 0.551528878822197
+12700 : loss = 0.195
+12800 : loss = 0.185
+12900 : loss = 0.154
+Round:  43.0
+43 : time = 454.188 
+Val test
+100% 56/56 [00:44<00:00,  1.27it/s]
+AMT/2010/page_34.pdf-2
+['multiply(', '397612895', '56.73', ')', 'EOF']
+['multiply(', '56.73', '397612895', ')', 'EOF']
+22556579533.35
+22556579533.35
+AMT/2010/page_34.pdf-2
+CB/2010/page_200.pdf-3
+['add(', '256868', '1230881', ')', 'add(', '638401', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '256868', '1230881', ')', 'add(', '#0', '638401', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+1063076.5
+1063076.5
+CB/2010/page_200.pdf-3
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+AES/2003/page_52.pdf-2
+['add(', '145', '23', ')', 'add(', '#0', '78', ')', 'add(', '#1', '150', ')', 'EOF']
+['add(', '145', '23', ')', 'add(', '#0', '150', ')', 'add(', '#1', '78', ')', 'EOF']
+396.0
+396.0
+AES/2003/page_52.pdf-2
+RCL/2014/page_17.pdf-1
+['subtract(', '6535365', '5540000', ')', 'EOF']
+['subtract(', '5540000', '5540000', ')', 'subtract(', '6535365', '5540000', ')', 'subtract(', '#1', '#0', ')', 'EOF']
+995365.0
+995365.0
+RCL/2014/page_17.pdf-1
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CMCSA/2015/page_64.pdf-3
+['add(', '81', '296', ')', 'add(', '576', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '81', '296', ')', 'add(', '#0', '576', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+478.0
+478.0
+CMCSA/2015/page_64.pdf-3
+IP/2012/page_93.pdf-4
+['add(', '231', '205', ')', 'add(', '210', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '231', '205', ')', 'add(', '#0', '210', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+324.5
+324.5
+IP/2012/page_93.pdf-4
+IP/2005/page_19.pdf-3
+['add(', '1923', '2040', ')', 'add(', '1734', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '1923', '2040', ')', 'add(', '#0', '1734', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+2850.0
+2850.0
+IP/2005/page_19.pdf-3
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5889014722536806
+Prog acc:  0.5696489241223103
+exe acc: 0.5889014722536806 prog acc: 0.5696489241223103
+13000 : loss = 0.194
+13100 : loss = 0.181
+13200 : loss = 0.171
+Round:  44.0
+44 : time = 455.881 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+ETR/2003/page_84.pdf-2
+['add(', '503215', '462420', ')', 'add(', '#0', '75896', ')', 'divide(', '#1', 'const_1000', ')', 'EOF']
+['add(', '503215', '462420', ')', 'add(', '75896', '#0', ')', 'divide(', '#1', 'const_1000', ')', 'EOF']
+1041.531
+1041.531
+ETR/2003/page_84.pdf-2
+LMT/2015/page_56.pdf-3
+['add(', '17400', '20300', ')', 'add(', '#0', '21400', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '17400', '20300', ')', 'add(', '21400', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+19700.0
+19700.0
+LMT/2015/page_56.pdf-3
+PM/2014/page_67.pdf-3
+['divide(', '750', '1029', ')', 'EOF']
+['multiply(', '750', '1029', ')', 'divide(', '750', '1029', ')', 'EOF']
+0.72886
+0.72886
+PM/2014/page_67.pdf-3
+ETR/2013/page_118.pdf-2
+['add(', '385373', '1110566', ')', 'add(', '#0', '270852', ')', 'divide(', '#1', 'const_1000', ')', 'EOF']
+['add(', '385373', '1110566', ')', 'add(', '270852', '#0', ')', 'divide(', '#1', 'const_1000', ')', 'EOF']
+1766.791
+1766.791
+ETR/2013/page_118.pdf-2
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+All:  883
+Correct:  0
+Exe acc:  0.5617214043035108
+Prog acc:  0.5469988674971688
+exe acc: 0.5617214043035108 prog acc: 0.5469988674971688
+13300 : loss = 0.193
+13400 : loss = 0.129
+13500 : loss = 0.161
+Round:  45.0
+45 : time = 454.640 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+CB/2010/page_200.pdf-3
+['add(', '256868', '1230881', ')', 'add(', '638401', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '256868', '1230881', ')', 'add(', '#0', '638401', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+1063076.5
+1063076.5
+CB/2010/page_200.pdf-3
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+CDNS/2006/page_30.pdf-4
+['subtract(', '79.96', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'subtract(', '135.03', 'const_100', ')', 'divide(', '#2', 'const_100', ')', 'subtract(', '#1', '#3', ')', 'EOF']
+['subtract(', '79.96', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'subtract(', '135.03', 'const_100', ')', 'divide(', '#2', 'const_100', ')', 'subtract(', '135.03', 'const_100', ')', 'divide(', '#4', 'const_100', ')', 'subtract(', '#1', '#5', ')', 'EOF']
+-0.5507
+-0.5507
+CDNS/2006/page_30.pdf-4
+EW/2016/page_94.pdf-1
+['multiply(', '13.8', '11.75', ')', 'EOF']
+['multiply(', '11.75', '13.8', ')', 'EOF']
+162.15
+162.15
+EW/2016/page_94.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5934314835787089
+Prog acc:  0.5673839184597962
+exe acc: 0.5934314835787089 prog acc: 0.5673839184597962
+13600 : loss = 0.159
+13700 : loss = 0.112
+13800 : loss = 0.130
+Round:  46.0
+46 : time = 455.224 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+IPG/2015/page_48.pdf-3
+['add(', '34.7', '33.7', ')', 'EOF']
+['add(', '33.7', '34.7', ')', 'EOF']
+68.4
+68.4
+IPG/2015/page_48.pdf-3
+UNP/2011/page_76.pdf-1
+['multiply(', '2.2', 'const_1000', ')', 'add(', '325', '#0', ')', 'EOF']
+['multiply(', '2.2', 'const_1000', ')', 'add(', '#0', '325', ')', 'EOF']
+2525.0
+2525.0
+UNP/2011/page_76.pdf-1
+EW/2016/page_94.pdf-1
+['multiply(', '13.8', '11.75', ')', 'EOF']
+['multiply(', '11.75', '13.8', ')', 'EOF']
+162.15
+162.15
+EW/2016/page_94.pdf-1
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CB/2010/page_88.pdf-2
+['add(', '366', '137', ')', 'add(', '567', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '366', '137', ')', 'add(', '#0', '567', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+356.66667
+356.66667
+CB/2010/page_88.pdf-2
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5741789354473387
+Prog acc:  0.5560588901472253
+exe acc: 0.5741789354473387 prog acc: 0.5560588901472253
+13900 : loss = 0.148
+14000 : loss = 0.137
+14100 : loss = 0.105
+Round:  47.0
+47 : time = 456.064 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CB/2010/page_88.pdf-2
+['add(', '366', '137', ')', 'add(', '567', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '366', '137', ')', 'add(', '#0', '567', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+356.66667
+356.66667
+CB/2010/page_88.pdf-2
+CMCSA/2015/page_64.pdf-3
+['add(', '81', '296', ')', 'add(', '576', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '81', '296', ')', 'add(', '#0', '576', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+478.0
+478.0
+CMCSA/2015/page_64.pdf-3
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5821064552661381
+Prog acc:  0.5617214043035108
+exe acc: 0.5821064552661381 prog acc: 0.5617214043035108
+14200 : loss = 0.101
+14300 : loss = 0.118
+14400 : loss = 0.117
+Round:  48.0
+48 : time = 455.745 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CB/2010/page_88.pdf-2
+['add(', '366', '137', ')', 'add(', '567', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '366', '137', ')', 'add(', '#0', '567', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+356.66667
+356.66667
+CB/2010/page_88.pdf-2
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5594563986409966
+Prog acc:  0.5436013590033975
+exe acc: 0.5594563986409966 prog acc: 0.5436013590033975
+14500 : loss = 0.128
+14600 : loss = 0.139
+14700 : loss = 0.143
+Round:  49.0
+49 : time = 454.562 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+CB/2010/page_200.pdf-3
+['add(', '256868', '1230881', ')', 'add(', '638401', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '256868', '1230881', ')', 'add(', '#0', '638401', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+1063076.5
+1063076.5
+CB/2010/page_200.pdf-3
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+IPG/2015/page_48.pdf-3
+['add(', '34.7', '33.7', ')', 'EOF']
+['add(', '33.7', '34.7', ')', 'EOF']
+68.4
+68.4
+IPG/2015/page_48.pdf-3
+EW/2016/page_94.pdf-1
+['multiply(', '13.8', '11.75', ')', 'EOF']
+['multiply(', '11.75', '13.8', ')', 'EOF']
+162.15
+162.15
+EW/2016/page_94.pdf-1
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+BLL/2007/page_35.pdf-2
+['multiply(', '1144772', '51.42', ')', 'EOF']
+['multiply(', '51.42', '1144772', ')', 'EOF']
+58864176.24
+58864176.24
+BLL/2007/page_35.pdf-2
+CMCSA/2015/page_64.pdf-3
+['add(', '81', '296', ')', 'add(', '576', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '81', '296', ')', 'add(', '#0', '576', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+478.0
+478.0
+CMCSA/2015/page_64.pdf-3
+IP/2005/page_19.pdf-3
+['add(', '1923', '2040', ')', 'add(', '1734', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '1923', '2040', ')', 'add(', '#0', '1734', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+2850.0
+2850.0
+IP/2005/page_19.pdf-3
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.578708946772367
+Prog acc:  0.5639864099660249
+exe acc: 0.578708946772367 prog acc: 0.5639864099660249
+14800 : loss = 0.108
+14900 : loss = 0.148
+15000 : loss = 0.123
+Round:  50.0
+50 : time = 454.905 
+Val test
+100% 56/56 [00:44<00:00,  1.27it/s]
+CB/2010/page_200.pdf-3
+['add(', '256868', '1230881', ')', 'add(', '638401', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '256868', '1230881', ')', 'add(', '#0', '638401', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+1063076.5
+1063076.5
+CB/2010/page_200.pdf-3
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+EW/2016/page_94.pdf-1
+['multiply(', '13.8', '11.75', ')', 'EOF']
+['multiply(', '11.75', '13.8', ')', 'EOF']
+162.15
+162.15
+EW/2016/page_94.pdf-1
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CB/2010/page_88.pdf-2
+['add(', '366', '137', ')', 'add(', '567', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '366', '137', ')', 'add(', '#0', '567', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+356.66667
+356.66667
+CB/2010/page_88.pdf-2
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5956964892412231
+Prog acc:  0.578708946772367
+exe acc: 0.5956964892412231 prog acc: 0.578708946772367
+15100 : loss = 0.123
+15200 : loss = 0.107
+15300 : loss = 0.106
+Round:  51.0
+51 : time = 455.848 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+CB/2010/page_200.pdf-3
+['add(', '256868', '1230881', ')', 'add(', '638401', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '256868', '1230881', ')', 'add(', '#0', '638401', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+1063076.5
+1063076.5
+CB/2010/page_200.pdf-3
+DRE/2009/page_72.pdf-1
+['multiply(', '1583616', '9.32', ')', 'EOF']
+['multiply(', '9.32', '1583616', ')', 'EOF']
+14759301.12
+14759301.12
+DRE/2009/page_72.pdf-1
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+ETR/2013/page_118.pdf-2
+['add(', '385373', '1110566', ')', 'add(', '#0', '270852', ')', 'divide(', '#1', 'const_1000', ')', 'EOF']
+['add(', '385373', '1110566', ')', 'add(', '270852', '#0', ')', 'divide(', '#1', 'const_1000', ')', 'EOF']
+1766.791
+1766.791
+ETR/2013/page_118.pdf-2
+PKG/2009/page_65.pdf-1
+['add(', '6951', '5942', ')', 'EOF']
+['add(', '5942', '6951', ')', 'EOF']
+12893.0
+12893.0
+PKG/2009/page_65.pdf-1
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5696489241223103
+Prog acc:  0.5537938844847112
+exe acc: 0.5696489241223103 prog acc: 0.5537938844847112
+15400 : loss = 0.129
+15500 : loss = 0.127
+15600 : loss = 0.148
+Round:  52.0
+52 : time = 455.152 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+BLL/2007/page_35.pdf-3
+['multiply(', '431170', '48.11', ')', 'divide(', '#0', 'const_1000000', ')', 'EOF']
+['multiply(', '48.11', '431170', ')', 'divide(', '#0', 'const_1000000', ')', 'EOF']
+20.74359
+20.74359
+BLL/2007/page_35.pdf-3
+ETR/2013/page_118.pdf-2
+['add(', '385373', '1110566', ')', 'add(', '#0', '270852', ')', 'divide(', '#1', 'const_1000', ')', 'EOF']
+['add(', '385373', '1110566', ')', 'add(', '270852', '#0', ')', 'divide(', '#1', 'const_1000', ')', 'EOF']
+1766.791
+1766.791
+ETR/2013/page_118.pdf-2
+EW/2016/page_94.pdf-1
+['multiply(', '13.8', '11.75', ')', 'EOF']
+['multiply(', '11.75', '13.8', ')', 'EOF']
+162.15
+162.15
+EW/2016/page_94.pdf-1
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+VTR/2007/page_47.pdf-1
+['add(', '138311810', '14669', ')', 'EOF']
+['add(', '14669', '138311810', ')', 'EOF']
+138326479.0
+138326479.0
+VTR/2007/page_47.pdf-1
+LMT/2010/page_42.pdf-3
+['add(', '3547', '-319', ')', 'add(', '#0', '-3363', ')', 'EOF']
+['add(', '3547', '-319', ')', 'add(', '-3363', '#0', ')', 'EOF']
+-135.0
+-135.0
+LMT/2010/page_42.pdf-3
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+BKR/2017/page_103.pdf-4
+['multiply(', '1.7', '40.18', ')', 'EOF']
+['multiply(', '40.18', '1.7', ')', 'EOF']
+68.306
+68.306
+BKR/2017/page_103.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5968289920724802
+Prog acc:  0.579841449603624
+exe acc: 0.5968289920724802 prog acc: 0.579841449603624
+15700 : loss = 0.111
+15800 : loss = 0.123
+15900 : loss = 0.124
+Round:  53.0
+53 : time = 454.738 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CB/2010/page_88.pdf-2
+['add(', '366', '137', ')', 'add(', '567', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '366', '137', ')', 'add(', '#0', '567', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+356.66667
+356.66667
+CB/2010/page_88.pdf-2
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.578708946772367
+Prog acc:  0.5628539071347678
+exe acc: 0.578708946772367 prog acc: 0.5628539071347678
+16000 : loss = 0.119
+16100 : loss = 0.142
+16200 : loss = 0.136
+Round:  54.0
+54 : time = 456.070 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+CB/2010/page_200.pdf-3
+['add(', '256868', '1230881', ')', 'add(', '638401', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '256868', '1230881', ')', 'add(', '#0', '638401', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+1063076.5
+1063076.5
+CB/2010/page_200.pdf-3
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+UNP/2011/page_76.pdf-1
+['multiply(', '2.2', 'const_1000', ')', 'add(', '325', '#0', ')', 'EOF']
+['multiply(', '2.2', 'const_1000', ')', 'add(', '#0', '325', ')', 'EOF']
+2525.0
+2525.0
+UNP/2011/page_76.pdf-1
+PKG/2009/page_65.pdf-1
+['add(', '6951', '5942', ')', 'EOF']
+['add(', '5942', '6951', ')', 'EOF']
+12893.0
+12893.0
+PKG/2009/page_65.pdf-1
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+VTR/2007/page_47.pdf-1
+['add(', '138311810', '14669', ')', 'EOF']
+['add(', '14669', '138311810', ')', 'EOF']
+138326479.0
+138326479.0
+VTR/2007/page_47.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5900339750849377
+Prog acc:  0.5617214043035108
+exe acc: 0.5900339750849377 prog acc: 0.5617214043035108
+16300 : loss = 0.124
+16400 : loss = 0.146
+16500 : loss = 0.099
+Round:  55.0
+55 : time = 454.997 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+CB/2010/page_200.pdf-3
+['add(', '256868', '1230881', ')', 'add(', '638401', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '256868', '1230881', ')', 'add(', '#0', '638401', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+1063076.5
+1063076.5
+CB/2010/page_200.pdf-3
+ETR/2003/page_84.pdf-1
+['add(', '503215', '462420', ')', 'divide(', '#0', 'const_1000', ')', 'EOF']
+['add(', '462420', '503215', ')', 'divide(', '#0', 'const_1000', ')', 'EOF']
+965.635
+965.635
+ETR/2003/page_84.pdf-1
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+PM/2014/page_67.pdf-1
+['add(', '750', '750', ')', 'add(', '#0', '500', ')', 'EOF']
+['add(', '500', '750', ')', 'add(', '#0', '750', ')', 'EOF']
+2000.0
+2000.0
+PM/2014/page_67.pdf-1
+BLL/2007/page_35.pdf-3
+['multiply(', '431170', '48.11', ')', 'divide(', '#0', 'const_1000000', ')', 'EOF']
+['multiply(', '48.11', '431170', ')', 'divide(', '#0', 'const_1000000', ')', 'EOF']
+20.74359
+20.74359
+BLL/2007/page_35.pdf-3
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+FIS/2007/page_91.pdf-1
+['add(', '15667', '-3749', ')', 'EOF']
+['add(', '-3749', '15667', ')', 'EOF']
+11918.0
+11918.0
+FIS/2007/page_91.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5979614949037373
+Prog acc:  0.5753114382785957
+exe acc: 0.5979614949037373 prog acc: 0.5753114382785957
+16600 : loss = 0.112
+16700 : loss = 0.099
+16800 : loss = 0.103
+Round:  56.0
+56 : time = 454.666 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+MRO/2017/page_111.pdf-1
+['add(', '105', '67', ')', 'EOF']
+['add(', '67', '105', ')', 'EOF']
+172.0
+172.0
+MRO/2017/page_111.pdf-1
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+BLL/2007/page_35.pdf-3
+['multiply(', '431170', '48.11', ')', 'divide(', '#0', 'const_1000000', ')', 'EOF']
+['multiply(', '48.11', '431170', ')', 'divide(', '#0', 'const_1000000', ')', 'EOF']
+20.74359
+20.74359
+BLL/2007/page_35.pdf-3
+ETR/2015/page_131.pdf-2
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '#1', '768588', ')', 'add(', '#2', '1631181', ')', 'EOF']
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '768588', '#1', ')', 'add(', '1631181', '#2', ')', 'EOF']
+4192989.0
+4192989.0
+ETR/2015/page_131.pdf-2
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+FIS/2007/page_91.pdf-1
+['add(', '15667', '-3749', ')', 'EOF']
+['add(', '-3749', '15667', ')', 'EOF']
+11918.0
+11918.0
+FIS/2007/page_91.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+VTR/2007/page_47.pdf-1
+['add(', '138311810', '14669', ')', 'EOF']
+['add(', '14669', '138311810', ')', 'EOF']
+138326479.0
+138326479.0
+VTR/2007/page_47.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5832389580973952
+Prog acc:  0.5628539071347678
+exe acc: 0.5832389580973952 prog acc: 0.5628539071347678
+16900 : loss = 0.093
+17000 : loss = 0.109
+17100 : loss = 0.094
+Round:  57.0
+57 : time = 455.911 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+CB/2010/page_200.pdf-3
+['add(', '256868', '1230881', ')', 'add(', '638401', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '256868', '1230881', ')', 'add(', '#0', '638401', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+1063076.5
+1063076.5
+CB/2010/page_200.pdf-3
+MRO/2017/page_111.pdf-1
+['add(', '105', '67', ')', 'EOF']
+['add(', '67', '105', ')', 'EOF']
+172.0
+172.0
+MRO/2017/page_111.pdf-1
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+EW/2016/page_94.pdf-1
+['multiply(', '13.8', '11.75', ')', 'EOF']
+['multiply(', '11.75', '13.8', ')', 'EOF']
+162.15
+162.15
+EW/2016/page_94.pdf-1
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+FIS/2007/page_91.pdf-1
+['add(', '15667', '-3749', ')', 'EOF']
+['add(', '-3749', '15667', ')', 'EOF']
+11918.0
+11918.0
+FIS/2007/page_91.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+VTR/2007/page_47.pdf-1
+['add(', '138311810', '14669', ')', 'EOF']
+['add(', '14669', '138311810', ')', 'EOF']
+138326479.0
+138326479.0
+VTR/2007/page_47.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5696489241223103
+Prog acc:  0.5469988674971688
+exe acc: 0.5696489241223103 prog acc: 0.5469988674971688
+17200 : loss = 0.074
+17300 : loss = 0.157
+17400 : loss = 0.123
+Round:  58.0
+58 : time = 455.163 
+Val test
+100% 56/56 [00:42<00:00,  1.30it/s]
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+IPG/2015/page_48.pdf-3
+['add(', '34.7', '33.7', ')', 'EOF']
+['add(', '33.7', '34.7', ')', 'EOF']
+68.4
+68.4
+IPG/2015/page_48.pdf-3
+AES/2003/page_52.pdf-2
+['add(', '145', '23', ')', 'add(', '#0', '78', ')', 'add(', '#1', '150', ')', 'EOF']
+['add(', '145', '23', ')', 'add(', '#0', '150', ')', 'add(', '#1', '78', ')', 'EOF']
+396.0
+396.0
+AES/2003/page_52.pdf-2
+EW/2016/page_94.pdf-1
+['multiply(', '13.8', '11.75', ')', 'EOF']
+['multiply(', '11.75', '13.8', ')', 'EOF']
+162.15
+162.15
+EW/2016/page_94.pdf-1
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+FIS/2007/page_91.pdf-1
+['add(', '15667', '-3749', ')', 'EOF']
+['add(', '-3749', '15667', ')', 'EOF']
+11918.0
+11918.0
+FIS/2007/page_91.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CB/2010/page_88.pdf-2
+['add(', '366', '137', ')', 'add(', '567', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '366', '137', ')', 'add(', '#0', '567', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+356.66667
+356.66667
+CB/2010/page_88.pdf-2
+VTR/2007/page_47.pdf-1
+['add(', '138311810', '14669', ')', 'EOF']
+['add(', '14669', '138311810', ')', 'EOF']
+138326479.0
+138326479.0
+VTR/2007/page_47.pdf-1
+IP/2005/page_19.pdf-3
+['add(', '1923', '2040', ')', 'add(', '1734', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '1923', '2040', ')', 'add(', '#0', '1734', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+2850.0
+2850.0
+IP/2005/page_19.pdf-3
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5855039637599094
+Prog acc:  0.5628539071347678
+exe acc: 0.5855039637599094 prog acc: 0.5628539071347678
+17500 : loss = 0.143
+17600 : loss = 0.108
+17700 : loss = 0.102
+Round:  59.0
+59 : time = 455.093 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+CB/2010/page_200.pdf-3
+['add(', '256868', '1230881', ')', 'add(', '638401', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '256868', '1230881', ')', 'add(', '#0', '638401', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+1063076.5
+1063076.5
+CB/2010/page_200.pdf-3
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+UNP/2011/page_76.pdf-1
+['multiply(', '2.2', 'const_1000', ')', 'add(', '325', '#0', ')', 'EOF']
+['multiply(', '2.2', 'const_1000', ')', 'add(', '#0', '325', ')', 'EOF']
+2525.0
+2525.0
+UNP/2011/page_76.pdf-1
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+VTR/2007/page_47.pdf-1
+['add(', '138311810', '14669', ')', 'EOF']
+['add(', '14669', '138311810', ')', 'EOF']
+138326479.0
+138326479.0
+VTR/2007/page_47.pdf-1
+IP/2005/page_19.pdf-3
+['add(', '1923', '2040', ')', 'add(', '1734', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '1923', '2040', ')', 'add(', '#0', '1734', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+2850.0
+2850.0
+IP/2005/page_19.pdf-3
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.580973952434881
+Prog acc:  0.5662514156285391
+exe acc: 0.580973952434881 prog acc: 0.5662514156285391
+17800 : loss = 0.126
+17900 : loss = 0.108
+18000 : loss = 0.107
+Round:  60.0
+60 : time = 457.167 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+LMT/2015/page_56.pdf-3
+['add(', '17400', '20300', ')', 'add(', '#0', '21400', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '17400', '20300', ')', 'add(', '21400', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+19700.0
+19700.0
+LMT/2015/page_56.pdf-3
+DRE/2009/page_72.pdf-1
+['multiply(', '1583616', '9.32', ')', 'EOF']
+['multiply(', '9.32', '1583616', ')', 'EOF']
+14759301.12
+14759301.12
+DRE/2009/page_72.pdf-1
+ETR/2015/page_131.pdf-2
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '#1', '768588', ')', 'add(', '#2', '1631181', ')', 'EOF']
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '#1', '768588', ')', 'add(', '1631181', '#2', ')', 'EOF']
+4192989.0
+4192989.0
+ETR/2015/page_131.pdf-2
+UNP/2011/page_76.pdf-1
+['multiply(', '2.2', 'const_1000', ')', 'add(', '325', '#0', ')', 'EOF']
+['multiply(', '2.2', 'const_1000', ')', 'add(', '#0', '325', ')', 'EOF']
+2525.0
+2525.0
+UNP/2011/page_76.pdf-1
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.578708946772367
+Prog acc:  0.5537938844847112
+exe acc: 0.578708946772367 prog acc: 0.5537938844847112
+18100 : loss = 0.111
+18200 : loss = 0.090
+18300 : loss = 0.105
+Round:  61.0
+61 : time = 456.451 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+UPS/2006/page_32.pdf-4
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+-33.84
+-33.84
+UPS/2006/page_32.pdf-4
+IPG/2015/page_48.pdf-3
+['add(', '34.7', '33.7', ')', 'EOF']
+['add(', '33.7', '34.7', ')', 'EOF']
+68.4
+68.4
+IPG/2015/page_48.pdf-3
+AES/2003/page_52.pdf-2
+['add(', '145', '23', ')', 'add(', '#0', '78', ')', 'add(', '#1', '150', ')', 'EOF']
+['add(', '145', '23', ')', 'add(', '#0', '150', ')', 'add(', '#1', '78', ')', 'EOF']
+396.0
+396.0
+AES/2003/page_52.pdf-2
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.594563986409966
+Prog acc:  0.578708946772367
+exe acc: 0.594563986409966 prog acc: 0.578708946772367
+18400 : loss = 0.095
+18500 : loss = 0.090
+18600 : loss = 0.089
+Round:  62.0
+62 : time = 454.835 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+CB/2010/page_200.pdf-3
+['add(', '256868', '1230881', ')', 'add(', '638401', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '256868', '1230881', ')', 'add(', '#0', '638401', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+1063076.5
+1063076.5
+CB/2010/page_200.pdf-3
+HUM/2017/page_133.pdf-4
+['divide(', '1.49', '1.16', ')', 'subtract(', '#0', 'const_1', ')', 'EOF']
+['divide(', '1.49', '1.16', ')', 'subtract(', '#0', 'const_1', ')', 'divide(', '1.49', '1.16', ')', 'subtract(', '#2', 'const_1', ')', 'EOF']
+0.28448
+0.28448
+HUM/2017/page_133.pdf-4
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+UPS/2006/page_32.pdf-4
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+-33.84
+-33.84
+UPS/2006/page_32.pdf-4
+IPG/2015/page_48.pdf-3
+['add(', '34.7', '33.7', ')', 'EOF']
+['add(', '33.7', '34.7', ')', 'EOF']
+68.4
+68.4
+IPG/2015/page_48.pdf-3
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+ABMD/2007/page_52.pdf-1
+['add(', '11.2', '45.1', ')', 'EOF']
+['add(', '45.1', '11.2', ')', 'EOF']
+56.3
+56.3
+ABMD/2007/page_52.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5922989807474519
+Prog acc:  0.5730464326160816
+exe acc: 0.5922989807474519 prog acc: 0.5730464326160816
+18700 : loss = 0.090
+18800 : loss = 0.128
+18900 : loss = 0.091
+Round:  63.0
+63 : time = 454.944 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+HUM/2017/page_133.pdf-4
+['divide(', '1.49', '1.16', ')', 'subtract(', '#0', 'const_1', ')', 'EOF']
+['divide(', '1.49', '1.16', ')', 'subtract(', '#0', 'const_1', ')', 'divide(', '1.49', '1.16', ')', 'subtract(', '#2', 'const_1', ')', 'EOF']
+0.28448
+0.28448
+HUM/2017/page_133.pdf-4
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+JPM/2018/page_110.pdf-1
+['add(', '228681', '200247', ')', 'add(', '#0', '236670', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '228681', '200247', ')', 'add(', '236670', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+221866.0
+221866.0
+JPM/2018/page_110.pdf-1
+EW/2016/page_94.pdf-1
+['multiply(', '13.8', '11.75', ')', 'EOF']
+['multiply(', '11.75', '13.8', ')', 'EOF']
+162.15
+162.15
+EW/2016/page_94.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CB/2010/page_88.pdf-2
+['add(', '366', '137', ')', 'add(', '567', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '366', '137', ')', 'add(', '#0', '567', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+356.66667
+356.66667
+CB/2010/page_88.pdf-2
+VTR/2007/page_47.pdf-1
+['add(', '138311810', '14669', ')', 'EOF']
+['add(', '14669', '138311810', ')', 'EOF']
+138326479.0
+138326479.0
+VTR/2007/page_47.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5685164212910532
+Prog acc:  0.551528878822197
+exe acc: 0.5685164212910532 prog acc: 0.551528878822197
+19000 : loss = 0.110
+19100 : loss = 0.091
+19200 : loss = 0.093
+Round:  64.0
+64 : time = 455.853 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+CB/2010/page_200.pdf-3
+['add(', '256868', '1230881', ')', 'add(', '638401', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '256868', '1230881', ')', 'add(', '#0', '638401', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+1063076.5
+1063076.5
+CB/2010/page_200.pdf-3
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+IPG/2015/page_48.pdf-3
+['add(', '34.7', '33.7', ')', 'EOF']
+['add(', '33.7', '34.7', ')', 'EOF']
+68.4
+68.4
+IPG/2015/page_48.pdf-3
+UPS/2006/page_32.pdf-3
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '135.02', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '135.02', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'subtract(', '#1', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+13.9
+13.9
+UPS/2006/page_32.pdf-3
+ETR/2015/page_131.pdf-2
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '#1', '768588', ')', 'add(', '#2', '1631181', ')', 'EOF']
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '768588', '#1', ')', 'add(', '1631181', '#2', ')', 'EOF']
+4192989.0
+4192989.0
+ETR/2015/page_131.pdf-2
+UNP/2011/page_76.pdf-1
+['multiply(', '2.2', 'const_1000', ')', 'add(', '325', '#0', ')', 'EOF']
+['multiply(', '2.2', 'const_1000', ')', 'add(', '#0', '325', ')', 'EOF']
+2525.0
+2525.0
+UNP/2011/page_76.pdf-1
+EW/2016/page_94.pdf-1
+['multiply(', '13.8', '11.75', ')', 'EOF']
+['multiply(', '11.75', '13.8', ')', 'EOF']
+162.15
+162.15
+EW/2016/page_94.pdf-1
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5877689694224235
+Prog acc:  0.565118912797282
+exe acc: 0.5877689694224235 prog acc: 0.565118912797282
+19300 : loss = 0.096
+19400 : loss = 0.077
+19500 : loss = 0.067
+Round:  65.0
+65 : time = 454.962 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+AMT/2010/page_34.pdf-2
+['multiply(', '397612895', '56.73', ')', 'EOF']
+['multiply(', '56.73', '397612895', ')', 'EOF']
+22556579533.35
+22556579533.35
+AMT/2010/page_34.pdf-2
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+ETR/2015/page_131.pdf-2
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '#1', '768588', ')', 'add(', '#2', '1631181', ')', 'EOF']
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '#1', '768588', ')', 'add(', '1631181', '#2', ')', 'EOF']
+4192989.0
+4192989.0
+ETR/2015/page_131.pdf-2
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CB/2010/page_88.pdf-2
+['add(', '366', '137', ')', 'add(', '567', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '366', '137', ')', 'add(', '#0', '567', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+356.66667
+356.66667
+CB/2010/page_88.pdf-2
+VTR/2007/page_47.pdf-1
+['add(', '138311810', '14669', ')', 'EOF']
+['add(', '14669', '138311810', ')', 'EOF']
+138326479.0
+138326479.0
+VTR/2007/page_47.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5741789354473387
+Prog acc:  0.551528878822197
+exe acc: 0.5741789354473387 prog acc: 0.551528878822197
+19600 : loss = 0.071
+19700 : loss = 0.078
+19800 : loss = 0.087
+Round:  66.0
+66 : time = 455.275 
+Val test
+100% 56/56 [00:43<00:00,  1.29it/s]
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+ETR/2015/page_131.pdf-2
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '#1', '768588', ')', 'add(', '#2', '1631181', ')', 'EOF']
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '768588', '#1', ')', 'add(', '1631181', '#2', ')', 'EOF']
+4192989.0
+4192989.0
+ETR/2015/page_131.pdf-2
+UNP/2011/page_76.pdf-1
+['multiply(', '2.2', 'const_1000', ')', 'add(', '325', '#0', ')', 'EOF']
+['multiply(', '2.2', 'const_1000', ')', 'add(', '#0', '325', ')', 'EOF']
+2525.0
+2525.0
+UNP/2011/page_76.pdf-1
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CB/2010/page_88.pdf-2
+['add(', '366', '137', ')', 'add(', '567', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '366', '137', ')', 'add(', '#0', '567', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+356.66667
+356.66667
+CB/2010/page_88.pdf-2
+VTR/2007/page_47.pdf-1
+['add(', '138311810', '14669', ')', 'EOF']
+['add(', '14669', '138311810', ')', 'EOF']
+138326479.0
+138326479.0
+VTR/2007/page_47.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.6024915062287656
+Prog acc:  0.578708946772367
+exe acc: 0.6024915062287656 prog acc: 0.578708946772367
+19900 : loss = 0.073
+20000 : loss = 0.064
+20100 : loss = 0.094
+Round:  67.0
+67 : time = 455.268 
+Val test
+100% 56/56 [00:43<00:00,  1.28it/s]
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+AES/2003/page_52.pdf-2
+['add(', '145', '23', ')', 'add(', '#0', '78', ')', 'add(', '#1', '150', ')', 'EOF']
+['add(', '145', '23', ')', 'add(', '#0', '150', ')', 'add(', '#1', '78', ')', 'EOF']
+396.0
+396.0
+AES/2003/page_52.pdf-2
+EW/2016/page_94.pdf-1
+['multiply(', '13.8', '11.75', ')', 'EOF']
+['multiply(', '11.75', '13.8', ')', 'EOF']
+162.15
+162.15
+EW/2016/page_94.pdf-1
+KHC/2016/page_23.pdf-4
+['divide(', '83', '87', ')', 'EOF']
+['add(', '83', '87', ')', 'divide(', '83', '87', ')', 'EOF']
+0.95402
+0.95402
+KHC/2016/page_23.pdf-4
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+SNA/2012/page_33.pdf-2
+['subtract(', '108.59', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'EOF']
+['subtract(', '108.59', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'subtract(', '108.59', 'const_100', ')', 'divide(', '#2', 'const_100', ')', 'EOF']
+0.0859
+0.0859
+SNA/2012/page_33.pdf-2
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+VTR/2007/page_47.pdf-1
+['add(', '138311810', '14669', ')', 'EOF']
+['add(', '14669', '138311810', ')', 'EOF']
+138326479.0
+138326479.0
+VTR/2007/page_47.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5730464326160816
+Prog acc:  0.5537938844847112
+exe acc: 0.5730464326160816 prog acc: 0.5537938844847112
+20200 : loss = 0.073
+20300 : loss = 0.077
+20400 : loss = 0.094
+Round:  68.0
+68 : time = 455.818 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+ETR/2017/page_316.pdf-1
+['add(', '1520.5', '1522.6', ')', 'divide(', '#0', 'const_2', ')', 'EOF']
+['add(', '1522.6', '1520.5', ')', 'divide(', '#0', 'const_2', ')', 'EOF']
+1521.55
+1521.55
+ETR/2017/page_316.pdf-1
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+UPS/2006/page_32.pdf-4
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'subtract(', '#1', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+-33.84
+-33.84
+UPS/2006/page_32.pdf-4
+IPG/2015/page_48.pdf-3
+['add(', '34.7', '33.7', ')', 'EOF']
+['add(', '33.7', '34.7', ')', 'EOF']
+68.4
+68.4
+IPG/2015/page_48.pdf-3
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CB/2010/page_88.pdf-2
+['add(', '366', '137', ')', 'add(', '567', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '366', '137', ')', 'add(', '#0', '567', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+356.66667
+356.66667
+CB/2010/page_88.pdf-2
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5979614949037373
+Prog acc:  0.5753114382785957
+exe acc: 0.5979614949037373 prog acc: 0.5753114382785957
+20500 : loss = 0.113
+20600 : loss = 0.142
+20700 : loss = 0.088
+Round:  69.0
+69 : time = 455.236 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+PPG/2011/page_70.pdf-1
+['divide(', '36', '52', ')', 'multiply(', '#0', '36', ')', 'EOF']
+['divide(', '36', '52', ')', 'multiply(', '36', '#0', ')', 'EOF']
+24.92308
+24.92308
+PPG/2011/page_70.pdf-1
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+IPG/2015/page_48.pdf-3
+['add(', '34.7', '33.7', ')', 'EOF']
+['add(', '33.7', '34.7', ')', 'EOF']
+68.4
+68.4
+IPG/2015/page_48.pdf-3
+MRO/2006/page_33.pdf-2
+['add(', '24', '77', ')', 'add(', '#0', '71', ')', 'EOF']
+['add(', '24', '77', ')', 'add(', '71', '#0', ')', 'EOF']
+172.0
+172.0
+MRO/2006/page_33.pdf-2
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CB/2010/page_88.pdf-2
+['add(', '366', '137', ')', 'add(', '567', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '366', '137', ')', 'add(', '#0', '567', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+356.66667
+356.66667
+CB/2010/page_88.pdf-2
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+BKR/2017/page_103.pdf-4
+['multiply(', '1.7', '40.18', ')', 'EOF']
+['multiply(', '40.18', '1.7', ')', 'EOF']
+68.306
+68.306
+BKR/2017/page_103.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5866364665911665
+Prog acc:  0.5707814269535674
+exe acc: 0.5866364665911665 prog acc: 0.5707814269535674
+20800 : loss = 0.071
+20900 : loss = 0.063
+21000 : loss = 0.092
+Round:  70.0
+70 : time = 457.582 
+Val test
+100% 56/56 [00:42<00:00,  1.30it/s]
+CB/2010/page_200.pdf-3
+['add(', '256868', '1230881', ')', 'add(', '638401', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '256868', '1230881', ')', 'add(', '#0', '638401', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+1063076.5
+1063076.5
+CB/2010/page_200.pdf-3
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+UNP/2011/page_76.pdf-1
+['multiply(', '2.2', 'const_1000', ')', 'add(', '325', '#0', ')', 'EOF']
+['multiply(', '2.2', 'const_1000', ')', 'add(', '#0', '325', ')', 'EOF']
+2525.0
+2525.0
+UNP/2011/page_76.pdf-1
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+BKR/2017/page_103.pdf-4
+['multiply(', '1.7', '40.18', ')', 'EOF']
+['multiply(', '40.18', '1.7', ')', 'EOF']
+68.306
+68.306
+BKR/2017/page_103.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.594563986409966
+Prog acc:  0.5764439411098528
+exe acc: 0.594563986409966 prog acc: 0.5764439411098528
+21100 : loss = 0.076
+21200 : loss = 0.068
+21300 : loss = 0.076
+Round:  71.0
+71 : time = 456.464 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+CB/2010/page_200.pdf-3
+['add(', '256868', '1230881', ')', 'add(', '638401', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '256868', '1230881', ')', 'add(', '#0', '638401', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+1063076.5
+1063076.5
+CB/2010/page_200.pdf-3
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+IPG/2015/page_48.pdf-3
+['add(', '34.7', '33.7', ')', 'EOF']
+['add(', '33.7', '34.7', ')', 'EOF']
+68.4
+68.4
+IPG/2015/page_48.pdf-3
+UNP/2011/page_76.pdf-1
+['multiply(', '2.2', 'const_1000', ')', 'add(', '325', '#0', ')', 'EOF']
+['multiply(', '2.2', 'const_1000', ')', 'add(', '#0', '325', ')', 'EOF']
+2525.0
+2525.0
+UNP/2011/page_76.pdf-1
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+BKR/2017/page_103.pdf-4
+['multiply(', '1.7', '40.18', ')', 'EOF']
+['multiply(', '40.18', '1.7', ')', 'EOF']
+68.306
+68.306
+BKR/2017/page_103.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5889014722536806
+Prog acc:  0.5628539071347678
+exe acc: 0.5889014722536806 prog acc: 0.5628539071347678
+21400 : loss = 0.080
+21500 : loss = 0.077
+21600 : loss = 0.110
+Round:  72.0
+72 : time = 454.865 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+CB/2010/page_200.pdf-3
+['add(', '256868', '1230881', ')', 'add(', '638401', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '256868', '1230881', ')', 'add(', '#0', '638401', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+1063076.5
+1063076.5
+CB/2010/page_200.pdf-3
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+IPG/2015/page_48.pdf-3
+['add(', '34.7', '33.7', ')', 'EOF']
+['add(', '33.7', '34.7', ')', 'EOF']
+68.4
+68.4
+IPG/2015/page_48.pdf-3
+ETR/2015/page_131.pdf-2
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '#1', '768588', ')', 'add(', '#2', '1631181', ')', 'EOF']
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '768588', '#1', ')', 'add(', '1631181', '#2', ')', 'EOF']
+4192989.0
+4192989.0
+ETR/2015/page_131.pdf-2
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5549263873159683
+Prog acc:  0.5288788221970555
+exe acc: 0.5549263873159683 prog acc: 0.5288788221970555
+21700 : loss = 0.093
+21800 : loss = 0.081
+21900 : loss = 0.043
+Round:  73.0
+73 : time = 454.885 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+CB/2010/page_200.pdf-3
+['add(', '256868', '1230881', ')', 'add(', '638401', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '256868', '1230881', ')', 'add(', '#0', '638401', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+1063076.5
+1063076.5
+CB/2010/page_200.pdf-3
+DRE/2009/page_72.pdf-1
+['multiply(', '1583616', '9.32', ')', 'EOF']
+['multiply(', '9.32', '1583616', ')', 'EOF']
+14759301.12
+14759301.12
+DRE/2009/page_72.pdf-1
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+BLL/2007/page_35.pdf-3
+['multiply(', '431170', '48.11', ')', 'divide(', '#0', 'const_1000000', ')', 'EOF']
+['multiply(', '48.11', '431170', ')', 'divide(', '#0', 'const_1000000', ')', 'EOF']
+20.74359
+20.74359
+BLL/2007/page_35.pdf-3
+ETR/2015/page_131.pdf-2
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '#1', '768588', ')', 'add(', '#2', '1631181', ')', 'EOF']
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '768588', '#1', ')', 'add(', '1631181', '#2', ')', 'EOF']
+4192989.0
+4192989.0
+ETR/2015/page_131.pdf-2
+EW/2016/page_94.pdf-1
+['multiply(', '13.8', '11.75', ')', 'EOF']
+['multiply(', '11.75', '13.8', ')', 'EOF']
+162.15
+162.15
+EW/2016/page_94.pdf-1
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5968289920724802
+Prog acc:  0.5775764439411099
+exe acc: 0.5968289920724802 prog acc: 0.5775764439411099
+22000 : loss = 0.053
+22100 : loss = 0.047
+22200 : loss = 0.068
+Round:  74.0
+74 : time = 455.677 
+Val test
+100% 56/56 [00:43<00:00,  1.28it/s]
+CB/2010/page_200.pdf-3
+['add(', '256868', '1230881', ')', 'add(', '638401', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '256868', '1230881', ')', 'add(', '#0', '638401', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+1063076.5
+1063076.5
+CB/2010/page_200.pdf-3
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+IPG/2015/page_48.pdf-3
+['add(', '34.7', '33.7', ')', 'EOF']
+['add(', '33.7', '34.7', ')', 'EOF']
+68.4
+68.4
+IPG/2015/page_48.pdf-3
+UNP/2011/page_76.pdf-1
+['multiply(', '2.2', 'const_1000', ')', 'add(', '325', '#0', ')', 'EOF']
+['multiply(', '2.2', 'const_1000', ')', 'add(', '#0', '325', ')', 'EOF']
+2525.0
+2525.0
+UNP/2011/page_76.pdf-1
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+BKR/2017/page_103.pdf-4
+['multiply(', '1.7', '40.18', ')', 'EOF']
+['multiply(', '40.18', '1.7', ')', 'EOF']
+68.306
+68.306
+BKR/2017/page_103.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5730464326160816
+Prog acc:  0.5560588901472253
+exe acc: 0.5730464326160816 prog acc: 0.5560588901472253
+22300 : loss = 0.068
+22400 : loss = 0.079
+22500 : loss = 0.077
+Round:  75.0
+75 : time = 456.404 
+Val test
+100% 56/56 [00:43<00:00,  1.29it/s]
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+BLL/2007/page_35.pdf-3
+['multiply(', '431170', '48.11', ')', 'divide(', '#0', 'const_1000000', ')', 'EOF']
+['multiply(', '48.11', '431170', ')', 'divide(', '#0', 'const_1000000', ')', 'EOF']
+20.74359
+20.74359
+BLL/2007/page_35.pdf-3
+UPS/2006/page_32.pdf-3
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '135.02', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '135.02', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'divide(', '#1', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+13.9
+13.9
+UPS/2006/page_32.pdf-3
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+FIS/2007/page_91.pdf-1
+['add(', '15667', '-3749', ')', 'EOF']
+['add(', '-3749', '15667', ')', 'EOF']
+11918.0
+11918.0
+FIS/2007/page_91.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CB/2010/page_88.pdf-2
+['add(', '366', '137', ')', 'add(', '567', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '366', '137', ')', 'add(', '#0', '567', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+356.66667
+356.66667
+CB/2010/page_88.pdf-2
+ETR/2002/page_86.pdf-4
+['multiply(', '108', 'const_7', ')', 'multiply(', '20', 'const_8', ')', 'add(', '#1', '#0', ')', 'EOF']
+['multiply(', 'const_8', '20', ')', 'multiply(', '108', 'const_7', ')', 'add(', '#0', '#1', ')', 'EOF']
+916.0
+916.0
+ETR/2002/page_86.pdf-4
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5934314835787089
+Prog acc:  0.5696489241223103
+exe acc: 0.5934314835787089 prog acc: 0.5696489241223103
+22600 : loss = 0.060
+22700 : loss = 0.061
+22800 : loss = 0.057
+Round:  76.0
+76 : time = 455.641 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+CB/2010/page_200.pdf-3
+['add(', '256868', '1230881', ')', 'add(', '638401', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '256868', '1230881', ')', 'add(', '#0', '638401', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+1063076.5
+1063076.5
+CB/2010/page_200.pdf-3
+K/2013/page_62.pdf-1
+['add(', '16', '3', ')', 'divide(', '3', '#0', ')', 'EOF']
+['add(', '3', '16', ')', 'divide(', '3', '#0', ')', 'EOF']
+0.15789
+0.15789
+K/2013/page_62.pdf-1
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+UPS/2006/page_32.pdf-4
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'subtract(', '#0', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'subtract(', '#1', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+-33.84
+-33.84
+UPS/2006/page_32.pdf-4
+IPG/2015/page_48.pdf-3
+['add(', '34.7', '33.7', ')', 'EOF']
+['add(', '33.7', '34.7', ')', 'EOF']
+68.4
+68.4
+IPG/2015/page_48.pdf-3
+BLL/2007/page_35.pdf-3
+['multiply(', '431170', '48.11', ')', 'divide(', '#0', 'const_1000000', ')', 'EOF']
+['multiply(', '48.11', '431170', ')', 'divide(', '#0', 'const_1000000', ')', 'EOF']
+20.74359
+20.74359
+BLL/2007/page_35.pdf-3
+ETR/2015/page_131.pdf-2
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '#1', '768588', ')', 'add(', '#2', '1631181', ')', 'EOF']
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '768588', '#1', ')', 'add(', '1631181', '#2', ')', 'EOF']
+4192989.0
+4192989.0
+ETR/2015/page_131.pdf-2
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+BKR/2017/page_103.pdf-4
+['multiply(', '1.7', '40.18', ')', 'EOF']
+['multiply(', '40.18', '1.7', ')', 'EOF']
+68.306
+68.306
+BKR/2017/page_103.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5753114382785957
+Prog acc:  0.5560588901472253
+exe acc: 0.5753114382785957 prog acc: 0.5560588901472253
+22900 : loss = 0.081
+23000 : loss = 0.075
+23100 : loss = 0.094
+Round:  77.0
+77 : time = 455.359 
+Val test
+100% 56/56 [00:43<00:00,  1.29it/s]
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+BLL/2007/page_35.pdf-3
+['multiply(', '431170', '48.11', ')', 'divide(', '#0', 'const_1000000', ')', 'EOF']
+['multiply(', '48.11', '431170', ')', 'divide(', '#0', 'const_1000000', ')', 'EOF']
+20.74359
+20.74359
+BLL/2007/page_35.pdf-3
+UNP/2011/page_76.pdf-1
+['multiply(', '2.2', 'const_1000', ')', 'add(', '325', '#0', ')', 'EOF']
+['multiply(', '2.2', 'const_1000', ')', 'add(', '#0', '325', ')', 'EOF']
+2525.0
+2525.0
+UNP/2011/page_76.pdf-1
+EW/2016/page_94.pdf-1
+['multiply(', '13.8', '11.75', ')', 'EOF']
+['multiply(', '11.75', '13.8', ')', 'EOF']
+162.15
+162.15
+EW/2016/page_94.pdf-1
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+NKE/2016/page_37.pdf-1
+['divide(', '4.6', '5.5', ')', 'EOF']
+['add(', '5.5', '4.6', ')', 'divide(', '4.6', '5.5', ')', 'EOF']
+0.83636
+0.83636
+NKE/2016/page_37.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.580973952434881
+Prog acc:  0.5639864099660249
+exe acc: 0.580973952434881 prog acc: 0.5639864099660249
+23200 : loss = 0.086
+23300 : loss = 0.079
+23400 : loss = 0.058
+Round:  78.0
+78 : time = 456.764 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+CB/2010/page_200.pdf-3
+['add(', '256868', '1230881', ')', 'add(', '638401', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '256868', '1230881', ')', 'add(', '#0', '638401', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+1063076.5
+1063076.5
+CB/2010/page_200.pdf-3
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+VTR/2007/page_47.pdf-1
+['add(', '138311810', '14669', ')', 'EOF']
+['add(', '14669', '138311810', ')', 'EOF']
+138326479.0
+138326479.0
+VTR/2007/page_47.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5911664779161948
+Prog acc:  0.5753114382785957
+exe acc: 0.5911664779161948 prog acc: 0.5753114382785957
+23500 : loss = 0.078
+23600 : loss = 0.073
+23700 : loss = 0.058
+Round:  79.0
+79 : time = 454.980 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+UPS/2006/page_32.pdf-4
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+-33.84
+-33.84
+UPS/2006/page_32.pdf-4
+UNP/2011/page_76.pdf-1
+['multiply(', '2.2', 'const_1000', ')', 'add(', '325', '#0', ')', 'EOF']
+['multiply(', '2.2', 'const_1000', ')', 'add(', '#0', '325', ')', 'EOF']
+2525.0
+2525.0
+UNP/2011/page_76.pdf-1
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+ETR/2011/page_376.pdf-1
+['add(', '577.8', '540.2', ')', 'add(', '#0', 'const_2', ')', 'divide(', '#1', 'const_2', ')', 'EOF']
+['add(', '540.2', '577.8', ')', 'add(', '#0', 'const_2', ')', 'divide(', '#1', 'const_2', ')', 'EOF']
+560.0
+560.0
+ETR/2011/page_376.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.608154020385051
+Prog acc:  0.5911664779161948
+exe acc: 0.608154020385051 prog acc: 0.5911664779161948
+23800 : loss = 0.065
+23900 : loss = 0.055
+24000 : loss = 0.065
+Round:  80.0
+80 : time = 455.030 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+CB/2010/page_200.pdf-3
+['add(', '256868', '1230881', ')', 'add(', '638401', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '256868', '1230881', ')', 'add(', '#0', '638401', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+1063076.5
+1063076.5
+CB/2010/page_200.pdf-3
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+EW/2016/page_94.pdf-1
+['multiply(', '13.8', '11.75', ')', 'EOF']
+['multiply(', '11.75', '13.8', ')', 'EOF']
+162.15
+162.15
+EW/2016/page_94.pdf-1
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CB/2010/page_88.pdf-2
+['add(', '366', '137', ')', 'add(', '567', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '366', '137', ')', 'add(', '#0', '567', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+356.66667
+356.66667
+CB/2010/page_88.pdf-2
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5934314835787089
+Prog acc:  0.5764439411098528
+exe acc: 0.5934314835787089 prog acc: 0.5764439411098528
+24100 : loss = 0.109
+24200 : loss = 0.091
+24300 : loss = 0.065
+Round:  81.0
+81 : time = 454.921 
+Val test
+100% 56/56 [00:44<00:00,  1.26it/s]
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+UPS/2006/page_32.pdf-4
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+-33.84
+-33.84
+UPS/2006/page_32.pdf-4
+UPS/2006/page_32.pdf-3
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '135.02', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '135.02', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+13.9
+13.9
+UPS/2006/page_32.pdf-3
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CB/2010/page_88.pdf-2
+['add(', '366', '137', ')', 'add(', '567', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '366', '137', ')', 'add(', '#0', '567', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+356.66667
+356.66667
+CB/2010/page_88.pdf-2
+ETR/2002/page_86.pdf-4
+['multiply(', '108', 'const_7', ')', 'multiply(', '20', 'const_8', ')', 'add(', '#1', '#0', ')', 'EOF']
+['multiply(', 'const_8', '20', ')', 'multiply(', '108', 'const_7', ')', 'add(', '#0', '#1', ')', 'EOF']
+916.0
+916.0
+ETR/2002/page_86.pdf-4
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+BKR/2017/page_103.pdf-4
+['multiply(', '1.7', '40.18', ')', 'EOF']
+['multiply(', '40.18', '1.7', ')', 'EOF']
+68.306
+68.306
+BKR/2017/page_103.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5979614949037373
+Prog acc:  0.5753114382785957
+exe acc: 0.5979614949037373 prog acc: 0.5753114382785957
+24400 : loss = 0.091
+24500 : loss = 0.068
+24600 : loss = 0.039
+Round:  82.0
+82 : time = 456.175 
+Val test
+100% 56/56 [00:43<00:00,  1.29it/s]
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+UPS/2006/page_32.pdf-4
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'subtract(', '#0', 'const_100', ')', 'divide(', '#1', 'const_100', ')', 'subtract(', '#1', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+-33.84
+-33.84
+UPS/2006/page_32.pdf-4
+UPS/2006/page_32.pdf-3
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '135.02', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '135.02', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'subtract(', '#1', 'const_100', ')', 'subtract(', '#1', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+13.9
+13.9
+UPS/2006/page_32.pdf-3
+EW/2016/page_94.pdf-1
+['multiply(', '13.8', '11.75', ')', 'EOF']
+['multiply(', '11.75', '13.8', ')', 'EOF']
+162.15
+162.15
+EW/2016/page_94.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CB/2010/page_88.pdf-2
+['add(', '366', '137', ')', 'add(', '567', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '366', '137', ')', 'add(', '#0', '567', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+356.66667
+356.66667
+CB/2010/page_88.pdf-2
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.6104190260475651
+Prog acc:  0.5934314835787089
+exe acc: 0.6104190260475651 prog acc: 0.5934314835787089
+24700 : loss = 0.063
+24800 : loss = 0.079
+24900 : loss = 0.066
+Round:  83.0
+83 : time = 455.395 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+GPN/2009/page_70.pdf-3
+['add(', '13536', '4091', ')', 'add(', '#0', '1031', ')', 'divide(', '#1', '19427', ')', 'EOF']
+['add(', '13536', '4091', ')', 'add(', '1031', '#0', ')', 'divide(', '#1', '19427', ')', 'EOF']
+0.96042
+0.96042
+GPN/2009/page_70.pdf-3
+GPN/2009/page_70.pdf-4
+['add(', '13536', '4091', ')', 'add(', '#0', '1031', ')', 'divide(', '#1', '19427', ')', 'EOF']
+['add(', '13536', '4091', ')', 'add(', '1031', '#0', ')', 'divide(', '#1', '19427', ')', 'EOF']
+0.96042
+0.96042
+GPN/2009/page_70.pdf-4
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+UPS/2006/page_32.pdf-4
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'subtract(', '#0', 'const_100', ')', 'subtract(', '#1', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'subtract(', '#1', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+-33.84
+-33.84
+UPS/2006/page_32.pdf-4
+BLL/2007/page_35.pdf-3
+['multiply(', '431170', '48.11', ')', 'divide(', '#0', 'const_1000000', ')', 'EOF']
+['multiply(', '48.11', '431170', ')', 'divide(', '#0', 'const_1000000', ')', 'EOF']
+20.74359
+20.74359
+BLL/2007/page_35.pdf-3
+AES/2003/page_52.pdf-2
+['add(', '145', '23', ')', 'add(', '#0', '78', ')', 'add(', '#1', '150', ')', 'EOF']
+['add(', '145', '23', ')', 'add(', '#0', '150', ')', 'add(', '#1', '78', ')', 'EOF']
+396.0
+396.0
+AES/2003/page_52.pdf-2
+UPS/2006/page_32.pdf-3
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '135.02', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '135.02', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'subtract(', '#1', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+13.9
+13.9
+UPS/2006/page_32.pdf-3
+ETR/2015/page_131.pdf-2
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '#1', '768588', ')', 'add(', '#2', '1631181', ')', 'EOF']
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '768588', '#1', ')', 'add(', '1631181', '#2', ')', 'EOF']
+4192989.0
+4192989.0
+ETR/2015/page_131.pdf-2
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+ETR/2002/page_86.pdf-4
+['multiply(', '108', 'const_7', ')', 'multiply(', '20', 'const_8', ')', 'add(', '#1', '#0', ')', 'EOF']
+['multiply(', 'const_8', '20', ')', 'multiply(', '108', 'const_7', ')', 'add(', '#0', '#1', ')', 'EOF']
+916.0
+916.0
+ETR/2002/page_86.pdf-4
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+BKR/2017/page_103.pdf-4
+['multiply(', '1.7', '40.18', ')', 'EOF']
+['multiply(', '40.18', '1.7', ')', 'EOF']
+68.306
+68.306
+BKR/2017/page_103.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.6058890147225368
+Prog acc:  0.5832389580973952
+exe acc: 0.6058890147225368 prog acc: 0.5832389580973952
+25000 : loss = 0.049
+25100 : loss = 0.044
+25200 : loss = 0.050
+Round:  84.0
+84 : time = 454.969 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+UPS/2006/page_32.pdf-4
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'subtract(', '#0', 'const_100', ')', 'divide(', '#0', '#1', ')', 'subtract(', '#1', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+-33.84
+-33.84
+UPS/2006/page_32.pdf-4
+BLL/2007/page_35.pdf-3
+['multiply(', '431170', '48.11', ')', 'divide(', '#0', 'const_1000000', ')', 'EOF']
+['multiply(', '48.11', '431170', ')', 'divide(', '#0', 'const_1000000', ')', 'EOF']
+20.74359
+20.74359
+BLL/2007/page_35.pdf-3
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+ETR/2002/page_86.pdf-4
+['multiply(', '108', 'const_7', ')', 'multiply(', '20', 'const_8', ')', 'add(', '#1', '#0', ')', 'EOF']
+['multiply(', 'const_8', '20', ')', 'multiply(', '108', 'const_7', ')', 'multiply(', '108', 'const_7', ')', 'add(', '#0', '#2', ')', 'EOF']
+916.0
+916.0
+ETR/2002/page_86.pdf-4
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.578708946772367
+Prog acc:  0.5662514156285391
+exe acc: 0.578708946772367 prog acc: 0.5662514156285391
+25300 : loss = 0.067
+25400 : loss = 0.072
+25500 : loss = 0.081
+Round:  85.0
+85 : time = 456.073 
+Val test
+100% 56/56 [00:43<00:00,  1.29it/s]
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+IPG/2015/page_48.pdf-3
+['add(', '34.7', '33.7', ')', 'EOF']
+['add(', '33.7', '34.7', ')', 'EOF']
+68.4
+68.4
+IPG/2015/page_48.pdf-3
+ETR/2015/page_131.pdf-2
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '#1', '768588', ')', 'add(', '#2', '1631181', ')', 'EOF']
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '768588', '#1', ')', 'add(', '1631181', '#2', ')', 'EOF']
+4192989.0
+4192989.0
+ETR/2015/page_131.pdf-2
+UNP/2011/page_76.pdf-1
+['multiply(', '2.2', 'const_1000', ')', 'add(', '325', '#0', ')', 'EOF']
+['multiply(', '2.2', 'const_1000', ')', 'add(', '#0', '325', ')', 'EOF']
+2525.0
+2525.0
+UNP/2011/page_76.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5469988674971688
+Prog acc:  0.5277463193657984
+exe acc: 0.5469988674971688 prog acc: 0.5277463193657984
+25600 : loss = 0.089
+25700 : loss = 0.073
+25800 : loss = 0.092
+Round:  86.0
+86 : time = 455.442 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+UPS/2006/page_32.pdf-4
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'subtract(', '#1', 'const_100', ')', 'subtract(', '#1', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+-33.84
+-33.84
+UPS/2006/page_32.pdf-4
+ETR/2015/page_131.pdf-2
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '#1', '768588', ')', 'add(', '#2', '1631181', ')', 'EOF']
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '768588', '#1', ')', 'add(', '1631181', '#2', ')', 'EOF']
+4192989.0
+4192989.0
+ETR/2015/page_131.pdf-2
+UNP/2011/page_76.pdf-1
+['multiply(', '2.2', 'const_1000', ')', 'add(', '325', '#0', ')', 'EOF']
+['multiply(', '2.2', 'const_1000', ')', 'add(', '#0', '325', ')', 'EOF']
+2525.0
+2525.0
+UNP/2011/page_76.pdf-1
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CB/2010/page_88.pdf-2
+['add(', '366', '137', ')', 'add(', '567', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '366', '137', ')', 'add(', '#0', '567', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+356.66667
+356.66667
+CB/2010/page_88.pdf-2
+ETR/2002/page_86.pdf-4
+['multiply(', '108', 'const_7', ')', 'multiply(', '20', 'const_8', ')', 'add(', '#1', '#0', ')', 'EOF']
+['multiply(', 'const_8', '20', ')', 'multiply(', '108', 'const_7', ')', 'add(', '#0', '#1', ')', 'EOF']
+916.0
+916.0
+ETR/2002/page_86.pdf-4
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+BKR/2017/page_103.pdf-4
+['multiply(', '1.7', '40.18', ')', 'EOF']
+['multiply(', '40.18', '1.7', ')', 'EOF']
+68.306
+68.306
+BKR/2017/page_103.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.6058890147225368
+Prog acc:  0.5843714609286523
+exe acc: 0.6058890147225368 prog acc: 0.5843714609286523
+25900 : loss = 0.060
+26000 : loss = 0.058
+26100 : loss = 0.065
+Round:  87.0
+87 : time = 455.643 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+UPS/2006/page_32.pdf-4
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'subtract(', '#1', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+-33.84
+-33.84
+UPS/2006/page_32.pdf-4
+IPG/2015/page_48.pdf-3
+['add(', '34.7', '33.7', ')', 'EOF']
+['add(', '33.7', '34.7', ')', 'EOF']
+68.4
+68.4
+IPG/2015/page_48.pdf-3
+ETR/2015/page_131.pdf-2
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '#1', '768588', ')', 'add(', '#2', '1631181', ')', 'EOF']
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '768588', '#1', ')', 'add(', '1631181', '#2', ')', 'EOF']
+4192989.0
+4192989.0
+ETR/2015/page_131.pdf-2
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CB/2010/page_88.pdf-2
+['add(', '366', '137', ')', 'add(', '567', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '366', '137', ')', 'add(', '#0', '567', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+356.66667
+356.66667
+CB/2010/page_88.pdf-2
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.6104190260475651
+Prog acc:  0.5832389580973952
+exe acc: 0.6104190260475651 prog acc: 0.5832389580973952
+26200 : loss = 0.079
+26300 : loss = 0.059
+26400 : loss = 0.065
+Round:  88.0
+88 : time = 455.018 
+Val test
+100% 56/56 [00:44<00:00,  1.26it/s]
+CB/2010/page_200.pdf-3
+['add(', '256868', '1230881', ')', 'add(', '638401', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '256868', '1230881', ')', 'add(', '#0', '638401', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+1063076.5
+1063076.5
+CB/2010/page_200.pdf-3
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+UPS/2006/page_32.pdf-4
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'subtract(', '#1', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+-33.84
+-33.84
+UPS/2006/page_32.pdf-4
+AES/2003/page_52.pdf-2
+['add(', '145', '23', ')', 'add(', '#0', '78', ')', 'add(', '#1', '150', ')', 'EOF']
+['add(', '145', '23', ')', 'add(', '#0', '150', ')', 'add(', '#1', '78', ')', 'EOF']
+396.0
+396.0
+AES/2003/page_52.pdf-2
+UPS/2006/page_32.pdf-3
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '135.02', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '135.02', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'subtract(', '#1', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+13.9
+13.9
+UPS/2006/page_32.pdf-3
+UNP/2011/page_76.pdf-1
+['multiply(', '2.2', 'const_1000', ')', 'add(', '325', '#0', ')', 'EOF']
+['multiply(', '2.2', 'const_1000', ')', 'add(', '#0', '325', ')', 'EOF']
+2525.0
+2525.0
+UNP/2011/page_76.pdf-1
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CB/2010/page_88.pdf-2
+['add(', '366', '137', ')', 'add(', '567', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '366', '137', ')', 'add(', '#0', '567', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+356.66667
+356.66667
+CB/2010/page_88.pdf-2
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+BKR/2017/page_103.pdf-4
+['multiply(', '1.7', '40.18', ')', 'EOF']
+['multiply(', '40.18', '1.7', ')', 'EOF']
+68.306
+68.306
+BKR/2017/page_103.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.6002265005662514
+Prog acc:  0.578708946772367
+exe acc: 0.6002265005662514 prog acc: 0.578708946772367
+26500 : loss = 0.068
+26600 : loss = 0.050
+26700 : loss = 0.059
+Round:  89.0
+89 : time = 456.545 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+MRO/2008/page_69.pdf-4
+['subtract(', '11.34', '5.42', ')', 'EOF']
+['subtract(', '11.34', '5.42', ')', 'subtract(', '5.42', '5.42', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+5.92
+5.92
+MRO/2008/page_69.pdf-4
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+AES/2003/page_52.pdf-2
+['add(', '145', '23', ')', 'add(', '#0', '78', ')', 'add(', '#1', '150', ')', 'EOF']
+['add(', '145', '23', ')', 'add(', '#0', '150', ')', 'add(', '#1', '78', ')', 'EOF']
+396.0
+396.0
+AES/2003/page_52.pdf-2
+ETR/2015/page_131.pdf-2
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '#1', '768588', ')', 'add(', '#2', '1631181', ')', 'EOF']
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '768588', '#1', ')', 'add(', '1631181', '#2', ')', 'EOF']
+4192989.0
+4192989.0
+ETR/2015/page_131.pdf-2
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5956964892412231
+Prog acc:  0.5707814269535674
+exe acc: 0.5956964892412231 prog acc: 0.5707814269535674
+26800 : loss = 0.055
+26900 : loss = 0.067
+27000 : loss = 0.081
+Round:  90.0
+90 : time = 454.946 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+CB/2010/page_200.pdf-3
+['add(', '256868', '1230881', ')', 'add(', '638401', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '256868', '1230881', ')', 'add(', '#0', '638401', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+1063076.5
+1063076.5
+CB/2010/page_200.pdf-3
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+ETR/2015/page_131.pdf-2
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '#1', '768588', ')', 'add(', '#2', '1631181', ')', 'EOF']
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '768588', '#1', ')', 'add(', '1631181', '#2', ')', 'EOF']
+4192989.0
+4192989.0
+ETR/2015/page_131.pdf-2
+UNP/2011/page_76.pdf-1
+['multiply(', '2.2', 'const_1000', ')', 'add(', '325', '#0', ')', 'EOF']
+['multiply(', '2.2', 'const_1000', ')', 'add(', '#0', '325', ')', 'EOF']
+2525.0
+2525.0
+UNP/2011/page_76.pdf-1
+EW/2016/page_94.pdf-1
+['multiply(', '13.8', '11.75', ')', 'EOF']
+['multiply(', '11.75', '13.8', ')', 'EOF']
+162.15
+162.15
+EW/2016/page_94.pdf-1
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+BKR/2017/page_103.pdf-4
+['multiply(', '1.7', '40.18', ')', 'EOF']
+['multiply(', '40.18', '1.7', ')', 'EOF']
+68.306
+68.306
+BKR/2017/page_103.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.6036240090600227
+Prog acc:  0.5855039637599094
+exe acc: 0.6036240090600227 prog acc: 0.5855039637599094
+27100 : loss = 0.067
+27200 : loss = 0.051
+27300 : loss = 0.046
+Round:  91.0
+91 : time = 455.220 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+CB/2010/page_200.pdf-3
+['add(', '256868', '1230881', ')', 'add(', '638401', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '256868', '1230881', ')', 'add(', '#0', '638401', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+1063076.5
+1063076.5
+CB/2010/page_200.pdf-3
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+UPS/2006/page_32.pdf-4
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'divide(', '#1', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+-33.84
+-33.84
+UPS/2006/page_32.pdf-4
+IPG/2015/page_48.pdf-3
+['add(', '34.7', '33.7', ')', 'EOF']
+['add(', '33.7', '34.7', ')', 'EOF']
+68.4
+68.4
+IPG/2015/page_48.pdf-3
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+BKR/2017/page_103.pdf-4
+['multiply(', '1.7', '40.18', ')', 'EOF']
+['multiply(', '40.18', '1.7', ')', 'EOF']
+68.306
+68.306
+BKR/2017/page_103.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5979614949037373
+Prog acc:  0.5764439411098528
+exe acc: 0.5979614949037373 prog acc: 0.5764439411098528
+27400 : loss = 0.039
+27500 : loss = 0.060
+27600 : loss = 0.053
+Round:  92.0
+92 : time = 455.826 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+CB/2010/page_200.pdf-3
+['add(', '256868', '1230881', ')', 'add(', '638401', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '256868', '1230881', ')', 'add(', '#0', '638401', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+1063076.5
+1063076.5
+CB/2010/page_200.pdf-3
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+UPS/2006/page_32.pdf-4
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'subtract(', '#1', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+-33.84
+-33.84
+UPS/2006/page_32.pdf-4
+BLL/2007/page_35.pdf-3
+['multiply(', '431170', '48.11', ')', 'divide(', '#0', 'const_1000000', ')', 'EOF']
+['multiply(', '48.11', '431170', ')', 'divide(', '#0', 'const_1000000', ')', 'EOF']
+20.74359
+20.74359
+BLL/2007/page_35.pdf-3
+UPS/2006/page_32.pdf-3
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '135.02', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '135.02', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'subtract(', '#1', 'const_100', ')', 'subtract(', '#1', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+13.9
+13.9
+UPS/2006/page_32.pdf-3
+ETR/2015/page_131.pdf-2
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '#1', '768588', ')', 'add(', '#2', '1631181', ')', 'EOF']
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '768588', '#1', ')', 'add(', '1631181', '#2', ')', 'EOF']
+4192989.0
+4192989.0
+ETR/2015/page_131.pdf-2
+ETR/2011/page_376.pdf-1
+['add(', '577.8', '540.2', ')', 'add(', '#0', 'const_2', ')', 'divide(', '#1', 'const_2', ')', 'EOF']
+['add(', '540.2', '577.8', ')', 'add(', '#0', 'const_2', ')', 'divide(', '#1', 'const_2', ')', 'EOF']
+560.0
+560.0
+ETR/2011/page_376.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CB/2010/page_88.pdf-2
+['add(', '366', '137', ')', 'add(', '567', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '366', '137', ')', 'add(', '#0', '567', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+356.66667
+356.66667
+CB/2010/page_88.pdf-2
+BLL/2007/page_35.pdf-1
+['multiply(', '705292', '53.53', ')', 'divide(', '#0', 'const_1000000', ')', 'EOF']
+['multiply(', '53.53', '705292', ')', 'divide(', '#0', 'const_1000000', ')', 'EOF']
+37.75428
+37.75428
+BLL/2007/page_35.pdf-1
+ETR/2002/page_86.pdf-4
+['multiply(', '108', 'const_7', ')', 'multiply(', '20', 'const_8', ')', 'add(', '#1', '#0', ')', 'EOF']
+['multiply(', 'const_8', '20', ')', 'multiply(', '108', 'const_7', ')', 'add(', '#0', '#1', ')', 'EOF']
+916.0
+916.0
+ETR/2002/page_86.pdf-4
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+BKR/2017/page_103.pdf-4
+['multiply(', '1.7', '40.18', ')', 'EOF']
+['multiply(', '40.18', '1.7', ')', 'EOF']
+68.306
+68.306
+BKR/2017/page_103.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.6002265005662514
+Prog acc:  0.578708946772367
+exe acc: 0.6002265005662514 prog acc: 0.578708946772367
+27700 : loss = 0.050
+27800 : loss = 0.054
+27900 : loss = 0.063
+Round:  93.0
+93 : time = 456.546 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+BLL/2007/page_35.pdf-3
+['multiply(', '431170', '48.11', ')', 'divide(', '#0', 'const_1000000', ')', 'EOF']
+['multiply(', '48.11', '431170', ')', 'divide(', '#0', 'const_1000000', ')', 'EOF']
+20.74359
+20.74359
+BLL/2007/page_35.pdf-3
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CB/2010/page_88.pdf-2
+['add(', '366', '137', ')', 'add(', '567', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '366', '137', ')', 'add(', '#0', '567', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+356.66667
+356.66667
+CB/2010/page_88.pdf-2
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5968289920724802
+Prog acc:  0.580973952434881
+exe acc: 0.5968289920724802 prog acc: 0.580973952434881
+28000 : loss = 0.058
+28100 : loss = 0.061
+28200 : loss = 0.063
+Round:  94.0
+94 : time = 456.673 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+BLL/2007/page_35.pdf-3
+['multiply(', '431170', '48.11', ')', 'divide(', '#0', 'const_1000000', ')', 'EOF']
+['multiply(', '48.11', '431170', ')', 'divide(', '#0', 'const_1000000', ')', 'EOF']
+20.74359
+20.74359
+BLL/2007/page_35.pdf-3
+AES/2003/page_52.pdf-2
+['add(', '145', '23', ')', 'add(', '#0', '78', ')', 'add(', '#1', '150', ')', 'EOF']
+['add(', '145', '23', ')', 'add(', '#0', '150', ')', 'add(', '#1', '78', ')', 'EOF']
+396.0
+396.0
+AES/2003/page_52.pdf-2
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+CB/2010/page_88.pdf-2
+['add(', '366', '137', ')', 'add(', '567', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '366', '137', ')', 'add(', '#0', '567', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+356.66667
+356.66667
+CB/2010/page_88.pdf-2
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+BKR/2017/page_103.pdf-4
+['multiply(', '1.7', '40.18', ')', 'EOF']
+['multiply(', '40.18', '1.7', ')', 'EOF']
+68.306
+68.306
+BKR/2017/page_103.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5855039637599094
+Prog acc:  0.5696489241223103
+exe acc: 0.5855039637599094 prog acc: 0.5696489241223103
+28300 : loss = 0.055
+28400 : loss = 0.041
+28500 : loss = 0.066
+Round:  95.0
+95 : time = 457.348 
+Val test
+100% 56/56 [00:43<00:00,  1.29it/s]
+AMT/2010/page_34.pdf-2
+['multiply(', '397612895', '56.73', ')', 'EOF']
+['multiply(', '56.73', '397612895', ')', 'EOF']
+22556579533.35
+22556579533.35
+AMT/2010/page_34.pdf-2
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+EW/2016/page_94.pdf-1
+['multiply(', '13.8', '11.75', ')', 'EOF']
+['multiply(', '11.75', '13.8', ')', 'EOF']
+162.15
+162.15
+EW/2016/page_94.pdf-1
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+ETR/2011/page_376.pdf-1
+['add(', '577.8', '540.2', ')', 'add(', '#0', 'const_2', ')', 'divide(', '#1', 'const_2', ')', 'EOF']
+['add(', '540.2', '577.8', ')', 'add(', '#0', 'const_2', ')', 'divide(', '#1', 'const_2', ')', 'EOF']
+560.0
+560.0
+ETR/2011/page_376.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+BKR/2017/page_103.pdf-4
+['multiply(', '1.7', '40.18', ')', 'EOF']
+['multiply(', '40.18', '1.7', ')', 'EOF']
+68.306
+68.306
+BKR/2017/page_103.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5979614949037373
+Prog acc:  0.580973952434881
+exe acc: 0.5979614949037373 prog acc: 0.580973952434881
+28600 : loss = 0.057
+28700 : loss = 0.048
+28800 : loss = 0.043
+Round:  96.0
+96 : time = 455.476 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+IPG/2015/page_48.pdf-3
+['add(', '34.7', '33.7', ')', 'EOF']
+['add(', '33.7', '34.7', ')', 'EOF']
+68.4
+68.4
+IPG/2015/page_48.pdf-3
+AES/2003/page_52.pdf-2
+['add(', '145', '23', ')', 'add(', '#0', '78', ')', 'add(', '#1', '150', ')', 'EOF']
+['add(', '145', '23', ')', 'add(', '#0', '150', ')', 'add(', '#1', '78', ')', 'EOF']
+396.0
+396.0
+AES/2003/page_52.pdf-2
+ETR/2015/page_131.pdf-2
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '#1', '768588', ')', 'add(', '#2', '1631181', ')', 'EOF']
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '768588', '#1', ')', 'add(', '1631181', '#2', ')', 'EOF']
+4192989.0
+4192989.0
+ETR/2015/page_131.pdf-2
+PKG/2009/page_65.pdf-1
+['add(', '6951', '5942', ')', 'EOF']
+['add(', '5942', '6951', ')', 'EOF']
+12893.0
+12893.0
+PKG/2009/page_65.pdf-1
+MRO/2011/page_73.pdf-3
+['divide(', '80', '188', ')', 'EOF']
+['add(', '80', '188', ')', 'divide(', '80', '188', ')', 'EOF']
+0.42553
+0.42553
+MRO/2011/page_73.pdf-3
+EW/2016/page_94.pdf-1
+['multiply(', '13.8', '11.75', ')', 'EOF']
+['multiply(', '11.75', '13.8', ')', 'EOF']
+162.15
+162.15
+EW/2016/page_94.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+BKR/2017/page_103.pdf-4
+['multiply(', '1.7', '40.18', ')', 'EOF']
+['multiply(', '40.18', '1.7', ')', 'EOF']
+68.306
+68.306
+BKR/2017/page_103.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.6104190260475651
+Prog acc:  0.5877689694224235
+exe acc: 0.6104190260475651 prog acc: 0.5877689694224235
+28900 : loss = 0.045
+29000 : loss = 0.050
+29100 : loss = 0.072
+Round:  97.0
+97 : time = 454.610 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+LMT/2015/page_56.pdf-3
+['add(', '17400', '20300', ')', 'add(', '#0', '21400', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '17400', '20300', ')', 'add(', '21400', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+19700.0
+19700.0
+LMT/2015/page_56.pdf-3
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+UPS/2006/page_32.pdf-4
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'subtract(', '#1', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+-33.84
+-33.84
+UPS/2006/page_32.pdf-4
+HII/2017/page_124.pdf-2
+['add(', '448859', '4087587', ')', 'divide(', '4087587', '#0', ')', 'EOF']
+['add(', '4087587', '448859', ')', 'divide(', '4087587', '#0', ')', 'EOF']
+0.90105
+0.90105
+HII/2017/page_124.pdf-2
+AES/2003/page_52.pdf-2
+['add(', '145', '23', ')', 'add(', '#0', '78', ')', 'add(', '#1', '150', ')', 'EOF']
+['add(', '145', '23', ')', 'add(', '#0', '150', ')', 'add(', '#1', '78', ')', 'EOF']
+396.0
+396.0
+AES/2003/page_52.pdf-2
+PKG/2009/page_65.pdf-1
+['add(', '6951', '5942', ')', 'EOF']
+['add(', '5942', '6951', ')', 'EOF']
+12893.0
+12893.0
+PKG/2009/page_65.pdf-1
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '0.9', '#0', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5934314835787089
+Prog acc:  0.565118912797282
+exe acc: 0.5934314835787089 prog acc: 0.565118912797282
+29200 : loss = 0.066
+29300 : loss = 0.079
+29400 : loss = 0.050
+Round:  98.0
+98 : time = 455.007 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+AMT/2010/page_34.pdf-2
+['multiply(', '397612895', '56.73', ')', 'EOF']
+['multiply(', '56.73', '397612895', ')', 'EOF']
+22556579533.35
+22556579533.35
+AMT/2010/page_34.pdf-2
+CB/2010/page_200.pdf-3
+['add(', '256868', '1230881', ')', 'add(', '638401', '#0', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+['add(', '256868', '1230881', ')', 'add(', '#0', '638401', ')', 'add(', '#1', 'const_3', ')', 'divide(', '#2', 'const_2', ')', 'EOF']
+1063076.5
+1063076.5
+CB/2010/page_200.pdf-3
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+UPS/2006/page_32.pdf-4
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'subtract(', '#1', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+-33.84
+-33.84
+UPS/2006/page_32.pdf-4
+UPS/2006/page_32.pdf-3
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '135.02', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '135.02', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+13.9
+13.9
+UPS/2006/page_32.pdf-3
+ETR/2015/page_131.pdf-2
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '#1', '768588', ')', 'add(', '#2', '1631181', ')', 'EOF']
+['add(', '204079', '766451', ')', 'add(', '#0', '822690', ')', 'add(', '#1', '768588', ')', 'add(', '1631181', '#2', ')', 'EOF']
+4192989.0
+4192989.0
+ETR/2015/page_131.pdf-2
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+BKR/2017/page_103.pdf-4
+['multiply(', '1.7', '40.18', ')', 'EOF']
+['multiply(', '40.18', '1.7', ')', 'EOF']
+68.306
+68.306
+BKR/2017/page_103.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.6047565118912798
+Prog acc:  0.5821064552661381
+exe acc: 0.6047565118912798 prog acc: 0.5821064552661381
+29500 : loss = 0.056
+29600 : loss = 0.060
+29700 : loss = 0.069
+Round:  99.0
+99 : time = 455.997 
+Val test
+100% 56/56 [00:43<00:00,  1.30it/s]
+DRE/2009/page_72.pdf-1
+['multiply(', '1583616', '9.32', ')', 'EOF']
+['multiply(', '9.32', '1583616', ')', 'EOF']
+14759301.12
+14759301.12
+DRE/2009/page_72.pdf-1
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+UPS/2006/page_32.pdf-4
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '182.76', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'subtract(', '#1', 'const_100', ')', 'subtract(', '#1', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+-33.84
+-33.84
+UPS/2006/page_32.pdf-4
+IPG/2015/page_48.pdf-3
+['add(', '34.7', '33.7', ')', 'EOF']
+['add(', '33.7', '34.7', ')', 'EOF']
+68.4
+68.4
+IPG/2015/page_48.pdf-3
+UPS/2006/page_32.pdf-3
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '135.02', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+['subtract(', '148.92', 'const_100', ')', 'subtract(', '135.02', 'const_100', ')', 'divide(', '#0', 'const_100', ')', 'subtract(', '#1', 'const_100', ')', 'subtract(', '#1', 'const_100', ')', 'subtract(', '#0', '#1', ')', 'EOF']
+13.9
+13.9
+UPS/2006/page_32.pdf-3
+FIS/2007/page_91.pdf-1
+['add(', '15667', '-3749', ')', 'EOF']
+['add(', '-3749', '15667', ')', 'EOF']
+11918.0
+11918.0
+FIS/2007/page_91.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+ETR/2002/page_86.pdf-4
+['multiply(', '108', 'const_7', ')', 'multiply(', '20', 'const_8', ')', 'add(', '#1', '#0', ')', 'EOF']
+['multiply(', 'const_8', '20', ')', 'multiply(', '108', 'const_7', ')', 'add(', '#0', '#1', ')', 'EOF']
+916.0
+916.0
+ETR/2002/page_86.pdf-4
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+BKR/2017/page_103.pdf-4
+['multiply(', '1.7', '40.18', ')', 'EOF']
+['multiply(', '40.18', '1.7', ')', 'EOF']
+68.306
+68.306
+BKR/2017/page_103.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5968289920724802
+Prog acc:  0.5719139297848245
+exe acc: 0.5968289920724802 prog acc: 0.5719139297848245
+29800 : loss = 0.070
+29900 : loss = 0.045
+30000 : loss = 0.050
+Round:  100.0
+100 : time = 454.944 
+Val test
+100% 56/56 [00:43<00:00,  1.29it/s]
+AES/2015/page_117.pdf-3
+['add(', '205', '163', ')', 'add(', '110', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '205', '163', ')', 'add(', '#0', '110', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+159.33333
+159.33333
+AES/2015/page_117.pdf-3
+IPG/2015/page_48.pdf-3
+['add(', '34.7', '33.7', ')', 'EOF']
+['add(', '33.7', '34.7', ')', 'EOF']
+68.4
+68.4
+IPG/2015/page_48.pdf-3
+APD/2016/page_96.pdf-1
+['add(', '121.1', '97.5', ')', 'add(', '132.4', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '121.1', '97.5', ')', 'add(', '#0', '132.4', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+117.0
+117.0
+APD/2016/page_96.pdf-1
+BDX/2018/page_82.pdf-1
+['add(', '136', '110', ')', 'add(', '81', '#0', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+['add(', '136', '110', ')', 'add(', '#0', '81', ')', 'divide(', '#1', 'const_3', ')', 'EOF']
+109.0
+109.0
+BDX/2018/page_82.pdf-1
+ETR/2002/page_86.pdf-4
+['multiply(', '108', 'const_7', ')', 'multiply(', '20', 'const_8', ')', 'add(', '#1', '#0', ')', 'EOF']
+['multiply(', 'const_8', '20', ')', 'multiply(', '108', 'const_7', ')', 'add(', '#0', '#1', ')', 'EOF']
+916.0
+916.0
+ETR/2002/page_86.pdf-4
+LKQ/2010/page_84.pdf-4
+['add(', '0.9', '0.9', ')', 'add(', '#0', '1.0', ')', 'EOF']
+['add(', '1.0', '0.9', ')', 'add(', '#0', '0.9', ')', 'EOF']
+2.8
+2.8
+LKQ/2010/page_84.pdf-4
+All:  883
+Correct:  0
+Exe acc:  0.5990939977349944
+Prog acc:  0.5753114382785957
+exe acc: 0.5990939977349944 prog acc: 0.5753114382785957

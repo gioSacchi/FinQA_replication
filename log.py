@@ -3,13 +3,13 @@ import matplotlib.pyplot as plt
 type = "generator" # retriever or generator
 
 # Open log file and read each line
-model = "bert-base-augmented-2"
+model = "bert-base-augmented-3"
 log_file = "output\\"+model+"-"+type+".txt"
 batch_size = None
 report_interval = None
 
-# train_data_size = 6251
-train_data_size = 27718
+train_data_size = 6251
+# train_data_size = 27718
 
 total_time = 0
 validation_accuracy_3 = []
@@ -57,8 +57,6 @@ with open(log_file, 'r') as f:
       loss.append(float(parts[-1]))
       iterations.append(int(parts[0]))
     
-
-
 print("Total time: ", round(total_time, 2), " seconds")
 ## Time in hours
 print("Total time: ", round(total_time/60/60, 2), " hours")
