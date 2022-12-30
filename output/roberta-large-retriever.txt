@@ -1,0 +1,241 @@
+Reading: operation_list.txt
+Reading: constant_list.txt
+Reading ../../dataset/train.json
+Reading ../../dataset/dev.json
+Reading ../../dataset/test.json
+####################INPUT PARAMETERS###################
+__module__ = config
+prog_name = retriever
+root_path = ../
+output_path = /content/gdrive/MyDrive/FinQAModels
+cache_dir = ../cache
+model_save_name = retriever-reberta-large
+gdrive_save_predictions = /content/gdrive/MyDrive/FinQAModels
+train_file = ../../dataset/train.json
+valid_file = ../../dataset/dev.json
+test_file = ../../dataset/test.json
+op_list_file = operation_list.txt
+const_list_file = constant_list.txt
+pretrained_model = roberta
+model_size = roberta-large
+device = cuda
+mode = train
+resume_model_path = 
+saved_model_path = /content/gdrive/MyDrive/Colab Notebooks/FinQA/6_model_cont.pt
+build_summary = False
+option = rand
+neg_rate = 3
+topn = 5
+sep_attention = True
+layer_norm = True
+num_decoder_layers = 1
+max_seq_length = 512
+max_program_length = 100
+n_best_size = 20
+dropout_rate = 0.1
+batch_size = 16
+batch_size_test = 16
+epoch = 100
+learning_rate = 2e-05
+report = 900
+report_loss = 100
+__dict__ = <attribute '__dict__' of 'parameters' objects>
+__weakref__ = <attribute '__weakref__' of 'parameters' objects>
+__doc__ = None
+#######################################################
+100 : loss = 765.131
+200 : loss = 620.463
+300 : loss = 591.933
+400 : loss = 572.006
+500 : loss = 532.202
+600 : loss = 530.652
+700 : loss = 469.799
+800 : loss = 389.682
+900 : loss = 477.689
+1 : time = 1032.310 
+Top 3: 0.8519252548131366
+Top 5: 0.920843444965755
+
+1000 : loss = 434.978
+1100 : loss = 504.075
+1200 : loss = 440.358
+1300 : loss = 421.100
+1400 : loss = 441.998
+1500 : loss = 410.634
+1600 : loss = 437.632
+1700 : loss = 451.204
+1800 : loss = 402.641
+2 : time = 1667.631 
+Top 3: 0.8728293695734238
+Top 5: 0.9182319473655826
+
+1900 : loss = 420.252
+2000 : loss = 413.869
+2100 : loss = 403.986
+2200 : loss = 357.379
+2300 : loss = 389.697
+2400 : loss = 366.223
+2500 : loss = 354.861
+2600 : loss = 432.133
+2700 : loss = 406.076
+3 : time = 1663.719 
+Top 3: 0.8631114167071129
+Top 5: 0.9180998220352691
+
+2800 : loss = 373.710
+2900 : loss = 341.978
+3000 : loss = 378.146
+3100 : loss = 373.482
+3200 : loss = 366.614
+3300 : loss = 409.312
+3400 : loss = 343.383
+3500 : loss = 393.504
+3600 : loss = 357.809
+4 : time = 1663.389 
+Top 3: 0.8786900717251789
+Top 5: 0.9247060885509354
+
+3700 : loss = 388.090
+3800 : loss = 349.951
+3900 : loss = 366.575
+4000 : loss = 495.252
+4100 : loss = 353.169
+4200 : loss = 420.142
+4300 : loss = 333.280
+4400 : loss = 378.415
+4500 : loss = 400.418
+5 : time = 1664.834 
+Top 3: 0.87222536806342
+Top 5: 0.9266407808876663
+
+4600 : loss = 368.147
+4700 : loss = 364.001
+4800 : loss = 374.698
+4900 : loss = 305.018
+5000 : loss = 405.006
+5100 : loss = 373.429
+5200 : loss = 348.756
+5300 : loss = 384.401
+5400 : loss = 370.435
+6 : time = 1664.433 
+Top 3: 0.8735843714609284
+Top 5: 0.9299816642398747
+
+5500 : loss = 377.273
+5600 : loss = 324.365
+5700 : loss = 312.620
+5800 : loss = 344.610
+5900 : loss = 344.280
+6000 : loss = 368.276
+6100 : loss = 317.668
+6200 : loss = 311.648
+6300 : loss = 308.863
+7 : time = 1664.305 
+Top 3: 0.8734050585126458
+Top 5: 0.9288585989322112
+
+6400 : loss = 319.071
+6500 : loss = 322.168
+6600 : loss = 306.076
+6700 : loss = 325.066
+6800 : loss = 350.836
+6900 : loss = 367.205
+7000 : loss = 400.272
+7100 : loss = 307.854
+7200 : loss = 324.467
+8 : time = 1664.115 
+Top 3: 0.8885900339750845
+Top 5: 0.9347570511783418
+
+7300 : loss = 377.377
+7400 : loss = 333.792
+7500 : loss = 299.006
+7600 : loss = 301.085
+7700 : loss = 327.336
+7800 : loss = 361.860
+7900 : loss = 345.701
+8000 : loss = 330.828
+8100 : loss = 298.252
+9 : time = 1664.454 
+Top 3: 0.9018497546243864
+Top 5: 0.9362576174297575
+
+8200 : loss = 309.781
+8300 : loss = 293.684
+8400 : loss = 297.944
+8500 : loss = 304.361
+8600 : loss = 258.716
+8700 : loss = 308.700
+8800 : loss = 265.444
+8900 : loss = 310.130
+9000 : loss = 292.397
+10 : time = 1664.045 
+Top 3: 0.8909426737852554
+Top 5: 0.9327118049937977
+
+9100 : loss = 293.754
+9200 : loss = 320.824
+9300 : loss = 345.836
+9400 : loss = 307.360
+9500 : loss = 297.394
+9600 : loss = 350.880
+9700 : loss = 297.205
+9800 : loss = 264.033
+9900 : loss = 351.517
+11 : time = 1668.056 
+Top 3: 0.8813163997195704
+Top 5: 0.9304939869492528
+
+10000 : loss = 323.337
+10100 : loss = 333.101
+10200 : loss = 319.602
+10300 : loss = 311.463
+10400 : loss = 298.982
+10500 : loss = 324.212
+10600 : loss = 320.037
+10700 : loss = 312.020
+10800 : loss = 297.964
+12 : time = 1665.012 
+Top 3: 0.8814202124791022
+Top 5: 0.928946233079868
+
+10900 : loss = 266.301
+11000 : loss = 337.005
+11100 : loss = 281.316
+11200 : loss = 282.327
+11300 : loss = 298.663
+11400 : loss = 290.539
+11500 : loss = 316.700
+11600 : loss = 245.857
+11700 : loss = 275.671
+13 : time = 1664.962 
+Top 3: 0.8787210807312731
+Top 5: 0.9247910262632796
+
+11800 : loss = 313.761
+11900 : loss = 283.394
+12000 : loss = 313.405
+12100 : loss = 313.465
+12200 : loss = 317.581
+12300 : loss = 285.351
+12400 : loss = 294.426
+12500 : loss = 301.384
+12600 : loss = 408.964
+14 : time = 1665.002 
+Top 3: 0.8641495443024318
+Top 5: 0.9267756026532921
+
+12700 : loss = 383.821
+12800 : loss = 376.059
+12900 : loss = 342.349
+13000 : loss = 477.599
+13100 : loss = 412.307
+13200 : loss = 349.153
+13300 : loss = 326.747
+13400 : loss = 368.028
+13500 : loss = 275.979
+15 : time = 1666.742 
+Top 3: 0.8729736288626433
+Top 5: 0.9284608747236149
+
+13600 : loss = 330.500
