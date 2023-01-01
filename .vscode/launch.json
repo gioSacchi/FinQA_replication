@@ -1,0 +1,18 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "args": ["--model", "E:\\FinQA_replication\\code\\pipeline\\wsd_SR\\model\\best_checkpoint_val_f1=0.7626_epoch=018.ckpt", "--processor", "E:\\FinQA_replication\\code\\pipeline\\wsd_SR\\model\\processor_config.json", "--model_input", "data\\preprocessed\\all\\all.json", "--model_output", "predictions.txt"],
+            // "args": ["checkpoints\\bert-large\\best_checkpoint_val_f1=0.7626_epoch=018.ckpt", "checkpoints\\bert-large\\processor_config.json", "data\\preprocessed\\all\\all.json", "predictions.txt", "data\\original\\all\\ALL.gold.key.txt"], "--evaluation_input", "data\\original\\all\\ALL.gold.key.txt"
+        }
+    ]
+}

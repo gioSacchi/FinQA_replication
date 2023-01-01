@@ -52,6 +52,14 @@ test_data, test_examples, op_list, const_list = \
     read_examples(input_path=conf.test_file, tokenizer=tokenizer,
                   op_list=op_list, const_list=const_list, log_file=log_file)
 
+train_data, train_examples, op_list, const_list = \
+    read_examples(input_path=conf.train_file, tokenizer=tokenizer,
+                  op_list=op_list, const_list=const_list, log_file=log_file)
+
+valid_data, valid_examples, op_list, const_list = \
+    read_examples(input_path=conf.valid_file, tokenizer=tokenizer,
+                  op_list=op_list, const_list=const_list, log_file=log_file)
+
 kwargs = {"examples": test_examples,
           "tokenizer": tokenizer,
           "option": conf.option,
@@ -59,18 +67,23 @@ kwargs = {"examples": test_examples,
           "max_seq_length": conf.max_seq_length,
           }
 
-
 kwargs["examples"] = test_examples
 test_features = convert_examples_to_features(**kwargs)
-
+kwargs["examples"] = train_examples
+train_features = convert_examples_to_features(**kwargs)
+kwargs["examples"] = valid_examples
+valid_features = convert_examples_to_features(**kwargs)
+features = {"test": test_features, "train": train_features, "valid": valid_features}
 
 def generate(data_ori, data, model, ksave_dir, mode='valid'):
 
     pred_list = []
     pred_unk = []
 
-    ksave_dir_mode = os.path.join(ksave_dir, mode)
-    os.makedirs(ksave_dir_mode, exist_ok=True)
+    # ksave_dir_mode = os.path.join(ksave_dir, mode)
+    ksave_dir_mode = ksave_dir
+    # os.makedirs(ksave_dir_mode, exist_ok=True)
+    os.makedirs(ksave_dir_mode, exist_ok=False)
 
     data_iterator = DataLoader(
         is_training=False, data=data, batch_size=conf.batch_size_test, shuffle=False)
@@ -100,14 +113,14 @@ def generate(data_ori, data, model, ksave_dir, mode='valid'):
             input_mask = torch.tensor(input_mask).to(conf.device)
             segment_ids = torch.tensor(segment_ids).to(conf.device)
 
-            logits = model(True, input_ids, input_mask,
+            logits = model.forward(True, input_ids, input_mask,
                            segment_ids, device=conf.device)
 
             all_logits.extend(logits.tolist())
             all_filename_id.extend(filename_id)
             all_ind.extend(ind)
 
-    output_prediction_file = os.path.join(ksave_dir_mode,
+    output_prediction_file = os.path.join(ksave_dir_mode, conf.mode + "_" +
                                           "predictions.json")
 
     if mode == "valid":
@@ -116,12 +129,16 @@ def generate(data_ori, data, model, ksave_dir, mode='valid'):
     elif mode == "test":
         print_res = retrieve_evaluate(
             all_logits, all_filename_id, all_ind, output_prediction_file, conf.test_file, topn=conf.topn)
+    elif mode == "train":
+        # addition to allow for loop
+        print_res = retrieve_evaluate(
+            all_logits, all_filename_id, all_ind, output_prediction_file, conf.train_file, topn=conf.topn)
     else:
         # private data mode
         print_res = retrieve_evaluate_private(
             all_logits, all_filename_id, all_ind, output_prediction_file, conf.test_file, topn=conf.topn)
 
-    write_log(log_file, print_res)
+    write_log(log_file, mode +"\n"+ print_res)
     print(print_res)
     return
 
@@ -132,9 +149,11 @@ def generate_test():
 
     model = nn.DataParallel(model)
     model.to(conf.device)
-    model.load_state_dict(torch.load(conf.saved_model_path))
+    model.load_state_dict(torch.load(conf.saved_model_path, map_location=torch.device(conf.device)))
     model.eval()
-    generate(test_data, test_features, model, results_path, mode='test')
+
+    for key, feature in features.items():
+        generate(test_data, feature, model, results_path + "_" + key, mode=key)
 
 
 if __name__ == '__main__':

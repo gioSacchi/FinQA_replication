@@ -3,9 +3,9 @@ class parameters():
     prog_name = "generator"
 
     # set up your own path here
-    root_path = "your_project_path"
-    output_path = "path_to_store_outputs"
-    cache_dir = "path_for_other_cache"
+    root_path = "../"
+    output_path = "/content/gdrive/MyDrive/FinQAModels"
+    cache_dir = "../cache"
 
     model_save_name = "bert-base"
 
@@ -14,9 +14,15 @@ class parameters():
     # test_file = root_path + "dataset/test.json"
 
     ### files from the retriever results
-    train_file = root_path + "dataset/train_retrieve.json"
-    valid_file = root_path + "dataset/dev_retrieve.json"
-    test_file = root_path + "dataset/test_retrieve.json"
+    # train_file = r"E:\FinQA_replication\code\generator\files\converted_train_predictions.json"
+    # valid_file = r"E:\FinQA_replication\code\generator\files\converted_dev_predictions.json"
+    # test_file = r"E:\FinQA_replication\code\generator\files\converted_test_predictions.json"
+    train_file = "/content/gdrive/MyDrive/FinQAModels/converted_train_predictions.json"
+    valid_file = "/content/gdrive/MyDrive/FinQAModels/converted_dev_predictions.json"
+    
+    test_file = "/content/gdrive/MyDrive/FinQAModels/converted_test_predictions.json"
+    #test_file = "/content/gdrive/MyDrive/FinQAModels/converted_predictions_test_super.json"
+
 
     # infer table-only text-only
     # test_file = root_path + "dataset/test_retrieve_7k_text_only.json"
@@ -50,7 +56,11 @@ class parameters():
     # private: for testing private test data
     device = "cuda"
     mode = "train"
-    saved_model_path = output_path + "roberta-large-gold_20210713020324/saved_model/loads/119/model.pt"
+
+    resume_model_path = ""
+    # resume_model_path = output_path + "/" + "model_name.pt"
+    
+    saved_model_path = output_path + "/" + "model_name_edit.pt"
     build_summary = False
 
     sep_attention = True

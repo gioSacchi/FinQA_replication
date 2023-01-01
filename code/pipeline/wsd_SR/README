@@ -1,0 +1,30 @@
+# README for synonym replacement with WSD
+
+## Create environment
+Run the following the commands to create an environment with the necessary requirements.
+
+    conda create --name multilabel-wsd python=3.7
+
+    conda activate multilabel-wsd
+
+    conda install pytorch==1.5.0 cpuonly -c pytorch
+    OR
+    conda install pytorch==1.5.0 pytorch-cuda=XXX -c pytorch -c nvidia
+
+    pip install -r requirements.txt
+
+    pip install torch-scatter==2.0.5 -f https://pytorch-geometric.com/whl/torch-1.5.0+${CUDA}.html
+    
+    pip install torch-sparse==0.6.5 -f https://pytorch-geometric.com/whl/torch-1.5.0+${CUDA}.html
+
+where in requirements.txt `${CUDA}` should be replaced by either `cpu`, `cu92`, `cu101`, `cu102`, or `cu110` depending on your PyTorch installation. Similarly, XXX should also be changed to match the desired cuda virsion.
+
+## Download pre-trained model
+From https://drive.google.com/file/d/1Unfrd4432o6Xy89UD2W5unx4BYIpKyqE/view dowload the zip file. It will contain the pretrained model and a json file. Place the model and its processing json file in the model folder.
+
+## Run
+* Go to the config file in WSD_SR and edit the paths to the processor, model, traning data and output.
+
+* First time runs: Uncomment the nltk downloads in WSD_SR.py and WSD.py
+
+* Run WSD_SR.py

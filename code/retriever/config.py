@@ -33,7 +33,7 @@ class parameters():
     resume_model_path = ""
 
     ### to load the trained model in test time
-    saved_model_path = "/content/gdrive/MyDrive/Colab Notebooks/FinQA/6_model_cont.pt"
+    saved_model_path = "/content/gdrive/MyDrive/FinQAModels/" + "chosen_checkpoint.pt"
     build_summary = False
 
     option = "rand"
