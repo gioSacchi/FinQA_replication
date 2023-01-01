@@ -1,8 +1,54 @@
+import nltk
+# nltk.download('omw-1.4')
+# nltk.download('stopwords')
 import json
 from sympy import simplify
+import re
+from nltk import pos_tag
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
+from nltk.corpus import wordnet as wn
 
-all_ops = ["add", "subtract", "multiply", "divide", "exp", "greater", "table_max",
-           "table_min", "table_sum", "table_average"]
+lemmatizer = WordNetLemmatizer()
+
+
+all_ops = ["add", "subtract", "multiply", "divide", "exp", "greater", "table_max", "table_min", "table_sum", "table_average"]
+
+stop_words = set(stopwords.words('english'))
+
+def sentence_to_tokens(sentence):
+    # Tokenize the sentence
+    sentence_tokens = tokenize(sentence.lower())
+
+    # Remove the stop words
+    sentence_tokens = [token for token in sentence_tokens if token not in stop_words]
+
+    return sentence_tokens
+
+def sentence_to_tokens_and_lemmas(sentence):
+    # Tokenize the sentence
+    sentence_tokens = tokenize(sentence.lower())
+
+    #words + tags for lemmatisation
+    lemma_tags = pos_tag(sentence_tokens)
+
+    # lemmatize sentence
+    sentence_lemmas = []
+    for word, tag in lemma_tags:
+        tag = convert_to_wn_pos(tag)
+        if tag != None and tag != "":
+            sentence_lemmas.append(lemmatizer.lemmatize(word, tag))
+        else:
+            sentence_lemmas.append(lemmatizer.lemmatize(word))
+
+    # idenfy indecies of stop words in sentence_tokens
+    stop_word_indices = [i for i, x in enumerate(sentence_tokens) if x in stop_words]
+
+    # Remove indecies of stop words from sentence_tokens and sentence_lemmas
+    sentence_tokens = [token for i, token in enumerate(sentence_tokens) if i not in stop_word_indices]
+    sentence_lemmas = [lemma for i, lemma in enumerate(sentence_lemmas) if i not in stop_word_indices]
+
+    return sentence_tokens, sentence_lemmas
 
 def str_to_num(text):
 
@@ -360,20 +406,21 @@ def classify_rows(json_in, json_ori):
 
     return results_dict
 
+def convert_to_wn_pos(pos):
+    if pos.startswith("J"):
+        return wn.ADJ
+    elif pos.startswith("V"):
+        return wn.VERB
+    elif pos.startswith("N"):
+        return wn.NOUN
+    elif pos.startswith("R"):
+        return wn.ADV
+    elif pos == None:
+        return None
+    else:
+        return ""
 
-def main():
-    # input file, which is nbest_predictions.json, path 
-    pred_file = r"C:\Users\pingu\FinQA_replication\dataset\nbest_predictions.json"
-    # test file path, (dataset\test.json)
-    ori_file = r"C:\Users\pingu\FinQA_replication\dataset\test.json"
-    
-    # evaluate result and create dictionary of results
-    results_dict = classify_rows(pred_file, ori_file)
-
-    # save result
-    output_file = r"C:\Users\pingu\FinQA_replication\dataset_analysis\res.txt"
-    with open(output_file, "w") as f:
-        json.dump(results_dict, f, indent=4)
-
-if __name__ == "__main__":
-    main()
+def tokenize(text):
+    # get all words in text
+    words = re.findall(r'\b[a-zA-Z]+(?:\'[a-zA-Z]+)?\b', text)
+    return words

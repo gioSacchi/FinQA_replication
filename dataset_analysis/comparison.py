@@ -1,75 +1,11 @@
-import nltk
-# nltk.download('omw-1.4')
-# nltk.download('stopwords')
-from nltk.corpus import stopwords
 from gensim.models import KeyedVectors
-from nltk.stem import WordNetLemmatizer
-from nltk import pos_tag
-from nltk.corpus import wordnet as wn
 from time import time
 import json
-import re
 import pandas as pd
 import math
 import statistics
 import scipy.stats as stats
-
-lemmatizer = WordNetLemmatizer()
-
-stop_words = set(stopwords.words('english'))
-
-def convert_to_wn_pos(pos):
-    if pos.startswith("J"):
-        return wn.ADJ
-    elif pos.startswith("V"):
-        return wn.VERB
-    elif pos.startswith("N"):
-        return wn.NOUN
-    elif pos.startswith("R"):
-        return wn.ADV
-    elif pos == None:
-        return None
-    else:
-        return ""
-
-def tokenize(text):
-    # get all words in text
-    words = re.findall(r'\b[a-zA-Z]+(?:\'[a-zA-Z]+)?\b', text)
-    return words
-
-def sentence_to_tokens(sentence):
-    # Tokenize the sentence
-    sentence_tokens = tokenize(sentence.lower())
-
-    # Remove the stop words
-    sentence_tokens = [token for token in sentence_tokens if token not in stop_words]
-
-    return sentence_tokens
-
-def sentence_to_tokens_and_lemmas(sentence):
-    # Tokenize the sentence
-    sentence_tokens = tokenize(sentence.lower())
-
-    #words + tags for lemmatisation
-    lemma_tags = pos_tag(sentence_tokens)
-
-    # lemmatize sentence
-    sentence_lemmas = []
-    for word, tag in lemma_tags:
-        tag = convert_to_wn_pos(tag)
-        if tag != None and tag != "":
-            sentence_lemmas.append(lemmatizer.lemmatize(word, tag))
-        else:
-            sentence_lemmas.append(lemmatizer.lemmatize(word))
-
-    # idenfy indecies of stop words in sentence_tokens
-    stop_word_indices = [i for i, x in enumerate(sentence_tokens) if x in stop_words]
-
-    # Remove indecies of stop words from sentence_tokens and sentence_lemmas
-    sentence_tokens = [token for i, token in enumerate(sentence_tokens) if i not in stop_word_indices]
-    sentence_lemmas = [lemma for i, lemma in enumerate(sentence_lemmas) if i not in stop_word_indices]
-
-    return sentence_tokens, sentence_lemmas
+from anal_util import *
 
 """Calculate the Word Mover's Distance between two sentences"""
 def WMD(sentence1, sentence2, model):
@@ -342,14 +278,19 @@ def analysis_min_ind(df, results_dict, model = None):
     return class_data
 
 def main():
-    # open result file
-    res_file = r"C:\Users\pingu\FinQA_replication\dataset_analysis\res.txt" 
-    with open(res_file) as infile:
-        results_dict = json.load(infile)
+    # input file, which is nbest_predictions.json, path 
+    pred_file = r"C:\Users\pingu\FinQA_replication\dataset\nbest_predictions.json"
+    # test file path, (dataset\test.json)
+    ori_file = r"C:\Users\pingu\FinQA_replication\dataset\test.json"
+    
+    # evaluate result and create dictionary of results
+    results_dict = classify_rows(pred_file, ori_file)
 
     # load data
-    data_file = r"C:\Users\pingu\FinQA_replication\dataset\test.json"
-    df = pd.read_json(data_file)
+    df = pd.read_json(ori_file)
+
+    #################
+    # WMD
 
     # load model
     # t1 = time()
@@ -360,10 +301,14 @@ def main():
     # class_data = analysis(df, results_dict, model)
     # class_data = analysis_min_ind(df, results_dict, model)
 
+    #################
+    # intersection ratio
+
     # make analysis
     # class_data = analysis(df, results_dict)
     class_data = analysis_max_ind_lemma(df, results_dict)
     
+    #################
 
     # test significance of results (t-test) on correct and incorrect
     correct = class_data["correct"]
