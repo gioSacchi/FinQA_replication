@@ -114,46 +114,55 @@ def preprocess_text(row):
     question = qa['question']
     question_tokens = tokenize(question)
 
-    #words + tags for lemmatisation
-    lemma_tags = pos_tag(question_tokens)
+    # check if question_tokens is empty
+    if len(question_tokens) != 0:
+        #words + tags for lemmatisation
+        lemma_tags = pos_tag(question_tokens)
 
-    #tags for WSD
-    question_tags = [tag for _, tag in nltk.pos_tag(question_tokens, tagset='universal')]
-    question_lemmas = []
+        #tags for WSD
+        question_tags = [tag for _, tag in nltk.pos_tag(question_tokens, tagset='universal')]
+        question_lemmas = []
 
-    # lemmatize question
-    for word, tag in lemma_tags:
-        tag = convert_to_wn_pos(tag)
-        if tag != None and tag != "":
-            question_lemmas.append(lemmatizer.lemmatize(word, tag))
-        else:
-            question_lemmas.append(lemmatizer.lemmatize(word))
+        # lemmatize question
+        for word, tag in lemma_tags:
+            tag = convert_to_wn_pos(tag)
+            if tag != None and tag != "":
+                question_lemmas.append(lemmatizer.lemmatize(word, tag))
+            else:
+                question_lemmas.append(lemmatizer.lemmatize(word))
 
-    # determine indicies of words eligible for selection for WSD
-    # only select words that are not stop words and are in allowed word classes
-    allowed_indecies = []
-    for i, tag in enumerate(question_tags):
-        if tag in allowed_word_classes_WSD and question_tokens[i].lower() not in stop_words:
-            allowed_indecies.append(i)    
-    
-    # randomly select n words from eligible words
-    threshold = 0.35 + 0.65*random.random()
-    n = math.ceil(len(allowed_indecies) * threshold)
-    selected_indecies = random.sample(allowed_indecies, n)
+        # determine indicies of words eligible for selection for WSD
+        # only select words that are not stop words and are in allowed word classes
+        allowed_indecies = []
+        for i, tag in enumerate(question_tags):
+            if tag in allowed_word_classes_WSD and question_tokens[i].lower() not in stop_words:
+                allowed_indecies.append(i)    
+        
+        # randomly select n words from eligible words
+        threshold = 0.35 + 0.65*random.random()
+        n = math.ceil(len(allowed_indecies) * threshold)
+        selected_indecies = random.sample(allowed_indecies, n)
 
-    #create dictionary for instace_ids
-    instance_ids = {i: id + "_question_" + str(i) for i in selected_indecies}
+        # check if selected_indecies is empty
+        if len(selected_indecies) != 0:
+            #create dictionary for instace_ids
+            instance_ids = {i: id + "_question_" + str(i) for i in selected_indecies}
 
-    question_dict = {"sentence_id": id + "_question" , "words": question_tokens, "lemmas": question_lemmas, "pos_tags": question_tags, "instance_ids": instance_ids}
-    processed_row.append(question_dict)
-    
-    # update map_dict
-    map_dict["question"] = [id + "_question_" + str(i) for i in selected_indecies]
+            question_dict = {"sentence_id": id + "_question" , "words": question_tokens, "lemmas": question_lemmas, "pos_tags": question_tags, "instance_ids": instance_ids}
+            processed_row.append(question_dict)
+            
+            # update map_dict
+            map_dict["question"] = [id + "_question_" + str(i) for i in selected_indecies]
 
     # break down gold_inds into tokens¨
     gold_inds = qa['gold_inds']
-    for key, value in gold_inds.items():
-        gold_ind_tokens = tokenize(value)
+    for ind_key, text in gold_inds.items():
+        gold_ind_tokens = tokenize(text)
+
+        # check if gold_ind_tokens is empty
+        if len(gold_ind_tokens) == 0:
+            continue
+
         gold_ind_lemmas = []
         gold_ind_tags = [tag for _, tag in nltk.pos_tag(gold_ind_tokens, tagset='universal')]
         lemma_tags = pos_tag(gold_ind_tokens)
@@ -178,13 +187,17 @@ def preprocess_text(row):
         n = math.ceil(len(allowed_indecies) * threshold)
         selected_indecies = random.sample(allowed_indecies, n)
 
+        # check if selected_indecies is empty
+        if len(selected_indecies) == 0:
+            continue
+
         # make instane ids for gold inds
-        instance_ids = {i: id + "_" + key + "_" + str(i) for i in selected_indecies}
-        gold_ind_dict = {"sentence_id": id + "_" + key, "words": gold_ind_tokens, "lemmas": gold_ind_lemmas, "pos_tags": gold_ind_tags, "instance_ids": instance_ids}
+        instance_ids = {i: id + "_" + ind_key + "_" + str(i) for i in selected_indecies}
+        gold_ind_dict = {"sentence_id": id + "_" + ind_key, "words": gold_ind_tokens, "lemmas": gold_ind_lemmas, "pos_tags": gold_ind_tags, "instance_ids": instance_ids}
         processed_row.append(gold_ind_dict)
 
         # update map_dict
-        map_dict[key] = [id + "_" + key + "_" + str(i) for i in selected_indecies]
+        map_dict[ind_key] = [id + "_" + ind_key + "_" + str(i) for i in selected_indecies]
 
     return processed_row, map_dict # TODO: add n_aug so same rows are different
 
@@ -293,11 +306,15 @@ def main():
 
     # loop through big map and create new rows
     # i.e. replace words with synonym and add new row to dataframe
-    for key, key_map in big_map.items():
+    for dfindex_n, key_map in big_map.items():
         # get row
-        row_index, n = key.split("_")
+        row_index, n = dfindex_n.split("_")
         row = df.iloc[int(row_index)]
         new_row = deepcopy(row.to_dict())
+
+        # check if key map is empty, skip if it is
+        if not key_map:
+            continue
 
         # go though key map and replace words with synonyms from wsd_output
         new_row = create_row(new_row, key_map, wsd_output) # TODO: add check for Invalid lemma
