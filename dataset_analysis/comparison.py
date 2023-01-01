@@ -343,7 +343,7 @@ def analysis_min_ind(df, results_dict, model = None):
 
 def main():
     # open result file
-    res_file = r"C:\Users\pingu\FinQA_replication\res.txt" 
+    res_file = r"C:\Users\pingu\FinQA_replication\dataset_analysis\res.txt" 
     with open(res_file) as infile:
         results_dict = json.load(infile)
 
