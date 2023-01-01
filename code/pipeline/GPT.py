@@ -37,7 +37,12 @@ def create_augmentations(row, n_aug, augment_pre, model):
     quest_sentence = augment_pre + new_rows[0]['qa']['question'] + "'"
     
     # Make the API call to OpenAI to get augmentations
-    qustion_comp = openai.Completion.create(engine=model, prompt=quest_sentence, max_tokens=1024, temperature=temperatue, top_p=top_p)
+    try:
+        qustion_comp = openai.Completion.create(engine=model, prompt=quest_sentence, max_tokens=1024, temperature=temperatue, top_p=top_p)
+    except:
+        print("api error")
+        time.sleep(30)
+        qustion_comp = openai.Completion.create(engine=model, prompt=quest_sentence, max_tokens=1024, temperature=temperatue, top_p=top_p)
     question_list = qustion_comp.choices[0]["text"].split("\n")
 
     time.sleep(3)
@@ -110,7 +115,12 @@ def create_augmentations(row, n_aug, augment_pre, model):
 
         # create sentence to augment and create list of augmentations
         gold_sentence = augment_pre + text + "'"
-        gold_comp = openai.Completion.create(engine=model, prompt=gold_sentence, max_tokens=1024, temperature=temperatue, top_p=top_p)
+        try:
+            gold_comp = openai.Completion.create(engine=model, prompt=gold_sentence, max_tokens=1024, temperature=temperatue, top_p=top_p)
+        except:
+            print("api error")
+            time.sleep(30)
+            gold_comp = openai.Completion.create(engine=model, prompt=gold_sentence, max_tokens=1024, temperature=temperatue, top_p=top_p)
         gold_list = gold_comp.choices[0]["text"].split("\n")
 
         time.sleep(3)
@@ -185,7 +195,7 @@ def create_augmentations(row, n_aug, augment_pre, model):
 
 def main():
     # Set the API key
-    openai.api_key = "add your key here"
+    openai.api_key = "api_key"
 
     # Set the prompt and model
     n_aug = 5
