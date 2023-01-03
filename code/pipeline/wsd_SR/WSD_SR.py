@@ -6,6 +6,7 @@ from config import parameters as conf
 from WSD import WSD
 from copy import deepcopy
 import re
+import json
 
 
 # download nltk packages first time
@@ -157,6 +158,10 @@ def preprocess_text(row):
     # break down gold_inds into tokens¨
     gold_inds = qa['gold_inds']
     for ind_key, text in gold_inds.items():
+        # skip if table
+        if "table" in ind_key:
+            continue
+
         gold_ind_tokens = tokenize(text)
 
         # check if gold_ind_tokens is empty
@@ -199,7 +204,7 @@ def preprocess_text(row):
         # update map_dict
         map_dict[ind_key] = [id + "_" + ind_key + "_" + str(i) for i in selected_indecies]
 
-    return processed_row, map_dict # TODO: add n_aug so same rows are different
+    return processed_row, map_dict
 
 def create_row(row, key_map, wsd_output):
     # index of first row in post_text
@@ -252,7 +257,19 @@ def create_row(row, key_map, wsd_output):
             if text_index < break_point:
                 row['pre_text'][text_index] = new_text
             else:
-                row['post_text'][text_index - break_point] = new_text
+                try:
+                    row['post_text'][text_index - break_point] = new_text
+                except:
+                    print("ERROR")
+                    print(text_index)
+                    print(break_point)
+                    print(row['post_text'])
+                    print(row['qa']['gold_inds'])
+                    print(key)
+                    print(text)
+                    print(new_text)
+                    print(meanings)
+                    print(indecies)
 
             # store texts for later
             total_new += new_text + " "
@@ -286,7 +303,7 @@ def main():
     for df_index, row in df.iterrows():
         row['qa'] = {"question": row['qa']["question"], "program": row['qa']["program"], "gold_inds": row['qa']["gold_inds"], "exe_ans": row['qa']["exe_ans"], "program_re": row['qa']["program_re"]}
         
-        if df_index % 100 == 0:
+        if df_index % 10 == 0:
             print(df_index)
         
         for n in range(num_aug):
@@ -302,6 +319,26 @@ def main():
     # call wsd and get meanings of selected words
     wsd_output = WSD(big_augmentation_dict)
 
+    #########################################
+
+    # save wsd output and big map with json
+    wsd_output_path = r"C:\Users\pingu\FinQA_replication\code\pipeline\wsd_SR\output\wsd_output.json"
+    with open(wsd_output_path, 'w') as fp:
+        json.dump(wsd_output, fp, indent=4)
+    big_map_path = r"C:\Users\pingu\FinQA_replication\code\pipeline\wsd_SR\output\big_map.json"
+    with open(big_map_path, 'w') as fp:
+        json.dump(big_map, fp, indent=4)  
+
+    # load wsd output and big map
+    wsd_output_path = r"C:\Users\pingu\FinQA_replication\code\pipeline\wsd_SR\output\wsd_output.json"
+    with open(wsd_output_path, 'r') as fp:
+        wsd_output = json.load(fp)
+    big_map_path = r"C:\Users\pingu\FinQA_replication\code\pipeline\wsd_SR\output\big_map.json"
+    with open(big_map_path, 'r') as fp:
+        big_map = json.load(fp)
+
+    #########################################
+    
     counter = 0
 
     # loop through big map and create new rows
@@ -317,14 +354,14 @@ def main():
             continue
 
         # go though key map and replace words with synonyms from wsd_output
-        new_row = create_row(new_row, key_map, wsd_output) # TODO: add check for Invalid lemma
+        new_row = create_row(new_row, key_map, wsd_output)
 
         if new_row:
             new_row['id'] = new_row['id'] + "_WSD_SR_" + str(row_index) + "_" + n
             df = pd.DataFrame.append(df, new_row, ignore_index=True)
         
         counter += 1
-        if counter % 100 == 0:
+        if counter % 10 == 0:
             print(counter)
 
     print(len(df))

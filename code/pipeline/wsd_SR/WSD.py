@@ -55,7 +55,8 @@ def WSD(input):
             predictions.update(batch_predictions)
             
             counter += 1
-            print(counter)  
+            if counter % 5 == 0:
+                print("The counter is: ", counter)  
 
     predictions = sorted(list(predictions.items()), key=lambda kv: kv[0])
 
