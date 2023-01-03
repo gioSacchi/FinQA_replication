@@ -19,31 +19,31 @@ import torch.optim as optim
 from Model_new import Bert_model
 
 if conf.pretrained_model == "bert":
-    print("Using bert")
-    from transformers import BertTokenizer
-    from transformers import BertConfig
-    tokenizer = BertTokenizer.from_pretrained(conf.model_size)
-    model_config = BertConfig.from_pretrained(conf.model_size)
+  print("Using bert")
+  from transformers import BertTokenizer
+  from transformers import BertConfig
+  tokenizer = BertTokenizer.from_pretrained(conf.model_size)
+  model_config = BertConfig.from_pretrained(conf.model_size)
 
 elif conf.pretrained_model == "roberta":
-    print("Using roberta")
-    from transformers import RobertaTokenizer
-    from transformers import RobertaConfig
-    tokenizer = RobertaTokenizer.from_pretrained(conf.model_size)
-    model_config = RobertaConfig.from_pretrained(conf.model_size)
+  print("Using roberta")
+  from transformers import RobertaTokenizer
+  from transformers import RobertaConfig
+  tokenizer = RobertaTokenizer.from_pretrained(conf.model_size)
+  model_config = RobertaConfig.from_pretrained(conf.model_size)
 
 elif conf.pretrained_model == "finbert":
-    print("Using finbert")
-    from transformers import BertTokenizer
-    from transformers import BertConfig
-    tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
-    model_config = BertConfig.from_pretrained(conf.model_size)
+  print("Using finbert")
+  from transformers import BertTokenizer
+  from transformers import BertConfig
+  tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
+  model_config = BertConfig.from_pretrained(conf.model_size)
 
 elif conf.pretrained_model == "longformer":
-    print("Using longformer")
-    from transformers import LongformerTokenizer, LongformerConfig
-    tokenizer = LongformerTokenizer.from_pretrained(conf.model_size)
-    model_config = LongformerConfig.from_pretrained(conf.model_size)
+  print("Using longformer")
+  from transformers import LongformerTokenizer, LongformerConfig
+  tokenizer = LongformerTokenizer.from_pretrained(conf.model_size)
+  model_config = LongformerConfig.from_pretrained(conf.model_size)
 
 
 saved_model_path = os.path.join(conf.output_path, conf.saved_model_path)
@@ -84,109 +84,182 @@ kwargs = {"examples": test_examples,
 test_features = convert_examples_to_features(**kwargs)
 
 
+def bertviz():
+  model = Bert_model(num_decoder_layers=conf.num_decoder_layers,
+                     hidden_size=model_config.hidden_size,
+                     dropout_rate=conf.dropout_rate,
+                     program_length=conf.max_program_length,
+                     input_length=conf.max_seq_length,
+                     op_list=op_list,
+                     const_list=const_list)
+  bertmodel = model
+  model = nn.DataParallel(model)
+  model.to(conf.device)
+  model.load_state_dict(torch.load(conf.saved_model_path,
+                        map_location=torch.device('cpu')))
+  model.eval()
+
+  data_ori = test_examples
+  data = test_features
+  model = model
+  ksave_dir = results_path
+  mode = 'test'
+
+  pred_list = []
+  pred_unk = []
+
+  # ksave_dir_mode = os.path.join(ksave_dir, mode)
+  ksave_dir_mode = ksave_dir
+  os.makedirs(ksave_dir_mode, exist_ok=True)
+  # os.makedirs(ksave_dir_mode, exist_ok=False)
+
+  data_iterator = DataLoader(
+      is_training=False, data=data, batch_size=conf.batch_size_test, reserved_token_size=reserved_token_size, shuffle=False)
+
+  k = 0
+  all_results = []
+
+  x = data_iterator[1142]
+
+  with torch.no_grad():
+    # Extract the same from first index of x
+    input_ids = [x['input_ids'][0]]
+    input_mask = [x['input_mask'][0]]
+    segment_ids = [x['segment_ids'][0]]
+    program_ids = [x['program_ids'][0]]
+    program_mask = [x['program_mask'][0]]
+    option_mask = [x['option_mask'][0]]
+
+    ori_len = len(input_ids)
+    for each_item in [input_ids, input_mask, segment_ids, program_ids, program_mask, option_mask]:
+      if ori_len < 1:
+        each_len = len(each_item[0])
+        pad_x = [0] * each_len
+        each_item += [pad_x] * (1 - ori_len)
+
+    input_ids = torch.tensor(input_ids).to(conf.device)
+    input_mask = torch.tensor(input_mask).to(conf.device)
+    segment_ids = torch.tensor(segment_ids).to(conf.device)
+    program_ids = torch.tensor(program_ids).to(conf.device)
+    program_mask = torch.tensor(program_mask).to(conf.device)
+    option_mask = torch.tensor(option_mask).to(conf.device)
+
+    bert_outputs = bertmodel.bert(
+        input_ids=input_ids, attention_mask=input_mask, token_type_ids=segment_ids)
+
+    if len(x["tokens"][0]) < 512:
+      length = len(x["tokens"][0])
+
+      # Add padding to the end of the sequence
+      x["tokens"][0] = x["tokens"][0] + ["[PAD]"] * (512 - length)
+
+    from bertviz import model_view
+    model_view(bert_outputs[-1], x["tokens"][0])
+
+
 def generate(data_ori, data, model, ksave_dir, mode='valid'):
 
-    pred_list = []
-    pred_unk = []
+  pred_list = []
+  pred_unk = []
 
-    # ksave_dir_mode = os.path.join(ksave_dir, mode)
-    ksave_dir_mode = ksave_dir
-    os.makedirs(ksave_dir_mode, exist_ok=True)
-    # os.makedirs(ksave_dir_mode, exist_ok=False)
+  # ksave_dir_mode = os.path.join(ksave_dir, mode)
+  ksave_dir_mode = ksave_dir
+  os.makedirs(ksave_dir_mode, exist_ok=True)
+  # os.makedirs(ksave_dir_mode, exist_ok=False)
 
-    data_iterator = DataLoader(
-        is_training=False, data=data, batch_size=conf.batch_size_test, reserved_token_size=reserved_token_size, shuffle=False)
+  data_iterator = DataLoader(
+      is_training=False, data=data, batch_size=conf.batch_size_test, reserved_token_size=reserved_token_size, shuffle=False)
 
-    k = 0
-    all_results = []
-    with torch.no_grad():
-        for x in tqdm(data_iterator):
+  k = 0
+  all_results = []
+  with torch.no_grad():
+    for x in tqdm(data_iterator):
 
-            input_ids = x['input_ids']
-            input_mask = x['input_mask']
-            segment_ids = x['segment_ids']
-            program_ids = x['program_ids']
-            program_mask = x['program_mask']
-            option_mask = x['option_mask']
+      input_ids = x['input_ids']
+      input_mask = x['input_mask']
+      segment_ids = x['segment_ids']
+      program_ids = x['program_ids']
+      program_mask = x['program_mask']
+      option_mask = x['option_mask']
 
-            ori_len = len(input_ids)
-            for each_item in [input_ids, input_mask, segment_ids, program_ids, program_mask, option_mask]:
-                if ori_len < conf.batch_size_test:
-                    each_len = len(each_item[0])
-                    pad_x = [0] * each_len
-                    each_item += [pad_x] * (conf.batch_size_test - ori_len)
+      ori_len = len(input_ids)
+      for each_item in [input_ids, input_mask, segment_ids, program_ids, program_mask, option_mask]:
+        if ori_len < conf.batch_size_test:
+          each_len = len(each_item[0])
+          pad_x = [0] * each_len
+          each_item += [pad_x] * (conf.batch_size_test - ori_len)
 
-            input_ids = torch.tensor(input_ids).to(conf.device)
-            input_mask = torch.tensor(input_mask).to(conf.device)
-            segment_ids = torch.tensor(segment_ids).to(conf.device)
-            program_ids = torch.tensor(program_ids).to(conf.device)
-            program_mask = torch.tensor(program_mask).to(conf.device)
-            option_mask = torch.tensor(option_mask).to(conf.device)
+      input_ids = torch.tensor(input_ids).to(conf.device)
+      input_mask = torch.tensor(input_mask).to(conf.device)
+      segment_ids = torch.tensor(segment_ids).to(conf.device)
+      program_ids = torch.tensor(program_ids).to(conf.device)
+      program_mask = torch.tensor(program_mask).to(conf.device)
+      option_mask = torch.tensor(option_mask).to(conf.device)
 
-            logits = model.forward(False, input_ids, input_mask,
-                           segment_ids, option_mask, program_ids, program_mask, device=conf.device)
+      logits = model.forward(False, input_ids, input_mask,
+                             segment_ids, option_mask, program_ids, program_mask, device=conf.device)
 
-            for this_logit, this_id in zip(logits.tolist(), x["unique_id"]):
-                all_results.append(
-                    RawResult(
-                        unique_id=int(this_id),
-                        logits=this_logit,
-                        loss=None
-                    ))
+      for this_logit, this_id in zip(logits.tolist(), x["unique_id"]):
+        all_results.append(
+            RawResult(
+                unique_id=int(this_id),
+                logits=this_logit,
+                loss=None
+            ))
 
-    output_prediction_file = os.path.join(ksave_dir_mode,
-                                          "predictions.json")
-    output_nbest_file = os.path.join(ksave_dir_mode,
-                                     "nbest_predictions.json")
-    output_eval_file = os.path.join(ksave_dir_mode, "evals.json")
+  output_prediction_file = os.path.join(ksave_dir_mode,
+                                        "predictions.json")
+  output_nbest_file = os.path.join(ksave_dir_mode,
+                                   "nbest_predictions.json")
+  output_eval_file = os.path.join(ksave_dir_mode, "evals.json")
 
-    all_predictions, all_nbest = compute_predictions(
-        data_ori,
-        data,
-        all_results,
-        n_best_size=conf.n_best_size,
-        max_program_length=conf.max_program_length,
-        tokenizer=tokenizer,
-        op_list=op_list,
-        op_list_size=len(op_list),
-        const_list=const_list,
-        const_list_size=len(const_list))
-    write_predictions(all_predictions, output_prediction_file)
-    write_predictions(all_nbest, output_nbest_file)
+  all_predictions, all_nbest = compute_predictions(
+      data_ori,
+      data,
+      all_results,
+      n_best_size=conf.n_best_size,
+      max_program_length=conf.max_program_length,
+      tokenizer=tokenizer,
+      op_list=op_list,
+      op_list_size=len(op_list),
+      const_list=const_list,
+      const_list_size=len(const_list))
+  write_predictions(all_predictions, output_prediction_file)
+  write_predictions(all_nbest, output_nbest_file)
 
-    return
+  return
 
 
 def generate_test():
-    model = Bert_model(num_decoder_layers=conf.num_decoder_layers,
-                       hidden_size=model_config.hidden_size,
-                       dropout_rate=conf.dropout_rate,
-                       program_length=conf.max_program_length,
-                       input_length=conf.max_seq_length,
-                       op_list=op_list,
-                       const_list=const_list)
-    model = nn.DataParallel(model)
-    model.to(conf.device)
-    model.load_state_dict(torch.load(conf.saved_model_path))
-    model.eval()
-    generate(test_examples, test_features, model, results_path, mode='test')
+  model = Bert_model(num_decoder_layers=conf.num_decoder_layers,
+                     hidden_size=model_config.hidden_size,
+                     dropout_rate=conf.dropout_rate,
+                     program_length=conf.max_program_length,
+                     input_length=conf.max_seq_length,
+                     op_list=op_list,
+                     const_list=const_list)
+  model = nn.DataParallel(model)
+  model.to(conf.device)
+  model.load_state_dict(torch.load(conf.saved_model_path))
+  model.eval()
+  generate(test_examples, test_features, model, results_path, mode='test')
 
-    if conf.mode != "private":
-        res_file = results_path + "/nbest_predictions.json"
-        error_file = results_path + "/full_results_error.json"
-        all_res_file = results_path + "/full_results.json"
-        evaluate_score(res_file, error_file, all_res_file)
+  if conf.mode != "private":
+    res_file = results_path + "/nbest_predictions.json"
+    error_file = results_path + "/full_results_error.json"
+    all_res_file = results_path + "/full_results.json"
+    evaluate_score(res_file, error_file, all_res_file)
 
 
 def evaluate_score(file_in, error_file, all_res_file):
 
-    exe_acc, prog_acc = evaluate_result(
-        file_in, conf.test_file, all_res_file, error_file, program_mode=conf.program_mode)
+  exe_acc, prog_acc = evaluate_result(
+      file_in, conf.test_file, all_res_file, error_file, program_mode=conf.program_mode)
 
-    prog_res = "exe acc: " + str(exe_acc) + " prog acc: " + str(prog_acc)
-    write_log(log_file, prog_res)
+  prog_res = "exe acc: " + str(exe_acc) + " prog acc: " + str(prog_acc)
+  write_log(log_file, prog_res)
 
 
 if __name__ == '__main__':
 
-    generate_test()
+  generate_test()

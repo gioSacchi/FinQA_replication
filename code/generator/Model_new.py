@@ -76,7 +76,7 @@ class Bert_model(nn.Module):
 
         if conf.pretrained_model == "bert":
             self.bert = BertModel.from_pretrained(
-                conf.model_size, cache_dir=conf.cache_dir)
+                conf.model_size, cache_dir=conf.cache_dir, output_attentions=True)
         elif conf.pretrained_model == "roberta":
             self.bert = RobertaModel.from_pretrained(
                 conf.model_size, cache_dir=conf.cache_dir)
@@ -131,11 +131,19 @@ class Bert_model(nn.Module):
         self.step_mix_proj = nn.Linear(
             hidden_size*2, hidden_size, bias=True)
 
-    def forward(self, is_training, input_ids, input_mask, segment_ids, option_mask, program_ids, program_mask, device):
+    def forward(self, is_training, input_ids, input_mask, segment_ids, option_mask, program_ids, program_mask, device, x=None):
 
         bert_outputs = self.bert(
             input_ids=input_ids, attention_mask=input_mask, token_type_ids=segment_ids)
 
+        # if len(x["tokens"][0]) < 512:
+        #     length = len(x["tokens"][0])
+            
+        #     # Add padding to the end of the sequence
+        #     x["tokens"][0] = x["tokens"][0] + ["[PAD]"] * (512 - length)
+
+        # from bertviz import model_view
+        # model_view(bert_outputs[-1], x["tokens"][0])
         bert_sequence_output = bert_outputs.last_hidden_state
         bert_pooled_output = bert_sequence_output[:, 0, :]
         batch_size, seq_length, bert_dim = list(bert_sequence_output.size())
