@@ -22,12 +22,12 @@ from sympy import simplify
 
 # Progress bar
 
-TOTAL_BAR_LENGTH = 100.
-last_time = time.time()
-begin_time = last_time
-print(os.popen('stty size', 'r').read())
-_, term_width = os.popen('stty size', 'r').read().split()
-term_width = int(term_width)
+# TOTAL_BAR_LENGTH = 100.
+# last_time = time.time()
+# begin_time = last_time
+# print(os.popen('stty size', 'r').read())
+# _, term_width = os.popen('stty size', 'r').read().split()
+# term_width = int(term_width)
 
 
 all_ops = ["add", "subtract", "multiply", "divide", "exp", "greater", "table_max",
@@ -407,6 +407,43 @@ class DataLoader:
             batch_data["program_ids"].append(each_data.program_ids)
             batch_data["program_weight"].append(each_data.program_weight)
             batch_data["program_mask"].append(each_data.program_mask)
+
+        return batch_data
+    
+
+    def __getitem__(self, index):
+        batch_data = {"unique_id": [],
+                      "example_index": [],
+                      "tokens": [],
+                      "question": [],
+                      "input_ids": [],
+                      "input_mask": [],
+                      "option_mask": [],
+                      "segment_ids": [],
+                      "options": [],
+                      "answer": [],
+                      "program": [],
+                      "program_ids": [],
+                      "program_weight": [],
+                      "program_mask": []}
+        
+        batch_data["option_mask"].append(self.data[index].option_mask)
+        batch_data["input_mask"].append(self.data[index].input_mask)
+
+        batch_data["unique_id"].append(self.data[index].unique_id)
+        batch_data["example_index"].append(self.data[index].example_index)
+        batch_data["tokens"].app
+        end(self.data[index].tokens)
+        batch_data["question"].append(self.data[index].question)
+        batch_data["input_ids"].append(self.data[index].input_ids)
+        batch_data["segment_ids"].append(self.data[index].segment_ids)
+        batch_data["options"].append(self.data[index].options)
+        batch_data["answer"].append(self.data[index].answer)
+        batch_data["program"].append(self.data[index].program)
+        batch_data["program_ids"].append(self.data[index].program_ids)
+        batch_data["program_weight"].append(self.data[index].program_weight)
+        batch_data["program_mask"].append(self.data[index].program_mask)
+        
 
         return batch_data
 
@@ -822,6 +859,13 @@ def evaluate_result(json_in, json_ori, all_res_file, error_file, program_mode):
                     print(gold_res)
                     print(exe_res)
                     print(each_ori_data["id"])
+            else:
+                print(each_id)
+                print(gold)
+                print(pred)
+                print(gold_res)
+                print(exe_res)
+                print(each_ori_data["id"])
 
         each_ori_data["qa"]["predicted"] = pred
 
