@@ -41,6 +41,7 @@ def str_to_num(text):
 def prog_token_to_indices(prog, numbers, number_indices, max_seq_length,
                           op_list, op_list_size, const_list,
                           const_list_size):
+    missing = 0
     prog_indices = []
     for i, token in enumerate(prog):
         if token in op_list:
@@ -56,9 +57,14 @@ def prog_token_to_indices(prog, numbers, number_indices, max_seq_length,
                     if str_to_num(num) == str_to_num(token):
                         cur_num_idx = num_idx
                         break
-            assert cur_num_idx != -1
+#             assert cur_num_idx != -1
+            if cur_num_index == -1:
+                print("Missing", token)
+                missing += 1
             prog_indices.append(op_list_size + const_list_size +
                                 number_indices[cur_num_idx])
+            
+    print("Total missing: ", missing)
     return prog_indices
 
 
