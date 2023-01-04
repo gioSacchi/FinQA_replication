@@ -69,8 +69,8 @@ def replace_nth_instance(text, n, old, new):
 
 def replacement(text, meanings, indecies):
     # iterate through meanings and indecies
+    words = tokenize(text)
     for meaning, index in zip(meanings, indecies):
-        words = tokenize(text)
         word = words[index]
         pos = meaning.split(".")[-2]
         lemma = lemmatizer.lemmatize(word, pos=pos)
@@ -121,7 +121,7 @@ def preprocess_text(row):
         lemma_tags = pos_tag(question_tokens)
 
         #tags for WSD
-        question_tags = [tag for _, tag in nltk.pos_tag(question_tokens, tagset='universal')]
+        question_tags = [tag for _, tag in pos_tag(question_tokens, tagset='universal')]
         question_lemmas = []
 
         # lemmatize question
@@ -169,7 +169,7 @@ def preprocess_text(row):
             continue
 
         gold_ind_lemmas = []
-        gold_ind_tags = [tag for _, tag in nltk.pos_tag(gold_ind_tokens, tagset='universal')]
+        gold_ind_tags = [tag for _, tag in pos_tag(gold_ind_tokens, tagset='universal')]
         lemma_tags = pos_tag(gold_ind_tokens)
 
         # lemmatize gold_ind
@@ -319,25 +319,25 @@ def main():
     # call wsd and get meanings of selected words
     wsd_output = WSD(big_augmentation_dict)
 
-    #########################################
+    # #########################################
 
-    # save wsd output and big map with json
-    wsd_output_path = r"C:\Users\pingu\FinQA_replication\code\pipeline\wsd_SR\output\wsd_output.json"
-    with open(wsd_output_path, 'w') as fp:
-        json.dump(wsd_output, fp, indent=4)
-    big_map_path = r"C:\Users\pingu\FinQA_replication\code\pipeline\wsd_SR\output\big_map.json"
-    with open(big_map_path, 'w') as fp:
-        json.dump(big_map, fp, indent=4)  
+    # # save wsd output and big map with json
+    # wsd_output_path = r"C:\Users\pingu\FinQA_replication\code\pipeline\wsd_SR\output\wsd_output.json"
+    # with open(wsd_output_path, 'w') as fp:
+    #     json.dump(wsd_output, fp, indent=4)
+    # big_map_path = r"C:\Users\pingu\FinQA_replication\code\pipeline\wsd_SR\output\big_map.json"
+    # with open(big_map_path, 'w') as fp:
+    #     json.dump(big_map, fp, indent=4)  
 
-    # load wsd output and big map
-    wsd_output_path = r"C:\Users\pingu\FinQA_replication\code\pipeline\wsd_SR\output\wsd_output.json"
-    with open(wsd_output_path, 'r') as fp:
-        wsd_output = json.load(fp)
-    big_map_path = r"C:\Users\pingu\FinQA_replication\code\pipeline\wsd_SR\output\big_map.json"
-    with open(big_map_path, 'r') as fp:
-        big_map = json.load(fp)
+    # # load wsd output and big map
+    # wsd_output_path = r"C:\Users\pingu\FinQA_replication\code\pipeline\wsd_SR\output\wsd_output.json"
+    # with open(wsd_output_path, 'r') as fp:
+    #     wsd_output = json.load(fp)
+    # big_map_path = r"C:\Users\pingu\FinQA_replication\code\pipeline\wsd_SR\output\big_map.json"
+    # with open(big_map_path, 'r') as fp:
+    #     big_map = json.load(fp)
 
-    #########################################
+    # #########################################
     
     counter = 0
 
@@ -361,7 +361,7 @@ def main():
             df = pd.DataFrame.append(df, new_row, ignore_index=True)
         
         counter += 1
-        if counter % 10 == 0:
+        if counter % 100 == 0:
             print(counter)
 
     print(len(df))
