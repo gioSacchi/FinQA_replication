@@ -63,8 +63,8 @@ def prog_token_to_indices(prog, numbers, number_indices, max_seq_length,
                 missing += 1
             prog_indices.append(op_list_size + const_list_size +
                                 number_indices[cur_num_idx])
-            
-    print("Total missing: ", missing)
+    if missing > 0:
+        print("Total missing: ", missing)
     return prog_indices
 
 
