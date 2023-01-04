@@ -58,7 +58,7 @@ def prog_token_to_indices(prog, numbers, number_indices, max_seq_length,
                         cur_num_idx = num_idx
                         break
 #             assert cur_num_idx != -1
-            if cur_num_index == -1:
+            if cur_num_idx == -1:
                 print("Missing", token)
                 missing += 1
             prog_indices.append(op_list_size + const_list_size +
