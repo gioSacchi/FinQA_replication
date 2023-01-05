@@ -128,9 +128,14 @@ def main():
     openai.api_key = "api_key_here"
 
     # Set the prompt and model
-    augment_pre = "Write a grammar corrected version of the entire following sentence: '"
-    augment_post = "'. Any ';' that are in the sentence should be left as is."
     model = "text-davinci-003"
+    # conservative prompt
+    # augment_pre = "Write a grammar corrected version of the entire following sentence: '"
+    # augment_post = "'. Any ';' that are in the sentence should be left as is."
+    
+    # aggressive prompt, may want to change top_p and temperature
+    augment_pre = "Write a rephrased version of the following sentence: '"
+    augment_post = "'. Any ';' that are in the sentence should be left as is."
 
     # Read in the data
     input_path = r"C:\Users\pingu\FinQA_replication\dataset\test.json"
@@ -140,12 +145,12 @@ def main():
     df = df.drop(['table_retrieved','text_retrieved','table_retrieved_all','text_retrieved_all', 'table_ori', 'filename'], axis=1)
 
     # load data from previous step if it exists
-    output_path = r"C:\Users\pingu\FinQA_replication\dataset\test_GPT_fix.json"
+    output_path = r"C:\Users\pingu\FinQA_replication\dataset\test_GPT_rephrase.json"
     if os.path.exists(output_path):
         # Load data from previous step
         df_fix = pd.read_json(output_path)
         # last line of log file
-        status_index = int(open(r"C:\Users\pingu\FinQA_replication\dataset\test_GPT_fix_log.txt", "r").readlines()[-1])
+        status_index = int(open(r"C:\Users\pingu\FinQA_replication\dataset\test_GPT_rephrase_log.txt", "r").readlines()[-1])
     else:
         # Create new empty dataframe
         df_fix = pd.DataFrame()
@@ -167,7 +172,7 @@ def main():
 
         if new_row is not None:
             # add new rows to df_fix
-            new_row['id'] = new_row['id'] + "_GPT_fixed"
+            new_row['id'] = new_row['id'] + "_GPT_rephrased"
             df_fix = pd.concat([df_fix, pd.DataFrame([new_row])], ignore_index=True)
         
         # print progress and save
@@ -175,7 +180,7 @@ def main():
             # save df to json
             df_fix.to_json(output_path, orient='records', indent=4)
             # in log file save (create it if necessary) the last index that was augmented on new line
-            with open(r"C:\Users\pingu\FinQA_replication\dataset\test_GPT_fix_log.txt", "a+") as f:
+            with open(r"C:\Users\pingu\FinQA_replication\dataset\test_GPT_rephrase_log.txt", "a+") as f:
                 f.write(str(df_index) + "\n")
             print(df_index)
 
