@@ -17,10 +17,10 @@ class parameters():
     # train_file = r"E:\FinQA_replication\code\generator\files\converted_train_predictions.json"
     # valid_file = r"E:\FinQA_replication\code\generator\files\converted_dev_predictions.json"
     # test_file = r"E:\FinQA_replication\code\generator\files\converted_test_predictions.json"
-    train_file = "/content/gdrive/MyDrive/FinQAModels/converted_train_predictions.json"
-    valid_file = "/content/gdrive/MyDrive/FinQAModels/converted_dev_predictions.json"
+    train_file = "/content/gdrive/MyDrive/FinQA/generator_files/converted_train_predictions.json"
+    valid_file = "/content/gdrive/MyDrive/FinQA/generator_files/converted_dev_predictions.json"
     
-    test_file = "/content/gdrive/MyDrive/FinQAModels/converted_test_predictions.json"
+    test_file = "/content/gdrive/MyDrive/FinQA/generator_files/converted_test_predictions.json"
     #test_file = "/content/gdrive/MyDrive/FinQAModels/converted_predictions_test_super.json"
 
 
@@ -47,7 +47,7 @@ class parameters():
 
     # single sent or sliding window
     # single, slide, gold, none
-    retrieve_mode = "single"
+    retrieve_mode = "gold"
 
     # use seq program or nested program
     program_mode = "seq"
