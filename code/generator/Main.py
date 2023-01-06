@@ -125,6 +125,8 @@ def train():
 
     model = nn.DataParallel(model)
     model.to(conf.device)
+    if conf.resume_model_path:
+        model.load_state_dict(torch.load(conf.resume_model_path))
     optimizer = optim.Adam(model.parameters(), conf.learning_rate)
     criterion = nn.CrossEntropyLoss(reduction='none', ignore_index=-1)
     model.train()
@@ -153,7 +155,7 @@ def train():
             model.zero_grad()
             optimizer.zero_grad()
 
-            this_logits = model(True, input_ids, input_mask, segment_ids,
+            this_logits = model.forward(True, input_ids, input_mask, segment_ids,
                                 option_mask, program_ids, program_mask, device=conf.device)
 
             this_loss = criterion(
@@ -185,15 +187,19 @@ def train():
                 if k // conf.report >= 1:
                     print("Val test")
                     # save model
-                    saved_model_path_cnt = os.path.join(
-                        saved_model_path, 'loads', str(k // conf.report))
-                    os.makedirs(saved_model_path_cnt, exist_ok=True)
+                    # saved_model_path_cnt = os.path.join(
+                    #     saved_model_path, 'loads', str(k // conf.report))
+                    saved_model_path_cnt = saved_model_path
+                    # os.makedirs(saved_model_path_cnt, exist_ok=True)
+                    os.makedirs(saved_model_path_cnt, exist_ok=False)
                     torch.save(model.state_dict(),
-                               saved_model_path_cnt + "/model.pt")
+                               saved_model_path_cnt + "/" + str(k // conf.report) + "_model.pt")
 
-                    results_path_cnt = os.path.join(
-                        results_path, 'loads', str(k // conf.report))
-                    os.makedirs(results_path_cnt, exist_ok=True)
+                    # results_path_cnt = os.path.join(
+                    #     results_path, 'loads', str(k // conf.report))
+                    results_path_cnt = results_path + "/" + str(k // conf.report)
+                    # os.makedirs(results_path_cnt, exist_ok=True)
+                    os.makedirs(results_path_cnt, exist_ok=False)
                     validation_result = evaluate(
                         valid_examples, valid_features, model, results_path_cnt, 'valid')
                     # write_log(log_file, validation_result)
@@ -206,8 +212,10 @@ def evaluate(data_ori, data, model, ksave_dir, mode='valid'):
     pred_list = []
     pred_unk = []
 
-    ksave_dir_mode = os.path.join(ksave_dir, mode)
-    os.makedirs(ksave_dir_mode, exist_ok=True)
+    # ksave_dir_mode = os.path.join(ksave_dir, mode)
+    ksave_dir_mode = ksave_dir
+    # os.makedirs(ksave_dir_mode, exist_ok=True)
+    os.makedirs(ksave_dir_mode, exist_ok=False)
 
     data_iterator = DataLoader(
         is_training=False, data=data, batch_size=conf.batch_size_test, reserved_token_size=reserved_token_size, shuffle=False)
@@ -250,11 +258,11 @@ def evaluate(data_ori, data, model, ksave_dir, mode='valid'):
                     ))
 
     output_prediction_file = os.path.join(ksave_dir_mode,
-                                          "predictions.json")
+                                         mode +"_"+ "predictions.json")
     output_nbest_file = os.path.join(ksave_dir_mode,
-                                     "nbest_predictions.json")
-    output_eval_file = os.path.join(ksave_dir_mode, "full_results.json")
-    output_error_file = os.path.join(ksave_dir_mode, "full_results_error.json")
+                                     mode +"_"+"nbest_predictions.json")
+    output_eval_file = os.path.join(ksave_dir_mode, mode +"_"+"full_results.json")
+    output_error_file = os.path.join(ksave_dir_mode, mode +"_"+"full_results_error.json")
 
     all_predictions, all_nbest = compute_predictions(
         data_ori,

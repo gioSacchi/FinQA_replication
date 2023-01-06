@@ -36,7 +36,7 @@ if conf.mode == "train":
         datetime.now().strftime("%Y%m%d%H%M%S")
     model_dir = os.path.join(conf.output_path, model_dir_name)
     results_path = os.path.join(model_dir, "results")
-    saved_model_path = os.path.join(model_dir, "saved_model")
+    saved_model_path = os.path.join(model_dir, "saved_models")
     os.makedirs(saved_model_path, exist_ok=False)
     os.makedirs(results_path, exist_ok=False)
     log_file = os.path.join(results_path, 'log.txt')
@@ -158,15 +158,19 @@ def train():
                 if k // conf.report >= 1:
                     print("Val test")
                     # save model
-                    saved_model_path_cnt = os.path.join(
-                        saved_model_path, 'loads', str(k // conf.report))
-                    os.makedirs(saved_model_path_cnt, exist_ok=True)
+                    # saved_model_path_cnt = os.path.join(
+                    #     saved_model_path, 'loads', str(k // conf.report))
+                    saved_model_path_cnt = saved_model_path
+                    #os.makedirs(saved_model_path_cnt, exist_ok=True)
+                    os.makedirs(saved_model_path_cnt, exist_ok=False)
                     torch.save(model.state_dict(),
-                               saved_model_path_cnt + "/model.pt")
+                               saved_model_path_cnt + "/" + str(k // conf.report) + "_model.pt")
 
-                    results_path_cnt = os.path.join(
-                        results_path, 'loads', str(k // conf.report))
-                    os.makedirs(results_path_cnt, exist_ok=True)
+                    # results_path_cnt = os.path.join(
+                    #     results_path, 'loads', str(k // conf.report))
+                    results_path_cnt = results_path + "/" + str(k // conf.report)
+                    # os.makedirs(results_path_cnt, exist_ok=True)
+                    os.makedirs(results_path_cnt, exist_ok=False)
                     validation_result = evaluate(
                         valid_examples, valid_features, model, results_path_cnt, 'valid')
                     # write_log(log_file, validation_result)
@@ -179,8 +183,10 @@ def evaluate(data_ori, data, model, ksave_dir, mode='valid'):
     pred_list = []
     pred_unk = []
 
-    ksave_dir_mode = os.path.join(ksave_dir, mode)
-    os.makedirs(ksave_dir_mode, exist_ok=True)
+    #ksave_dir_mode = os.path.join(ksave_dir, mode)
+    ksave_dir_mode = ksave_dir
+    # os.makedirs(ksave_dir_mode, exist_ok=True)
+    os.makedirs(ksave_dir_mode, exist_ok=False)
 
     data_iterator = DataLoader(
         is_training=False, data=data, batch_size=conf.batch_size_test, shuffle=False)
@@ -217,7 +223,7 @@ def evaluate(data_ori, data, model, ksave_dir, mode='valid'):
             all_filename_id.extend(filename_id)
             all_ind.extend(ind)
 
-    output_prediction_file = os.path.join(ksave_dir_mode,
+    output_prediction_file = os.path.join(ksave_dir_mode, mode +"_"+
                                           "predictions.json")
 
     if mode == "valid":

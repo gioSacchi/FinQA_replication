@@ -14,6 +14,32 @@ def good_replace(text, old, new):
 
     return re.sub(r'\b%s\b' % old, new, text)
 
+def sequence_good_replace(text, changes):
+    # Runs good_replace sequencially for all changes made
+    # Changes is dictionary with old words -> new words
+    for old, new in changes.items():
+        text = good_replace(text, old, new)
+    return text
+
+# replace_nth_instance(string, n, word, replacement) replaces the nth instance of 'word' in 'string' with 'replacement'
+def replace_nth_instance(text, n, old, new):
+    # Create a list of lowercase words in the string
+    words = text.lower().split()
+    old = old.lower()
+
+    # Replace the nth instance of 'word' in the list with 'replacement'
+    # Note: we need to keep track of how many instances of 'word' we have seen so far
+    instances_seen = 0
+    for i in range(len(words)):
+        if words[i] == old:
+            instances_seen += 1
+            if instances_seen == n:
+                words[i] = new
+                break
+
+    # Join the words back into a single string and return the result
+    return " ".join(words)
+
 def program_tokenization(original_program):
     original_program = original_program.split(', ')
     program = []
