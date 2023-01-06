@@ -83,6 +83,8 @@ kwargs = {"examples": test_examples,
 
 test_features = convert_examples_to_features(**kwargs)
 
+write_log(log_file, conf.saved_model_path)
+
 
 def generate(data_ori, data, model, ksave_dir, mode='valid'):
 
@@ -124,7 +126,7 @@ def generate(data_ori, data, model, ksave_dir, mode='valid'):
             option_mask = torch.tensor(option_mask).to(conf.device)
 
             logits = model.forward(False, input_ids, input_mask,
-                           segment_ids, option_mask, program_ids, program_mask, device=conf.device)
+                                   segment_ids, option_mask, program_ids, program_mask, device=conf.device)
 
             for this_logit, this_id in zip(logits.tolist(), x["unique_id"]):
                 all_results.append(
